@@ -20,6 +20,6 @@ def pi_approx(n):
 	app = napprox(n)
 	counter = 0
 	for (x,y) in app:
-		if(is_inside((x,y)[0],(x,y)[1])):
+		if(is_inside((x,y)[0],(x,y)[1]) == True):
 			counter += 1.0
 	return 4.0 * (counter/n) 
