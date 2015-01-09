@@ -1,5 +1,6 @@
 import math
 import random
+import decimal
 
 def napprox(n): 
 	r = range(n)
@@ -8,7 +9,7 @@ def napprox(n):
 	return r
 
 def is_inside(x,y):
-	if(dist(x,y) <=1):
+	if(dist(x,y) <=1.0):
 		return True
 	else:
 		return False
