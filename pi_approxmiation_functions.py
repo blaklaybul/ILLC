@@ -8,7 +8,7 @@ def napprox(n):
 	return r
 
 def is_inside(x,y):
-	if(dist(x,y) <1):
+	if(dist(x,y) <=1):
 		return True
 	else:
 		return False
@@ -22,4 +22,4 @@ def pi_approx(n):
 	for (x,y) in app:
 		if(is_inside((x,y)[0],(x,y)[1]) == True):
 			counter += 1.0
-	return 4.0 * (counter/n) 
+	return 4.0 * ((n-counter)/n)
