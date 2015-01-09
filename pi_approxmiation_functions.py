@@ -9,7 +9,7 @@ def napprox(n):
 	return r
 
 def is_inside(x,y):
-	if(dist(x,y) <=1.0):
+	if(dist(x,y) <1.0):
 		return True
 	else:
 		return False
