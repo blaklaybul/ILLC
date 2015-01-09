@@ -15,3 +15,11 @@ def is_inside(x,y):
 
 def dist(x,y):
 	return math.sqrt(x**2+y**2)
+
+def pi_approx(n):
+	app = napprox(n)
+	counter = 0
+	for i in app:
+		if(is_inside(app[i])):
+			counter += 1
+	return 4.0 - (counter/n) 
