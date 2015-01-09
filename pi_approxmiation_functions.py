@@ -5,6 +5,7 @@ def napprox(n):
 	r = range(n)
 	for i in r:
 		r[i] = (2-random.random()*4,2-random.random()*4)
+	return r
 
 def is_inside(x,y):
 	if(dist(x,y) <1):
