@@ -1,0 +1,86 @@
+\documentclass[]{book}
+
+%These tell TeX which packages to use.
+\usepackage{array,epsfig}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsxtra}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{color}
+
+%Here I define some theorem styles and shortcut commands for symbols I use often
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}{Corollary}
+\newtheorem*{rmk}{Remark}
+\newtheorem{lem}{Lemma}
+\newtheorem*{joke}{Joke}
+\newtheorem{ex}{Example}
+\newtheorem*{soln}{Solution}
+\newtheorem{prop}{Proposition}
+
+%Pagination stuff.
+\setlength{\topmargin}{-.3 in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{9.in}
+\setlength{\textwidth}{6.5in}
+\pagestyle{empty}
+
+
+
+\begin{document}
+
+
+\begin{center}
+{\Large Statistical Learning Theory, Exercise 1}\\
+Michael Hirsch\\ %You should put your name here
+January 12, 2015 %You should write the date here.
+\end{center}
+
+\vspace{0.2 cm}
+
+
+\subsection*{Coin Flipping Inference}
+
+\begin{enumerate}
+\item\label{norms}
+How many times should we flip the coin in order to achieve a precision of $\epsilon = 10^{-2}$ and error probability of $\alpha = 1/20$?
+\begin{proof}
+	We will solve for $t$ in the equation $1/4t\epsilon^{2} = \alpha$ by plugging in the values for $\epsilon$ and $\alpha$.
+
+	$$ \dfrac{1}{4t10^{-4}} = \dfrac{1}{20}$$
+	$$ \dfrac{2500}{t} = \dfrac{1}{20}$$
+	$$ t = 500000$$
+\end{proof}
+
+\item	If we flip the coint $ t = 10^{3}$ times and want the error probability to be less than $\alpha = 1/20$, what precision level can we obtain?
+\begin{proof} Again, we solve the same equation using different values, this time noting that our epsilon value will be an upper bound on the precision.
+	$$ \dfrac{1}{4000\epsilon^{2}} = \dfrac{1}{20}$$
+	$$ 4000\epsilon^{2} = 20 $$
+	$$ \epsilon ^{2} = \dfrac{20}{4000}$$
+	$$ \epsilon ^{2} = \dfrac{1}{200}$$
+	$$ \epsilon  = \sqrt{\dfrac{1}{200}}$$
+	$$ \epsilon  = \dfrac{1}{\sqrt{200}}$$
+	$$ \epsilon  = \dfrac{1}{10\sqrt{2}}$$
+\end{proof}
+
+\item	If we flip the coin $t = 10^{3}$ times, what is the probability that the empirical frequency of heads deviates from the probability by more that $\epsilon = 10 ^ {-2}$?
+\begin{proof}
+		$$ Pr\{| \dfrac{S_{t}}{t} - \mu | > 1/100 \} \leq \dfrac{0.25/1000}{10^{-4}} = 2.5$$
+		
+I suppose that this means we are guaranteed to deviate at least $\epsilon$ from the mean?
+\end{proof}
+
+
+\end{enumerate}
+
+
+
+
+\end{document}
+
+
