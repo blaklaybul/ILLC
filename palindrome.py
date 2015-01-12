@@ -16,7 +16,6 @@ def is_palindrome(word):
 	    else:
 	        return "no way!"
 	elif(len(word) > 2):
-		print word
 		newword	= middle(word)
 		while(len(newword) > 1):
 			if(first(word) == last(word)):
