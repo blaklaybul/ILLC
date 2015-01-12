@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  12 JAN 2015 20:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  12 JAN 2015 20:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -275,7 +275,7 @@ Here is how much of TeX's memory you used:
  6061 multiletter control sequences out of 15000+600000
  7083 words of font info for 29 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,5n,24p,277b,166s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,5n,24p,305b,166s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2014/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmex10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/pub
@@ -287,7 +287,7 @@ fonts/cm/cmr7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmsy7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmti10.pfb>
-Output written on Law_of_Large_Numbers.pdf (1 page, 95261 bytes).
+Output written on Law_of_Large_Numbers.pdf (1 page, 96229 bytes).
 PDF statistics:
  48 PDF objects out of 1000 (max. 8388607)
  34 compressed objects within 1 object stream

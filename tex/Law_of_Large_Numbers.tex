@@ -58,7 +58,7 @@ How many times should we flip the coin in order to achieve a precision of $\epsi
 \end{proof}
 
 \item	If we flip the coint $ t = 10^{3}$ times and want the error probability to be less than $\alpha = 1/20$, what precision level can we obtain?
-\begin{proof} Again, we solve the same equation using different values, this time noting that our epsilon value will be an upper bound on the precision.
+\begin{proof} Again, we solve the same equation using different values, this time noting that our epsilon value will be a bound on the precision.
 	$$ \dfrac{1}{4000\epsilon^{2}} = \dfrac{1}{20}$$
 	$$ 4000\epsilon^{2} = 20 $$
 	$$ \epsilon ^{2} = \dfrac{20}{4000}$$
@@ -72,9 +72,9 @@ How many times should we flip the coin in order to achieve a precision of $\epsi
 \begin{proof}
 		$$ Pr\{| \dfrac{S_{t}}{t} - \mu | > 1/100 \} \leq \dfrac{0.25/1000}{10^{-4}} = 2.5$$
 		
-I suppose that this means we are guaranteed to deviate at least $\epsilon$ from the mean?
 \end{proof}
 
+It appears that in this example, the Chebyshev bound is not effective given the number of trials and our desired degree of precision. A probaility of at most 2.5 indicates that we are entirely in the dark when predicting the empirical frequency of the number of heads.
 
 \end{enumerate}
 
