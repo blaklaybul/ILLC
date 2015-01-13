@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1421170693 "Information_Theory.tex" "Information_Theory.pdf" "Information_Theory" 1421170694
+["pdflatex"] 1421174414 "Information_Theory.tex" "Information_Theory.pdf" "Information_Theory" 1421174414
   "/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/etexcmds.sty" 1335995445 7612 c47308d923ec19888707b0f1792b326a ""
   "/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifluatex.sty" 1303254447 7324 11d14f318d865f420e692d4e6c9c18c3 ""
@@ -38,8 +38,8 @@
   "/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/kvoptions.sty" 1335995445 22417 c74ff4af6a1aa2b65d1924020edbbe11 ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/pdftex-def/pdftex.def" 1306616590 55368 3c8a0d99822330f2dfabc0dfb09ce897 ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/tools/array.sty" 1399675188 13073 a6e28ede26c83d406e124b12f368174f ""
-  "Information_Theory.aux" 1421170694 33 562f92d07f445b5bb0167e742f792fa7 ""
-  "Information_Theory.tex" 1421170693 4675 1e9e984d19fddae7ea2d52e937667415 ""
+  "Information_Theory.aux" 1421174414 33 562f92d07f445b5bb0167e742f792fa7 ""
+  "Information_Theory.tex" 1421174413 4676 6ba4a42826af28d1eef6f94a83555087 ""
   (generated)
   "Information_Theory.log"
   "Information_Theory.pdf"
