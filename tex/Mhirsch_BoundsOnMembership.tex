@@ -56,14 +56,16 @@ For any specific event $A$, these two half-samples define two frequencies, $f_{1
 
 \begin{proof}[\unskip\nopunct]
 
-In this scenario, we have two samples both of size $t = 10^{4}$, with the total population size, $T$, being unknown, as well as the number of successes in both the population and the sample. 
+In this scenario, we have two samples both of size $t = 10^{4}$. Further, we know that $E[s_{1}] = E[s_{2}] = S/T \times 10^{4}$ in both samples, where S and T are unknown. Since we can assume that $S$ is fixed, we have the equality:
+	\begin{equation*}
+		\begin{split}
+		Pr\{|f_{1}(A) - f_{2}(A)| > 0.1\} & = Pr\{|s_{1}/t - s_{2}/t| > 0.1\} \\
+		& = Pr\{|s_{1}/t - E[f_{1}(A)]| > 0.05\} \\
+		& = Pr\{|s_{1}/t - E[s_{1}/t]| > 0.05\} < 2exp(-2(0.05)^{2}t) = 2e^{-50} \approx 1.93 \times 10^{-22}
+		\end{split}
+	\end{equation*}
 
-Further, we know that $E[s] = S/T \times 10^{4}$ in both samples.
-
-Since we can assume that $S$ is fixed, we have the equality:
-
-$$Pr\{|f_{1}(A) - f_{2}(A)| > 0.1\} = Pr\{|f_{1}(A) - E[f_{1}(A)]| > 0.05\} \leq 2 \times exp(-2t(\dfrac{\varepsilon}{2})^{2})$$
-
+That is, there is a very small probability that the frequencies will differ by more than 
 \end{proof}
 
 \item
@@ -71,7 +73,21 @@ $$Pr\{|f_{1}(A) - f_{2}(A)| > 0.1\} = Pr\{|f_{1}(A) - E[f_{1}(A)]| > 0.05\} \leq
 We now make such a comparison for each $\Phi(3,2 \times 10^{4}$ different sets. Find an explicit upper bound on the probability that $|f_{1}(A) - f_{2}(A)| > \varepsilon$ for at least one $A$.
 
 \begin{proof}[\unskip\nopunct]
+The union bound, also known as Boole's Inequality, is formulated as follows:
 
+For any countable number of countable events $A_{1}, A_{2}, A_{3}, \ldots$ we have:
+	\begin{equation*}
+		\begin{split}
+			P(\bigcup_{i} A_{i}) \} \leq \sum_{i}P(A_{i}) & = {\Phi(3,2\times10^{4}) \choose 2} \times 2e^{-50} \\
+			& = \Bigg( {{1000 \choose 0} + {1000 \choose 1} + {1000 \choose 2} + {1000 \choose 3} \choose 2}\Bigg) \times 2e^{-50} \\
+			& = {1+1000+49950+166167000 \choose 2}\times 2e^{-50} \\
+			& \approx 2.6644 \times 10^{-6}
+		\end{split}
+	\end{equation*} 
+
+where $i \ [1,\Phi(3,2\times10^{4})]$
+	
+Each event $A_{i}$ will actually be the event in which $|f_{1}(A) - f_{2}(A)|$
 \end{proof}
 
 
