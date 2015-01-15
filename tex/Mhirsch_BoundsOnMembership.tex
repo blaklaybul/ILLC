@@ -1,0 +1,83 @@
+\documentclass[]{book}
+
+%These tell TeX which packages to use.
+\usepackage{array,epsfig}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsxtra}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{color}
+
+%Here I define some theorem styles and shortcut commands for symbols I use often
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}{Corollary}
+\newtheorem*{rmk}{Remark}
+\newtheorem{lem}{Lemma}
+\newtheorem*{joke}{Joke}
+\newtheorem{ex}{Example}
+\newtheorem*{soln}{Solution}
+\newtheorem{prop}{Proposition}
+
+%Pagination stuff.
+\setlength{\topmargin}{-.3 in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{9.in}
+\setlength{\textwidth}{6.5in}
+\pagestyle{empty}
+
+
+
+\begin{document}
+
+
+\begin{center}
+{\Large Statistical Learning Theory, Exercise 4}\\
+Michael Hirsch\\ %name here
+January 15, 2015 %date here
+\end{center}
+
+\vspace{0.2 cm}
+
+
+\subsection*{Bounds on Membership Uncertainty}
+
+A sample size of $2t = 2 \times 10^{4}$ is drawn from some distribution, and this sample is then randomly split up into two half-samples of size $t = 10^{4}$
+
+
+\begin{enumerate}
+\item\label{norms}
+
+For any specific event $A$, these two half-samples define two frequencies, $f_{1}(A)$ and $f_{2}(A)$. Find an explicit upper bound on the probability that $|f_{1}(A) - f_{2}(A)| > 0.1$.
+
+\begin{proof}[\unskip\nopunct]
+
+In this scenario, we have two samples both of size $t = 10^{4}$, with the total population size, $T$, being unknown, as well as the number of successes in both the population and the sample. 
+
+Further, we know that $E[s] = S/T \times 10^{4}$ in both samples.
+
+Since we can assume that $S$ is fixed, we have the equality:
+
+$$Pr\{|f_{1}(A) - f_{2}(A)| > 0.1\} = Pr\{|f_{1}(A) - E[f_{1}(A)]| > 0.05\} \leq 2 \times exp(-2t(\dfrac{\varepsilon}{2})^{2})$$
+
+\end{proof}
+
+\item
+
+We now make such a comparison for each $\Phi(3,2 \times 10^{4}$ different sets. Find an explicit upper bound on the probability that $|f_{1}(A) - f_{2}(A)| > \varepsilon$ for at least one $A$.
+
+\begin{proof}[\unskip\nopunct]
+
+\end{proof}
+
+
+\end{enumerate}
+
+
+\end{document}
+
+
