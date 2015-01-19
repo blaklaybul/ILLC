@@ -15,18 +15,20 @@ teams$league <- NULL
 teams$year <- NULL
 teams$wins <- NULL
 teams$losses <- NULL
+teams$attendance <- teams$attendance/teams$games
 
 # there should be no null values in this data frame
 # p.new <- ggplot(teams, aes(x=teams$wins, y=teams$attendance, col=teams$worldSeries)) + geom_point(size=3,alpha=0.8)+ xlab("wins") +  ylab("attendance") + scale_y_continuous(labels = comma)
 
-rf.teams=randomForest(worldSeries~.-franchiseID, data=teams, subset=train)
-rf.teams=randomForest(winningPCT~.-franchiseID-worldSeries, data=teams, subset=train)
+rf.teams=randomForest(attendance~.-franchiseID, data=teams, subset=train)
 
-for(mtry in 1:26){
-  fit=randomForest(winningPCT~.-franchiseID-worldSeries, data=teams, subset=train, mtry=mtry,ntree=400)
+rf.teams=randomForest(attendance~.-franchiseID-worldSeries, data=teams, subset=train)
+
+for(mtry in 1:23){
+  fit=randomForest(attendance~.-franchiseID-worldSeries, data=teams, subset=train, mtry=mtry,ntree=400)
   oob.err[mtry]=fit$mse[400]
   pred = predict(fit,teams[-train,])
-  test.err[mtry]=with(teams[-train,],mean((winningPCT-pred)^2))
+  test.err[mtry]=with(teams[-train,],mean((attendance-pred)^2))
   cat(mtry," ")                      
 }
 
