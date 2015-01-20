@@ -39,6 +39,10 @@ standings <-  ldply(1950:2013, get_stand, .progress="text")
 # clean up the column names
 names(attendance) <- c("tm", "attendance", "attend_per_game", "batage", "page", "bpf", "ppf", "n_hof", "n_aallstars", "n_a_ta_s", "est_payroll", "gametime","managers", "year")
 
+attendance$managers <- NULL
+attendance$gametime <- NULL
+
+
 standings$SOS <- NULL
 standings$SRS <- NULL
 standings$pythWL <- NULL
@@ -95,10 +99,8 @@ MLBHist$vLHPL <- make_numeric(MLBHist$vLHPL)
 ##our data frame should be ready
 
 
-
-
-
-
+attendance_by_year = data.frame(aggregate(MLBHist$attendance ~ MLBHist$year, MLBHist, sum))
+ggplot(attendance_by_year, aes(x=MLBHist.year, y=MLBHist.attendance))+geom_line()
 
 
 
