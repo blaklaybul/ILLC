@@ -1,5 +1,6 @@
 require(ggplot2)
 require(kernlab)
+require(caret)
 
 spamset <- read.table("http://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data", sep=",")
 
@@ -64,6 +65,11 @@ names(spamset) <- c("word_freq_make"
 
 spamset$is_spam <- as.factor(spamset$is_spam)
 
-ggplot(spamset,aes(x=capital_run_length_total, y=char_freq_exc, col = is_spam)) +geom_point()+scale_y_log10()+scale_x_log10()
+trainIndex <- createDataPartition(spamset$is_spam, p = .8, list = FALSE, times = 1)
 
+train <- spamset[ trainIndex,]
+
+test  <- spamset[-trainIndex,]
+
+# ggplot(spamset,aes(x=capital_run_length_total, y=char_freq_exc, col = is_spam)) +geom_point()+scale_y_log10()+scale_x_log10()
 
