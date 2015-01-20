@@ -4,6 +4,7 @@ require(tree)
 require(XML)
 require(plyr)
 require(stringr)
+
 br <- "http://www.baseball-reference.com/leagues/MLB/1990-misc.shtml"
 sal <- data.frame(readHTMLTable(br, stringsAsFactors = FALSE))
 
@@ -22,6 +23,7 @@ make_numeric <- function(x) {
 
 attendance <- ldply(1950:2013, get_years, .progress="text")
 
+
 # clean up the column names
 names(attendance) <- c("tm", "attendance", "attend_per_game", "batage", "page", "bpf", "ppf", "n_hof", "n_aallstars", "n_a_ta_s", "est_payroll", "gametime","managers", "year")
 
@@ -34,7 +36,7 @@ names(teams)[names(teams)=="franchID"] <- "tm"
 names(teams)[names(teams)=="yearID"] <- "year"
 
 #get wins and games information from teams table
-newatt <- merge(x=attendance,y=teams[,c("W", "G","L", "year", "tm")],by=c("year","tm"), all.x = TRUE)
+newatt <- merge(x=attendance,y=teams[,c("W", "G","L", "WSWin" , "year", "tm")],by=c("year","tm"), all.x = TRUE)
 
 #drop teams
 rm(teams)
