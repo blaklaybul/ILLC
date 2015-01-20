@@ -71,5 +71,7 @@ train <- spamset[ trainIndex,]
 
 test  <- spamset[-trainIndex,]
 
+
+
 # ggplot(spamset,aes(x=capital_run_length_total, y=char_freq_exc, col = is_spam)) +geom_point()+scale_y_log10()+scale_x_log10()
 
