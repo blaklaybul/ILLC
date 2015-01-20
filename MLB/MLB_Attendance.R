@@ -36,7 +36,7 @@ names(teams)[names(teams)=="franchID"] <- "tm"
 names(teams)[names(teams)=="yearID"] <- "year"
 
 #get wins and games information from teams table
-newatt <- merge(x=attendance,y=teams[,c("W", "G","L", "WSWin" , "year", "tm")],by=c("year","tm"), all.x = TRUE)
+newatt <- merge(x=attendance,y=teams[,c("W", "G","L", "WSWin" , "year", "tm")],by=c("year","tm"))
 
 #drop teams
 rm(teams)

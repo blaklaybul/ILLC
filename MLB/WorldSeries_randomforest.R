@@ -8,14 +8,16 @@ names(teams) <- c("year","league", "franchiseID", "rank", "games", "wins", "loss
 
 teams$franchiseID <- as.character(teams$franchiseID)
 teams$year <- as.character(teams$year)
-teams$franchiseID <- do.call(paste,c(teams[c("franchiseID","year")]))
+#teams$franchiseID <- do.call(paste,c(teams[c("franchiseID","year")]))
 teams$winningPCT = teams$wins/teams$games
 teams$rank <- NULL
 teams$league <- NULL
-teams$year <- NULL
-teams$wins <- NULL
-teams$losses <- NULL
+#teams$year <- NULL
+#teams$wins <- NULL
+#teams$losses <- NULL
 teams$attendance <- teams$attendance/teams$games
+
+ggplot(df, aes(x=w, y=attendance)) + geom_point()
 
 # there should be no null values in this data frame
 # p.new <- ggplot(teams, aes(x=teams$wins, y=teams$attendance, col=teams$worldSeries)) + geom_point(size=3,alpha=0.8)+ xlab("wins") +  ylab("attendance") + scale_y_continuous(labels = comma)
