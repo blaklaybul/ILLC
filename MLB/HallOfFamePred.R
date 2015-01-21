@@ -22,7 +22,8 @@ battingagg <- aggregate(.~playerID, batting, sum)
 HallOfFame <-  merge(x=battingagg,y=hof,by=c("playerID"))
 
 summary(HallOfFame)
-
+summary(HallOfFame)
+HallOfFame <- HallOfFame[HallOfFame$votedBy =="BBWAA",]
 HallOfFame$votedBy <- NULL
 HallOfFame$ballots <- NULL
 HallOfFame$needed <- NULL
@@ -36,6 +37,8 @@ HallOfFame <- aggregate(.~playerID,HallOfFame, max)
 
 HallOfFame$inducted <- as.factor(HallOfFame$inducted)
 
-summary(HallOfFame)
+##only want batters... this was taken from baseball reference
+HallOfFame <- HallOfFame[HallOfFame$H > 700,]
 
-HallOfFame[HallOfFame$BB > 1800,]
+#this should be ok.
+
