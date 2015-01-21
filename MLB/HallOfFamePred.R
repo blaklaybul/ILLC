@@ -32,7 +32,10 @@ HallOfFame$needed_note <- NULL
 
 HallOfFame$inducted <- ifelse(HallOfFame$inducted == "Y", 1, 0)
 
-HallOfFame <- aggregate(.~playerID,HallOfFame, sum)
+HallOfFame <- aggregate(.~playerID,HallOfFame, max)
 
 HallOfFame$inducted <- as.factor(HallOfFame$inducted)
 
+summary(HallOfFame)
+
+HallOfFame[HallOfFame$BB > 1800,]
