@@ -42,3 +42,5 @@ HallOfFame <- HallOfFame[HallOfFame$H > 700,]
 
 #this should be ok.
 
+#lets have a look at some graphs
+ggplot(HallOfFame,aes(x=inducted, y=H)) + geom_boxplot(aes(fill=inducted, weight=10))

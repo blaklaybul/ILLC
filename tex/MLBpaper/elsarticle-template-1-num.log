@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  21 JAN 2015 16:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  21 JAN 2015 17:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -206,12 +206,12 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    Try loading font information for U+msa on input line 121.
+LaTeX Font Info:    Try loading font information for U+msa on input line 113.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 121.
+LaTeX Font Info:    Try loading font information for U+msb on input line 113.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -219,22 +219,26 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 
 {/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 137.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 129.
 
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 137.
- [2]
-<placeholder.jpg, id=17, 351.3125pt x 193.72375pt>
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 129.
+
+<placeholder.jpg, id=11, 351.3125pt x 193.72375pt>
 File: placeholder.jpg Graphic file (type jpg)
  <use placeholder.jpg>
-Package pdftex.def Info: placeholder.jpg used on input line 169.
+Package pdftex.def Info: placeholder.jpg used on input line 161.
 (pdftex.def)             Requested size: 155.99762pt x 86.025pt.
 
-Overfull \hbox (8.08151pt too wide) in paragraph at lines 187--188
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[2]
+Overfull \hbox (8.08151pt too wide) in paragraph at lines 179--180
 \OT1/cmr/m/n/12 morbi tris-tique senec-tus et ne-tus et male-suada fames ac tur
 pis eges-tas. Quisque
  []
@@ -244,7 +248,7 @@ pis eges-tas. Quisque
 Here is how much of TeX's memory you used:
  2621 strings out of 493117
  35316 string characters out of 6135433
- 95265 words of memory out of 5000000
+ 96257 words of memory out of 5000000
  6038 multiletter control sequences out of 15000+600000
  10574 words of font info for 39 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -260,7 +264,7 @@ amsfonts/cm/cmss8.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmti10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmti12.pfb>
-Output written on elsarticle-template-1-num.pdf (4 pages, 135646 bytes).
+Output written on elsarticle-template-1-num.pdf (4 pages, 134695 bytes).
 PDF statistics:
  58 PDF objects out of 1000 (max. 8388607)
  40 compressed objects within 1 object stream
