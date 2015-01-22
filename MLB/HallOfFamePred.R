@@ -5,7 +5,6 @@ require(XML)
 require(plyr)
 require(stringr)
 require(tree)
-require(sqldf)
 
 batting <- data.frame(read.csv("Batting.csv", header=TRUE))
 hof <- data.frame(read.csv("HallOfFame.csv", header=TRUE))
@@ -17,8 +16,9 @@ batting$yearID <- NULL
 
 batting[is.na(batting)] <- 0
 
-aggregate(inducted~playerID,hof,length)
-
+##interesting, if i want to check how many years on ballot
+      # hofCounts <- aggregate(.~playerID+inducted,hof,length)
+      # hofCounts[order(hofCounts$playerID),]
 
 
 battingagg <- aggregate(.~playerID, batting, sum)
