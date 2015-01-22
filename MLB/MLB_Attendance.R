@@ -63,7 +63,7 @@ standings$Inter <- NULL
 
 
 ##setting up merge
-names(standings)[names(standings)=="Tm"] <- "tm"
+  names(standings)[names(standings)=="Tm"] <- "tm"
 
 #get wins and games information from teams table
 MLBHist <- merge(x=attendance,y=standings,by=c("year","tm"))
