@@ -130,7 +130,9 @@ In this paper, we are investigating what makes a Hall Of Fame (HOF) batter. Ther
 
 \section{Data}
 \label{S:2}
-Data was collected from the Lahman Baseball Database, a freely available database that has been contiously updated since 1994 with the help of SABR and many individual researchers. There are many data tables available for download, but the ones that we are focusing on are \textit{Batting.dat} and \textit{HallOfFame.dat}. Batting statistics were supplied on a by-year basis, so a player's career statistics were computed by aggregating his yearly results. The batters' data was then merged with hall of fame voting results using the player's ID string.  Attention is paid to 18 different batting statistics over the course of the player's career:
+Data was collected from the Lahman Baseball Database, a freely available database that has been contiously updated since 1994 with the help of SABR and many individual researchers. There are many data tables available for download, but the ones that we are focusing on are \textit{Batting.dat} and \textit{HallOfFame.dat}. Batting statistics were supplied on a by-year basis, so a player's career statistics were computed by aggregating his yearly results. The batters' data was then merged with hall of fame voting results using the player's ID string. All data preparation was done within R, the environment where we also build our learning models. 
+
+Attention is paid to 18 different batting statistics over the course of the player's career:
 
 Below is a list of features used 
 \begin{enumerate}
@@ -154,16 +156,37 @@ Below is a list of features used
 	\item Inducted: classifier for HOF induction
 \end{enumerate}
 
+We needed to further filter our data by not including pitchers in our set of observations. This was done by removing those observations that indicated that the player recorded less than 300 RBI in his career. This number was not arbitrary, but rather chosen by cross referencing my data with HOF data from Baseball-Reference.
+
+
+% here is where we can add citations
+%Maecenas \cite{Smith:2012qr} fermentum \cite{Smith:2013jd} urna ac sapien tincidunt 
+
+
+\section{Tree-Based Methods for Classification}
+
+In this section, we will give an account of two learning methods that we will use for the basis of prediction: classification trees, and an ensemble method, random forests.
+
+\subsection{Classification Trees}
+Classification trees are a fairly effective predictive tool that are lauded for their high degree of interpretability. When constructing a classification tree, we begin with the full set of observations and begin dividing the predictor space into non-overlapping regions by means of binary splitting. In prediction, we assign each observation in a given region of the predictor space to the most commonly occuring class of the training observations in that region. When splitting, we are concerned with the textit{Information Gain} at each split, that is, we want to choose the feature to split on based on which feature split will give us the most information gain. This defined as:
+
+$$IG(T,a) = H(T) - H(T|a)$$
+
+\noindent where $T$ denotes a set of training examples, each of the form ($\textbf{x},y) = (x_{1},\ldots,x_{k},y)$ where each $x_a \in vals(a)$ is the value of the \textit{a}\textsuperscript{th} attribute of \textbf{x} and $y$ is the classification label. So, the information gain for a split on attribute \textit{a} is defined in terms of entropy as:
+
+$$IG(T,a) = H(T) -\sum\limits_{v \in vals(a) } \frac{|\{\textbf{x} \in T : x_{a} = v\}|}{|T|} \cdot H(\{\textbf{x} \in T : x_{a} = v\})$$ 
+
+\noindent Any decision tree algorithm will look too maximize this value, as that would indicate that the value of the attribute \textit{a} that we chose to split on will produce the most new information.
+
+After splitting 
 
 
 
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque quis interdum velit. Nulla tincidunt sem quis nisi molestie nec hendrerit nulla interdum. Nunc at lectus at neque dapibus dapibus sit amet in massa. Nam ut nisl in diam consectetur dignissim. Sed lacinia diam id nunc suscipit vitae semper lorem semper. In vehicula velit at tortor fringilla elementum aliquam erat blandit. Donec pretium libero et neque vehicula blandit. Curabitur consequat interdum sem at ultrices. Sed at tincidunt metus. Etiam vulputate, lacus eget fermentum posuere, ante mi dignissim augue, et ultrices felis tortor sed nisl.
 
-Maecenas \cite{Smith:2012qr} fermentum \cite{Smith:2013jd} urna ac sapien tincidunt 
 
-% \subsection{Subsection One}
-
-% Quisque elit ipsum, porttitor et imperdiet in, facilisis ac diam. Nunc facilisis interdum felis eget tincidunt. In condimentum fermentum leo, non consequat leo imperdiet pharetra. Fusce ac massa ipsum, vel convallis diam. Quisque eget turpis felis. Curabitur posuere, risus eu placerat porttitor, magna metus mollis ipsum, eu volutpat nisl erat ac justo. Nullam semper, mi at iaculis viverra, nunc velit iaculis nunc, eu tempor ligula eros in nulla. Aenean dapibus eleifend convallis. Cras ut libero tellus. Integer mollis eros eget risus malesuada fringilla mattis leo facilisis. Etiam interdum turpis eget odio ultricies sed convallis magna accumsan. Morbi in leo a mauris sollicitudin molestie at non nisl.
+\subsection{Ensemble Methods}
+\subsubsection{Bagging}
+\subsubsection{Random Forests}
 
 % \begin{table}[h]
 % \centering
