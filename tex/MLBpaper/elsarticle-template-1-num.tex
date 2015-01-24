@@ -168,7 +168,7 @@ We needed to further filter our data by not including pitchers in our set of obs
 In this section, we will give an account of two learning methods that we will use for the basis of prediction: classification trees, and an ensemble method, random forests.
 
 \subsection{Classification Trees}
-Classification trees are a fairly effective predictive tool that are lauded for their high degree of interpretability. When constructing a classification tree, we begin with the full set of observations and begin dividing the predictor space into non-overlapping regions by means of binary splitting. In prediction, we assign each observation in a given region of the predictor space to the most commonly occuring class of the training observations in that region. When splitting, we are concerned with the textit{Information Gain} at each split, that is, we want to choose the feature to split on based on which feature split will give us the most information gain. This defined as:
+Classification trees are a fairly effective predictive tool that are lauded for their high degree of interpretability. When constructing a classification tree, we begin with the full set of observations and begin dividing the predictor space into non-overlapping regions by means of binary splitting. In prediction, we assign each observation in a given region of the predictor space to the most commonly occuring class of the training observations in that region. When splitting, we are concerned with the textit{Information Gain} at each split, that is, we want to choose the feature to split on based on which feature split will give us the most pure sucessive node. This defined as:
 
 $$IG(T,a) = H(T) - H(T|a)$$
 
