@@ -165,28 +165,33 @@ We needed to further filter our data by not including pitchers in our set of obs
 
 \section{Tree-Based Methods for Classification}
 
-In this section, we will give an account of two learning methods that we will use for the basis of prediction: classification trees, and an ensemble method, random forests.
+In this section, we will give an account of two learning methods that we will use for the basis of prediction: classification trees, and an ensemble method, random forests. The information here is theoretical, and we will encounter applications of these ideas to our HOF data in the next section.
 
 \subsection{Classification Trees}
-Classification trees are a fairly effective predictive tool that are lauded for their high degree of interpretability. When constructing a classification tree, we begin with the full set of observations and begin dividing the predictor space into non-overlapping regions by means of binary splitting. In prediction, we assign each observation in a given region of the predictor space to the most commonly occuring class of the training observations in that region. When splitting, we are concerned with the textit{Information Gain} at each split, that is, we want to choose the feature to split on based on which feature split will give us the most pure sucessive node. This defined as:
+Classification trees are a fairly effective predictive tool that are lauded for their high degree of interpretability. When constructing a classification tree, we begin with the full set of observations and begin dividing the predictor space into non-overlapping regions by means of binary splitting. In prediction, we assign each observation in a given region of the predictor space to the most commonly occuring class of the training observations in that region. 
 
-$$IG(T,a) = H(T) - H(T|a)$$
+When choosing splits in our tree, we are concerned with the textit{Gini Impurity} at each split, that is, we want to choose the feature to split on based on which feature split will give us the most pure sucessive node. Gini impurity is a measure of how often a randomly chosen element from the set would be incorrectly labeled if it were randomly labeled according to the distribution of labels in the subset. Gini impurity can be computed by summing the probability of each item being chosen times the probability of a mistake in categorizing that item. It reaches its minimum (zero)when all cases in the node fall into a single target category. This defined as:
 
-\noindent where $T$ denotes a set of training examples, each of the form ($\textbf{x},y) = (x_{1},\ldots,x_{k},y)$ where each $x_a \in vals(a)$ is the value of the \textit{a}\textsuperscript{th} attribute of \textbf{x} and $y$ is the classification label. So, the information gain for a split on attribute \textit{a} is defined in terms of entropy as:
+$$G = \sum\limits_{k=1}^K \hat{p}_{mk}(1-\hat{p}_{mk}) = 1 - \sum\limits_{k=1}^K \hat{p}_{mk}^{2}$$
 
-$$IG(T,a) = H(T) -\sum\limits_{v \in vals(a) } \frac{|\{\textbf{x} \in T : x_{a} = v\}|}{|T|} \cdot H(\{\textbf{x} \in T : x_{a} = v\})$$ 
-
-\noindent Any decision tree algorithm will look too maximize this value, as that would indicate that the value of the attribute \textit{a} that we chose to split on will produce the most new information.
-
-After splitting 
-
-
-
-
+\noindent where $\hat{p}_{mk}$ denotes the proportion of training observations in the \textit{m}th region that are from the \textit{k}th class. So $G$ can be seen as a measure of total variance across the K classes. $G = 0$ when all observations in that region fall under on category. In splitting at nodes, we look to minimize this value.
 
 \subsection{Ensemble Methods}
+Ensemble methods use multiple learning algorithms to obtain better predictive performance than could be obtained from any of the individual learning algorithms composing the ensemble. Here, we look at two such methods, bagging and random forests.
 \subsubsection{Bagging}
-\subsubsection{Random Forests}
+Decision trees as discussed in the previous section often suffer from high variance, meaning that if we fit a decision tree to two random samples from a set of training observations, we could end up with vastly different results. Bagging is a method for reducing the variance of any learning method by taking repeated samples from a single training set and taking the, in the case of classification, the most commonly occurring class among the boostrapped predictions. 
+
+On average, each of the $B$ bootstrapped samples will take about two-thirds of the training observations.  The remaining observations that were not used in fitting a bagged tree are referred to as the \textit{out-of-bag} (OOB) observations, and we can predict the target varialbe for the \textit{i}th observation using each of the trees in which that observation was OOB. This will yield, on average $B/3$ predictions, from which we can predict the classification for the observation by taking majority vote. Using this method, we can get a single OOB prediction for each of our observations, obtaining an OOB error, which is a valid estimate of the test error for our bagged model.
+
+Bagging also gives us insight into which of our predictors were the most important in creating our model by looking at the Gini Impurity. To do so, we take the sum of the amount that Gini Impurity has dereased by splitting on a given predictor and take the average over our $B$ trees.
+
+\subsubsection{Random Forest}
+The random forest technique is quite similar to bagged trees, with the main difference being that at each of the splits only a random sample $m$ of the set of all predictors $p$ is considered. Typically, $m \approx \sqrt{p}$ predictors suffice. This technique helps to decorrelate the tree, as there may be one predictor that has a very high influence in classification. In the case of bagging, this predictor will most likely be used as the first split in a majority of the trees, causing most bagged trees to be quite similar and correlated. By forcing each split to consider on a subset of the predictors, on average $(p-m)/p$ of the splits will not consider this strong predictor.
+
+
+\section{Prediction Models}
+\subsection{Decision Tree}
+\subsection{Random Forest}
 
 % \begin{table}[h]
 % \centering
