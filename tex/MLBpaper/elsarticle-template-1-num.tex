@@ -18,6 +18,8 @@
 %% $Id: elsarticle-template-1-num.tex 149 2009-10-08 05:01:15Z rishi $
 %% $URL: http://lenova.river-valley.com/svn/elsbst/trunk/elsarticle-template-1-num.tex $
 %%
+
+%% I need this here to get rid of the stupid "preprint submitted" shit on the front matter.
 \documentclass[preprint,12pt]{elsarticle}
 \makeatletter
 \def\ps@pprintTitle{%
@@ -49,6 +51,30 @@
 %% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
 %% for the whole article with \linenumbers after \end{frontmatter}.
 \usepackage{lineno}
+
+\usepackage{color}
+\usepackage{listings}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
 
 %% natbib.sty is loaded by default. However, natbib options can be
 %% provided with \biboptions{...} command. Following options are
@@ -158,6 +184,10 @@ Below is a list of features used
 
 We needed to further filter our data by not including pitchers in our set of observations. This was done by removing those observations that indicated that the player recorded less than 300 RBI in his career. This number was not arbitrary, but rather chosen by cross referencing my data with HOF data from Baseball-Reference.
 
+Our software of choice for this paper is R. We will be using several packages for our learning techniques, indicated in the sections below. Before training our model, it is important to have a quick look at our data.
+
+%%INSERT FIGURES HERE.
+
 
 % here is where we can add citations
 %Maecenas \cite{Smith:2012qr} fermentum \cite{Smith:2013jd} urna ac sapien tincidunt 
@@ -170,11 +200,20 @@ In this section, we will give an account of two learning methods that we will us
 \subsection{Classification Trees}
 Classification trees are a fairly effective predictive tool that are lauded for their high degree of interpretability. When constructing a classification tree, we begin with the full set of observations and begin dividing the predictor space into non-overlapping regions by means of binary splitting. In prediction, we assign each observation in a given region of the predictor space to the most commonly occuring class of the training observations in that region. 
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{Rplot}
+	\caption{A very bushy classification tree}
+\end{figure}
+
 When choosing splits in our tree, we are concerned with the textit{Gini Impurity} at each split, that is, we want to choose the feature to split on based on which feature split will give us the most pure sucessive node. Gini impurity is a measure of how often a randomly chosen element from the set would be incorrectly labeled if it were randomly labeled according to the distribution of labels in the subset. Gini impurity can be computed by summing the probability of each item being chosen times the probability of a mistake in categorizing that item. It reaches its minimum (zero)when all cases in the node fall into a single target category. This defined as:
 
 $$G = \sum\limits_{k=1}^K \hat{p}_{mk}(1-\hat{p}_{mk}) = 1 - \sum\limits_{k=1}^K \hat{p}_{mk}^{2}$$
 
 \noindent where $\hat{p}_{mk}$ denotes the proportion of training observations in the \textit{m}th region that are from the \textit{k}th class. So $G$ can be seen as a measure of total variance across the K classes. $G = 0$ when all observations in that region fall under on category. In splitting at nodes, we look to minimize this value.
+
+There are other methods by which splits can be determined, another popular one being \textit{information gain}, which is related to entropy. However, we concern ourselves only with \textit{Gini Impurity} since this is the method by which trees a generated usin the \textit{trees} package in R.
+
 
 \subsection{Ensemble Methods}
 Ensemble methods use multiple learning algorithms to obtain better predictive performance than could be obtained from any of the individual learning algorithms composing the ensemble. Here, we look at two such methods, bagging and random forests.
@@ -188,9 +227,20 @@ Bagging also gives us insight into which of our predictors were the most importa
 \subsubsection{Random Forest}
 The random forest technique is quite similar to bagged trees, with the main difference being that at each of the splits only a random sample $m$ of the set of all predictors $p$ is considered. Typically, $m \approx \sqrt{p}$ predictors suffice. This technique helps to decorrelate the tree, as there may be one predictor that has a very high influence in classification. In the case of bagging, this predictor will most likely be used as the first split in a majority of the trees, causing most bagged trees to be quite similar and correlated. By forcing each split to consider on a subset of the predictors, on average $(p-m)/p$ of the splits will not consider this strong predictor.
 
+In this paper, we will be utiliziing the \textit{randomForest} package in R. 
 
 \section{Prediction Models}
+
+In this section, we apply the techniques introduced in the last section to our HOF data. We will start by creating a single decision tree based on some training data, and then predicting the induction classifier of our training data based on our model. We will also look at some metrics that will allow us to test the effectiveness of our classification models in order to see what parameters would be best to use. 
+
 \subsection{Decision Tree}
+Using R's tree package, we can 
+
+\begin{lstlisting}
+text(tree.hof,label="yval", all = FALSE)
+\end{lstlisting}
+
+
 \subsection{Random Forest}
 
 % \begin{table}[h]
