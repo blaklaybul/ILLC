@@ -29,6 +29,7 @@ HallOfFame <-  merge(x=battingagg,y=hof,by=c("playerID"))
 
 HallOfFame <- HallOfFame[HallOfFame$votedBy =="BBWAA",]
 HallOfFame <- HallOfFame[HallOfFame$RBI > 300,] #we only want hitters
+HallOfFame$OBP <- as.numeric((HallOfFame$H+HallOfFame$BB+HallOfFame$HBP)/(HallOfFame$AB+HallOfFame$BB+HallOfFame$HBP+HallOfFame$SF))
 HallOfFame$votedBy <- NULL
 HallOfFame$ballots <- NULL
 HallOfFame$needed <- NULL
@@ -37,6 +38,11 @@ HallOfFame$category <- NULL
 HallOfFame$needed_note <- NULL
 HallOfFame$G_old <- NULL
 HallOfFame$yearid <- NULL
+HallOfFame$CS <- NULL
+HallOfFame$HBP <- NULL
+HallOfFame$SH <- NULL
+HallOfFame$SF <- NULL
+HallOfFame$GIDP <- NULL
 HallOfFame$playerID = as.character(HallOfFame$playerID)
 
 HallOfFame[is.na(HallOfFame$inducted),c("inducted")] <- "N"
@@ -56,7 +62,7 @@ HallOfFameYes <- HallOfFame[HallOfFame$inducted == 1,]
 ggplot(HallOfFame, aes(x=(H/AB), y=H, col =inducted)) +geom_point(size = 3) + scale_x_continuous(name = "Batting Average")+ scale_y_continuous(name="Hits") + theme(text = element_text(size=20))
 
 
-ggplot(HallOfFame, aes(x=SO, y=BB, col =inducted)) +geom_point(size = 3) + scale_x_continuous(name = "SO")+ scale_y_continuous(name="BB") + theme(text = element_text(size=20))
+ggplot(HallOfFame, aes(x=(SO/AB), y=OBP, col =inducted)) +geom_point(size = 3) + scale_x_continuous(name = "SO")+ scale_y_continuous(name="BB") + theme(text = element_text(size=20))
 
 #create one decision tree based on all the data. this will overfit of course
 tree.hof = tree(inducted~.-playerID, data=HallOfFame)
@@ -67,7 +73,6 @@ summary(tree.hof)
 plot(tree.hof)
 text(tree.hof)
 
-prp(tree.hof)
 
 #lets split to training and test
 set.seed(919)
@@ -94,6 +99,8 @@ plot(cv.hof)
 ##bottoms out around7, lets prune our tree
 
 prune.hof = prune.misclass(tree.hof, best = 5)
+summary(prune.hof)
+
 plot(prune.hof);text(prune.hof,pretty=0)
 
 #now lets try this on test data
