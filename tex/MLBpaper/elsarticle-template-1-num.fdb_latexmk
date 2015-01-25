@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex elsarticle-template-1-num"] 1422122695 "elsarticle-template-1-num.aux" "elsarticle-template-1-num.bbl" "elsarticle-template-1-num" 1422122697
+["bibtex elsarticle-template-1-num"] 1422195437 "elsarticle-template-1-num.aux" "elsarticle-template-1-num.bbl" "elsarticle-template-1-num" 1422195439
   "./model1-num-names.bst" 1421851984 25451 3a63f4c903f71e219900325462df0fe1 ""
-  "elsarticle-template-1-num.aux" 1422122696 1180 1939636fb44252e84f062a738695d85e ""
+  "elsarticle-template-1-num.aux" 1422195439 1321 8bd7ad3bcb8d7c2c4e24b38a3cf7b815 ""
   "elsarticle-template-1-num.bcf" 0 -1 0 ""
   "sample.bib" 1421851984 393 a8d74fb070e416b6f68afe997ee46807 ""
   (generated)
-  "elsarticle-template-1-num.bbl"
   "elsarticle-template-1-num.blg"
-["pdflatex"] 1422122695 "elsarticle-template-1-num.tex" "elsarticle-template-1-num.pdf" "elsarticle-template-1-num" 1422122697
+  "elsarticle-template-1-num.bbl"
+["pdflatex"] 1422195438 "elsarticle-template-1-num.tex" "elsarticle-template-1-num.pdf" "elsarticle-template-1-num" 1422195439
   "/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/etexcmds.sty" 1335995445 7612 c47308d923ec19888707b0f1792b326a ""
   "/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifluatex.sty" 1303254447 7324 11d14f318d865f420e692d4e6c9c18c3 ""
@@ -45,14 +45,15 @@
   "/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/pifont.sty" 1156702453 2284 330328193b4aeb08dd45b0dd3e5ae732 ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/upsy.fd" 1137110629 148 2da0acd77cba348f34823f44cabf0058 ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/upzd.fd" 1137110629 148 b2a94082cb802f90d3daf6dd0c7188a0 ""
+  "BAandHits.png" 1422193144 113181 8cdf082c0738e37c0a6447d6424a645b ""
   "RF.png" 1422122570 35823 31bf1ac03898f53eabb0e8ed35345c22 ""
   "Rplot.png" 1422114078 68385 d11decd8505cf41dc2b2f96a0854a259 ""
-  "elsarticle-template-1-num.aux" 1422122696 1180 1939636fb44252e84f062a738695d85e ""
-  "elsarticle-template-1-num.bbl" 1422122695 205 6bd038f009a147121094f368fff89a80 "bibtex elsarticle-template-1-num"
-  "elsarticle-template-1-num.spl" 1422122696 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "elsarticle-template-1-num.tex" 1422122693 18902 62a0318f88482ca8f21f4ce32404accf ""
+  "elsarticle-template-1-num.aux" 1422195439 1321 8bd7ad3bcb8d7c2c4e24b38a3cf7b815 ""
+  "elsarticle-template-1-num.bbl" 1422195438 205 6bd038f009a147121094f368fff89a80 "bibtex elsarticle-template-1-num"
+  "elsarticle-template-1-num.spl" 1422195438 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "elsarticle-template-1-num.tex" 1422195435 19671 1c3be48e99baa716270d9f307f613874 ""
   (generated)
-  "elsarticle-template-1-num.pdf"
   "elsarticle-template-1-num.log"
-  "elsarticle-template-1-num.spl"
   "elsarticle-template-1-num.aux"
+  "elsarticle-template-1-num.pdf"
+  "elsarticle-template-1-num.spl"

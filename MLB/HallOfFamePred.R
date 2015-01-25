@@ -56,9 +56,11 @@ HallOfFame$inducted <- as.factor(HallOfFame$inducted)
 tree.hof = tree(inducted~.-playerID, data=HallOfFame)
 summary(tree.hof)
 
+ggplot(HallOfFame, aes(x=(H/AB), y=H, col =inducted)) +geom_point(size = 3) + scale_x_continuous(name = "Batting Average")+ scale_y_continuous(name="Hits")
+
 ##looking at the tree, this is very bushy, with 22 terminal nodes
 plot(tree.hof)
-text(tree.hof, pretty=TRUE)
+text(tree.hof)
 
 prp(tree.hof)
 
@@ -71,7 +73,7 @@ tree.hof=tree(inducted~.-playerID, HallOfFame,subset=train)
 
 summary(tree.hof)
 plot(tree.hof)
-text(tree.hof)
+text(tree.hof,label="yval", all = FALSE)
 
 tree.pred=predict(tree.hof,HallOfFame[-train,],type="class")
 

@@ -186,7 +186,18 @@ We needed to further filter our data by not including pitchers in our set of obs
 
 Our software of choice for this paper is R. We will be using several packages for our learning techniques, indicated in the sections below. Before training our model, it is important to have a quick look at our data.
 
-%%INSERT FIGURES HERE.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{BAandHits}
+	\caption{Batters with more hits and a higher batting average are inducted}
+\end{figure}
+
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[width=1\textwidth]{BAandHits}
+% 	\caption{Batters with more hits and a higher batting average are inducted}
+% \end{figure}
+
 
 
 % here is where we can add citations
@@ -212,7 +223,7 @@ $$G = \sum\limits_{k=1}^K \hat{p}_{mk}(1-\hat{p}_{mk}) = 1 - \sum\limits_{k=1}^K
 
 \noindent where $\hat{p}_{mk}$ denotes the proportion of training observations in the \textit{m}th region that are from the \textit{k}th class. So $G$ can be seen as a measure of total variance across the K classes. $G = 0$ when all observations in that region fall under on category. In splitting at nodes, we look to minimize this value.
 
-Decision trees, while useful, have their limitations. Firstly, it is possible to grow overly complex trees that overfit the training data. In such cases, a method known as pruning (which will not be covered in this paper) is required to combat this problem. Also, there are other methods by which binary splits can be determined, another popular one being \textit{information gain}, which is related to entropy. However, we concern ourselves only with \textit{Gini Impurity} since this is the method by which trees a generated using the \textit{trees} package in R.
+Decision trees, while useful, have their limitations. Firstly, it is possible to grow overly complex trees that overfit the training data. In such cases, a method known as pruning (the specifics of which will not be covered in this paper) is required to combat this problem. Also, there are other methods by which binary splits can be determined, another popular one being \textit{information gain}, which is related to entropy. However, we concern ourselves only with \textit{Gini Impurity} since this is the method by which trees a generated using the \textit{trees} package in R.
 
 
 \subsection{Ensemble Methods}
@@ -230,7 +241,7 @@ The random forest technique is quite similar to bagged trees, with the main diff
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1\textwidth]{RF}
-	\caption{A Random Forest\cite{Smith:2013jd}. The prediction for \textbf{y} is made by majority vote.}
+	\caption{A Random Forest. The prediction for \textbf{y} is made by majority vote.}
 \end{figure}
 
 In this paper, we will be utiliziing the \textit{randomForest} package in R. 
@@ -239,11 +250,12 @@ In this paper, we will be utiliziing the \textit{randomForest} package in R.
 
 In this section, we apply the techniques introduced in the last section to our HOF data. We will start by creating a single decision tree based on some training data, and then predicting the induction classifier of our training data based on our model. We will also look at some metrics that will allow us to test the effectiveness of our classification models in order to see what parameters would be best to use. 
 
+After evaluating our single decision tree, we will move onto random forest classification, to see how it improves our predictions. 
 \subsection{Decision Tree}
-Using R's tree package, we can 
+Using R's tree package, we can fit a classification tree to our data. To do so, we will split the entire data set into a training and a test set and build our tree using the training data. As our training set, we will take a random sample of about $2/3$ of our data. This amounts to $\approx 400$ observations.
 
 \begin{lstlisting}
-text(tree.hof,label="yval", all = FALSE)
+text(tree.hof = tree(inducted~.-playerID, data=HallOfFame)
 \end{lstlisting}
 
 
