@@ -46,17 +46,22 @@ HallOfFame <- aggregate(.~playerID,HallOfFame, max)
 
 HallOfFame$inducted <- as.factor(HallOfFame$inducted)
 
+HallOfFameYes <- HallOfFame[HallOfFame$inducted == 1,]
+
+
 ##only want batters... this was taken from baseball reference
 # HallOfFame <- HallOfFame[HallOfFame$H > 700,]
 
 #this should be ok.
+ggplot(HallOfFame, aes(x=(H/AB), y=H, col =inducted)) +geom_point(size = 3) + scale_x_continuous(name = "Batting Average")+ scale_y_continuous(name="Hits") + theme(text = element_text(size=20))
 
+
+ggplot(HallOfFame, aes(x=SO, y=BB, col =inducted)) +geom_point(size = 3) + scale_x_continuous(name = "SO")+ scale_y_continuous(name="BB") + theme(text = element_text(size=20))
 
 #create one decision tree based on all the data. this will overfit of course
 tree.hof = tree(inducted~.-playerID, data=HallOfFame)
 summary(tree.hof)
 
-ggplot(HallOfFame, aes(x=(H/AB), y=H, col =inducted)) +geom_point(size = 3) + scale_x_continuous(name = "Batting Average")+ scale_y_continuous(name="Hits")
 
 ##looking at the tree, this is very bushy, with 22 terminal nodes
 plot(tree.hof)
@@ -66,17 +71,13 @@ prp(tree.hof)
 
 #lets split to training and test
 set.seed(919)
-
 train=sample(1:nrow(HallOfFame), 400)
-
-tree.hof=tree(inducted~.-playerID, HallOfFame,subset=train)
-
+tree.hof=tree(inducted~.-playerID-inducted, HallOfFame,subset=train)
 summary(tree.hof)
-plot(tree.hof)
-text(tree.hof,label="yval", all = FALSE)
+plot(tree.hof, main = "Decision Tree")
+text(tree.hof, all = FALSE)
 
 tree.pred=predict(tree.hof,HallOfFame[-train,],type="class")
-
 with(HallOfFame[-train,],table(tree.pred,inducted))
 
 #what was predicted correctly
@@ -84,13 +85,15 @@ with(HallOfFame[-train,],table(tree.pred,inducted))
 
 #lets do cross validation to prune the tree.
 cv.hof = cv.tree(tree.hof,FUN=prune.misclass)
+par(mfrow=c(1,1))
+plot(cv.hof$size, cv.hof$dev, type="b")
+plot(cv.hof$k, cv.hof$dev, type="b")
 cv.hof
 plot(cv.hof)
 
 ##bottoms out around7, lets prune our tree
 
-prune.hof = prune.misclass(tree.hof, best = 6)
-
+prune.hof = prune.misclass(tree.hof, best = 5)
 plot(prune.hof);text(prune.hof,pretty=0)
 
 #now lets try this on test data

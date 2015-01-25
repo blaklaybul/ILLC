@@ -46,7 +46,7 @@
 \usepackage{amssymb}
 %% The amsthm package provides extended theorem environments
 %% \usepackage{amsthm}
-
+\usepackage{qtree}
 %% The lineno packages adds line numbers. Start line numbering with
 %% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
 %% for the whole article with \linenumbers after \end{frontmatter}.
@@ -57,9 +57,12 @@
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{1,0.95,0.84}
 
-\lstset{frame=tb,
-  language=Java,
+
+\lstset{
+  language=R,
+  backgroundcolor=\color{backcolour}, 
   aboveskip=3mm,
   belowskip=3mm,
   showstringspaces=false,
@@ -154,13 +157,14 @@ Major League Baseball (MLB) has been keeping thorough records of batting, picthi
 
 In this paper, we are investigating what makes a Hall Of Fame (HOF) batter. There have been over 20,000 Major League baseball players in the history of the organization, and only 211 of them have been inducted into the HOF. There are several ways in which a player can be inducted, and we only concern ourselves with players inducted from Baseball Writers Association of America (BBWAA) ballots, as this process is regulated. Often, fans and players feel that a worthy candidate is unfairly denied entry into the HOF because of voter bias, stacked ballots, or negative associations with performance enhancing drugs. The model proposed in this paper should be able account for these cases.
 
+We will investigate predictions based on both classification trees and random forests. Random forests, introduced by Leo Breiman of UC Berkeley in 2001, is an ensemble learning technique that can be used for both classification and regression and improves on decision trees by correcting for overfitting. A random forest for classification consists of a collection of decision trees and outputs a prediction representing the most commonly occuring prediction of the decision trees.
+
 \section{Data}
 \label{S:2}
-Data was collected from the Lahman Baseball Database, a freely available database that has been contiously updated since 1994 with the help of SABR and many individual researchers. There are many data tables available for download, but the ones that we are focusing on are \textit{Batting.dat} and \textit{HallOfFame.dat}. Batting statistics were supplied on a by-year basis, so a player's career statistics were computed by aggregating his yearly results. The batters' data was then merged with hall of fame voting results using the player's ID string. All data preparation was done within R, the environment where we also build our learning models. 
+Data was collected from the Lahman Baseball Database, a freely available database that has been contiously updated since 1994 with the help of SABR and many individual researchers. There are many data tables available for download, but the ones that we are focusing on are \textit{Batting.dat} and \textit{HallOfFame.dat}. Batting statistics were supplied on a by-year basis, so a player's career statistics were computed by aggregating his yearly results. The batters' data was then merged with hall of fame voting results using the player's ID string. We will only be considering players who have appeared on at least one ballot, since failing to do so would indicate that that player is not hall worthy. All data preparation was done within R, the environment where we also build our learning models. 
 
-Attention is paid to 18 different batting statistics over the course of the player's career:
+Attention is paid to 12 different batting statistics over the course of the player's career:
 
-Below is a list of features used 
 \begin{enumerate}
 	\item G: games played
 	\item AB: at-bats
@@ -171,14 +175,8 @@ Below is a list of features used
 	\item HR: homeruns
 	\item RBI: runs batted in
 	\item SB: stolen bases
-	\item CS: caught stealing
 	\item BB: walks
 	\item SO: strike outs
-	\item IBB: intentional walks
-	\item HBP: hit by pitches
-	\item SH: sacrifice hits
-	\item SF: sacrifice flys
-	\item GIDP: grounded into double plays
 	\item Inducted: classifier for HOF induction
 \end{enumerate}
 
@@ -191,6 +189,11 @@ Our software of choice for this paper is R. We will be using several packages fo
 	\includegraphics[width=1\textwidth]{BAandHits}
 	\caption{Batters with more hits and a higher batting average are inducted}
 \end{figure}
+
+We can see that more hits and a higher batting average seem to correlate with induction. This makes sense, as one often judges the quality of a batter by his batting average, the numbers of hits a player has per at-bat.
+
+\bigskip
+\textbf{insert some more figures here}
 
 % \begin{figure}[h]
 % 	\centering
@@ -206,7 +209,7 @@ Our software of choice for this paper is R. We will be using several packages fo
 
 \section{Tree-Based Methods for Classification}
 
-In this section, we will give an account of two learning methods that we will use for the basis of prediction: classification trees, and an ensemble method, random forests. The information here is theoretical, and we will encounter applications of these ideas to our HOF data in the next section.
+In this section, we will give an account of two learning methods that we will use for the basis of prediction: classification trees, and an ensemble method, random forests. We will also introduce the concept of bootstrap aggregating (bagging) which is a fundamental ingredient of random forests. The information here is theoretical, and we will encounter applications of these ideas to our HOF data in the next section.
 
 \subsection{Classification Trees}
 Classification trees are a fairly effective predictive tool that are lauded for their high degree of interpretability. When constructing a classification tree, we begin with the full set of observations and begin dividing the predictor space into non-overlapping regions by means of binary splitting. In prediction, we assign each observation in a given region of the predictor space to the most commonly occuring class of the training observations in that region. 
@@ -229,37 +232,15 @@ Decision trees, while useful, have their limitations. Firstly, it is possible to
 \subsection{Ensemble Methods}
 Ensemble methods use multiple learning algorithms to obtain better predictive performance than could be obtained from any of the individual learning algorithms composing the ensemble. Here, we look at two such methods, bagging and random forests.
 \subsubsection{Tree Bagging}
-Decision trees as discussed in the previous section often suffer from high variance, meaning that if we fit a decision tree to two random samples from a set of training observations, we could end up with vastly different results. Bagging is a method for reducing the variance of any learning method by taking repeated samples from a single training set and taking the, in the case of classification, the most commonly occurring class among the boostrapped predictions. 
+Decision trees as discussed in the previous section often suffer from high variance, meaning that if we fit a decision tree to two random samples from a set of training observations, we could end up with vastly different results. Bagging is a method for reducing the variance of any learning method by taking repeated samples from a single training set and taking, in the case of classification, the most commonly occurring class among the boostrapped predictions. 
 
-On average, each of the $B$ bootstrapped samples will take about two-thirds of the training observations.  The remaining observations that were not used in fitting a bagged tree are referred to as the \textit{out-of-bag} (OOB) observations, and we can predict the target varialbe for the \textit{i}th observation using each of the trees in which that observation was OOB. This will yield, on average $B/3$ predictions, from which we can predict the classification for the observation by taking majority vote. Using this method, we can get a single OOB prediction for each of our observations, obtaining an OOB error, which is a valid estimate of the test error for our bagged model.
+On average, each of the $B$ bootstrapped samples will take about two-thirds of the training observations.  The remaining observations that were not used in fitting a bagged tree are referred to as the \textit{out-of-bag} (OOB) observations, and we can predict the target varialbe for the \textit{i}th observation using each of the trees in which that observation was OOB. This will yield, on average, $B/3$ predictions from which we can predict the classification for the observation by taking majority vote. Using this method, we can get a single OOB prediction for each of our observations, obtaining an OOB error, which is a valid estimate of the test error for our bagged model.
 
 Bagging also gives us insight into which of our predictors were the most important in creating our model by looking at the Gini Impurity. To do so, we take the sum of the amount that Gini Impurity has dereased by splitting on a given predictor and take the average over our $B$ trees.
 
 \subsubsection{Random Forest}
-The random forest technique is quite similar to bagged trees, with the main difference being that at each of the splits only a random sample $m$ of the set of all predictors $p$ is considered. Typically, $m \approx \sqrt{p}$ predictors suffice. This technique helps to decorrelate the tree, as there may be one predictor that has a very high influence in classification. In the case of bagging, this predictor will most likely be used as the first split in a majority of the trees, causing most bagged trees to be quite similar and correlated. By forcing each split to consider on a subset of the predictors, on average $(p-m)/p$ of the splits will not consider this strong predictor.
+The random forest technique is quite similar to taking bagged  samples of trees, with the main difference being that at each of the splits only a random sample $m$ of the set of all predictors $p$ is considered. Typically, $m \approx \sqrt{p}$ predictors suffice. This technique helps to decorrelate the tree, as there may be one predictor that has a very high influence in classification. In the case of bagging, this predictor will most likely be used as the first split in a majority of the trees, causing most bagged trees to be quite similar and correlated. By forcing each split to consider on a subset of the predictors, on average $(p-m)/p$ of the splits will not consider this strong predictor.
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1\textwidth]{RF}
-	\caption{A Random Forest. The prediction for \textbf{y} is made by majority vote.}
-\end{figure}
-
-In this paper, we will be utiliziing the \textit{randomForest} package in R. 
-
-\section{Prediction Models}
-
-In this section, we apply the techniques introduced in the last section to our HOF data. We will start by creating a single decision tree based on some training data, and then predicting the induction classifier of our training data based on our model. We will also look at some metrics that will allow us to test the effectiveness of our classification models in order to see what parameters would be best to use. 
-
-After evaluating our single decision tree, we will move onto random forest classification, to see how it improves our predictions. 
-\subsection{Decision Tree}
-Using R's tree package, we can fit a classification tree to our data. To do so, we will split the entire data set into a training and a test set and build our tree using the training data. As our training set, we will take a random sample of about $2/3$ of our data. This amounts to $\approx 400$ observations.
-
-\begin{lstlisting}
-text(tree.hof = tree(inducted~.-playerID, data=HallOfFame)
-\end{lstlisting}
-
-
-\subsection{Random Forest}
 
 % \begin{table}[h]
 % \centering
@@ -275,39 +256,104 @@ text(tree.hof = tree(inducted~.-playerID, data=HallOfFame)
 % \caption{Table caption}
 % \end{table}
 
-% \subsection{Subsection Two}
 
-% Donec eget ligula venenatis est posuere eleifend in sit amet diam. Vestibulum sollicitudin mauris ac augue blandit ultricies. Nulla facilisi. Etiam ut turpis nunc. Praesent leo orci, tincidunt vitae feugiat eu, feugiat a massa. Duis mauris ipsum, tempor vel condimentum nec, suscipit non mi. Fusce quis urna dictum felis posuere sagittis ac sit amet erat. In in ultrices lectus. Nulla vitae ipsum lectus, a gravida erat. Etiam quam nisl, blandit ut porta in, accumsan a nibh. Phasellus sodales euismod dolor sit amet elementum. Phasellus varius placerat erat, nec gravida libero pellentesque id. Fusce nisi ante, euismod nec cursus at, suscipit a enim. Nulla facilisi.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{RF}
+	\caption{A Random Forest. The prediction for \textbf{y} is made by majority vote. \textbf{get a new figure}}
+\end{figure}
 
-% \begin{figure}[h]
-% \centering\includegraphics[width=0.4\linewidth]{placeholder}
-% \caption{Figure caption}
-% \end{figure}
+In this paper, we will be utiliziing the \textit{randomForest} package in R. 
 
-% Integer risus dui, condimentum et gravida vitae, adipiscing et enim. Aliquam erat volutpat. Pellentesque diam sapien, egestas eget gravida ut, tempor eu nulla. Vestibulum mollis pretium lacus eget venenatis. Fusce gravida nisl quis est molestie eu luctus ipsum pretium. Maecenas non eros lorem, vel adipiscing odio. Etiam dolor risus, mattis in pellentesque id, pellentesque eu nibh. Mauris nec ante at orci ultricies placerat ac non massa. Aenean imperdiet, ante eu sollicitudin vestibulum, dolor felis dapibus arcu, sit amet fermentum urna nibh sit amet mauris. Suspendisse adipiscing mollis dolor quis lobortis.
+\section{Prediction Models}
 
-% \begin{equation}
-% \label{eq:emc}
-% e = mc^2
-% \end{equation}
+In this section, we apply the techniques introduced in the last section to our HOF data. We will start by creating a single decision tree based on some training data, and then predicting the induction classifier of our training data based on our model. We will also look at some metrics that will allow us to test the effectiveness of our classification models in order to see what parameters would be best to use. 
 
-% \section{The Second Section}
-% \label{S:2}
+After evaluating our single decision tree, we will move onto random forest classification, to see how it improves our predictions. 
 
-% Reference to Section \ref{S:1}. Etiam congue sollicitudin diam non porttitor. Etiam turpis nulla, auctor a pretium non, luctus quis ipsum. Fusce pretium gravida libero non accumsan. Donec eget augue ut nulla placerat hendrerit ac ut mi. Phasellus euismod ornare mollis. Proin tempus fringilla ultricies. Donec pretium feugiat libero quis convallis. Nam interdum ante sed magna congue eu semper tellus sagittis. Curabitur eu augue elit.
+\subsection{Classification Tree}
+Using R's tree package, we can fit a classification tree to our data. To do so, we will split the entire data set into a training and a test set and build our tree using the training data. As our training set, we will take a random sample of about $2/3$ of our data. This amounts to $\approx 400$ observations.
+The following results were obtained by predicting induction based on all of our features except for playerID. The tree determined that runs, stolen bases, strikeouts, walks, home runs, grounded into double plays, at-bats, and hit by pitches were the most important features. We also see that the tree has a misclassification rate of $3.25\%$ A quick look at the tree indicates that the number of runs a player has scored in his career is the most important predictor, since the first split was made usings runs. This is not surpising, as runs are one of the only statistics that we considered that relate directly to a player's team winning a game. 
+\bigskip
 
-% Aenean eleifend purus et massa consequat facilisis. Etiam volutpat placerat dignissim. Ut nec nibh nulla. Aliquam erat volutpat. Nam at massa velit, eu malesuada augue. Maecenas sit amet nunc mauris. Maecenas eu ligula quis turpis molestie elementum nec at est. Sed adipiscing neque ac sapien viverra sit amet vestibulum arcu rhoncus.
+\begin{figure}[h1]
+	\centering
+	\includegraphics[width=0.9\textwidth]{MachineLearnTree}
+	\caption{An unpruned tree}
+\end{figure}
 
-% Vivamus pharetra nibh in orci euismod congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque lacus diam, congue vel laoreet id, iaculis eu sapien. In id risus ac leo pellentesque pellentesque et in dui. Etiam tincidunt quam ut ante vestibulum ultricies. Nam at rutrum lectus. Aenean non justo tortor, nec mattis justo. Aliquam erat volutpat. Nullam ac viverra augue. In tempus venenatis nibh quis semper. Maecenas ac nisl eu ligula dictum lobortis. Sed lacus ante, tempor eu dictum eu, accumsan in velit. Integer accumsan convallis porttitor. Maecenas pretium tincidunt metus sit amet gravida. Maecenas pretium blandit felis, ac interdum ante semper sed.
+\begin{lstlisting}
+Classification tree:
+tree(inducted ~ . - playerID, data = HallOfFame, subset = train)
+Variables actually used in tree construction:
+[1] "R"    "SB"   "SO"   "BB"   "HR"   "GIDP" "AB"   "HBP" 
+Number of terminal nodes:  15 
+Misclassification error rate: 0.0325 = 13 / 400 
+\end{lstlisting}
 
-% In auctor ultrices elit, vel feugiat ligula aliquam sed. Curabitur aliquam elit sed dui rhoncus consectetur. Cras elit ipsum, lobortis a tempor at, viverra vitae mi. Cras sed urna sed eros bibendum faucibus. Morbi vel leo orci, vel faucibus orci. Vivamus urna nisl, sodales vitae posuere in, tempus vel tellus. Donec magna est, luctus non commodo sit amet, placerat et enim.
 
-%% The Appendices part is started with the command \appendix;
-%% appendix sections are then done as normal sections
-%% \appendix
+Now, to test the performance of this tree, we must estimate a test error by predicting a player's hall of fame induction on our test data. We will look at how our classification model performed.
 
-%% \section{}
-%% \label{}
+\begin{lstlisting}
+tree.pred=predict(tree.hof,HallOfFame[-train,],type="class")
+with(HallOfFame[-train,],table(tree.pred,inducted))
+         inducted
+tree.pred   0   1
+        0 203  11
+        1  19  18
+\end{lstlisting}
+
+This tells us that we have a misclassification rate of $1-(203+18)/(203+18+11+19) \approx 12\%$. We will see if this can be improved by using the tree package's pruning feature. The goal of pruning a decision tree is to reduce the complexity of our model, and to reduce overfitting. A pruned tree is simply a less complex tree chosen from set of all subtrees of our decision tree. The method used by the tree package in R is \textit{cost complexity pruning}, which operates as follows: Rather than considering every subtree of our initial tree, we only consider a sequence of trees that is indexed by a tuning parameter $\alpha$. The goal of pruning is to select a subtree that will lead to the lowest misclassification error rate. Such an $\alpha$ can be chosen by using cross-validation on our initial tree.\textbf{talk about cv and pruning more?}
+
+
+
+\noindent We can see that the optimal size for a tree is between 4 and 7 terminal nodes. With this imformation, we can prune back our original tree to have a more interpretable and accurate model.
+
+\begin{lstlisting}
+Classification tree:
+snip.tree(tree = tree.hof, nodes = c(7L, 2L))
+Variables actually used in tree construction:
+[1] "R"  "AB" "HR" "BB" "G" 
+Number of terminal nodes:  7 
+Misclassification error rate: 0.04 = 16 / 400 
+
+         inducted
+tree.pred   0   1
+        0 207  10
+        1  15  19
+\end{lstlisting}
+
+\begin{figure}[h2]
+	\centering
+	\includegraphics[width=0.9\textwidth]{pruneCV}
+	\caption{Tree size against misclassification}
+\end{figure}
+
+\begin{figure}[h3]
+	\centering
+	\includegraphics[width=0.9\textwidth]{pruned}
+	\caption{Our pruned tree with 7 terminal nodes}
+\end{figure}
+
+
+\subsection{Random Forest}
+
+\section{Conclusions}
+
+% \begin{table}[h]
+% \centering
+% \begin{tabular}{l l l}
+% \hline
+% \textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2}\\
+% \hline
+% Treatment 1 & 0.0003262 & 0.562 \\
+% Treatment 2 & 0.0015681 & 0.910 \\
+% Treatment 3 & 0.0009271 & 0.296 \\
+% \hline
+% \end{tabular}
+% \caption{Table caption}
+% \end{table}
+
 
 %% References
 %%

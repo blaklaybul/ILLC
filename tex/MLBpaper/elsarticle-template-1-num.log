@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  25 JAN 2015 15:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  25 JAN 2015 22:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -111,22 +111,147 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/qtree/qtree.sty
+Package: 2008/12/12 v.3.1bQtree: tree-drawing for linguistics
+Package: qtree 2008/12/12 v.3.1bQtree: tree-drawing for linguistics
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pict2e/pict2e.sty
+Package: pict2e 2014/01/12 v0.2z Improved picture commands (HjG,RN,JT)
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pict2e/pict2e.cfg
+File: pict2e.cfg 2011/04/05 v0.1t pict2e configuration for teTeX/TeXLive
+)
+Package pict2e Info: Driver file: pdftex.def on input line 119.
+Package pict2e Info: Driver file for pict2e: p2e-pdftex.def on input line 121.
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pict2e/p2e-pdftex.def
+File: p2e-pdftex.def 2011/04/05 v0.1t Driver-dependant file (RN,HjG,JT)
+)
+\pIIe@GRAPH=\toks18
+\@arclen=\dimen109
+\@arcrad=\dimen110
+\@tempdimd=\dimen111
+)
+\c@treecount=\count95
+\c@branchcount=\count96
+\parentbox=\box30
+\treebox=\box31
+\treeboxone=\box32
+\treeboxtwo=\box33
+\treeboxthree=\box34
+\treeboxfour=\box35
+\treeboxfive=\box36
+\treeboxsix=\box37
+\treeboxseven=\box38
+\treeboxeight=\box39
+\treeboxnine=\box40
+\treeboxten=\box41
+\treeboxeleven=\box42
+\treeboxtwelve=\box43
+\treeboxthirteen=\box44
+\treeboxfourteen=\box45
+\treeboxfifteen=\box46
+\treeboxsixteen=\box47
+\treeboxseventeen=\box48
+\treeboxeighteen=\box49
+\treeboxnineteen=\box50
+\treeboxtwenty=\box51
+\treeoffsetone=\skip47
+\treeoffsettwo=\skip48
+\treeoffsetthree=\skip49
+\treeoffsetfour=\skip50
+\treeoffsetfive=\skip51
+\treeoffsetsix=\skip52
+\treeoffsetseven=\skip53
+\treeoffseteight=\skip54
+\treeoffsetnine=\skip55
+\treeoffsetten=\skip56
+\treeoffseteleven=\skip57
+\treeoffsettwelve=\skip58
+\treeoffsetthirteen=\skip59
+\treeoffsetfourteen=\skip60
+\treeoffsetfifteen=\skip61
+\treeoffsetsixteen=\skip62
+\treeoffsetseventeen=\skip63
+\treeoffseteighteen=\skip64
+\treeoffsetnineteen=\skip65
+\treeoffsettwenty=\skip66
+\treeshiftone=\skip67
+\treeshifttwo=\skip68
+\treeshiftthree=\skip69
+\treeshiftfour=\skip70
+\treeshiftfive=\skip71
+\treeshiftsix=\skip72
+\treeshiftseven=\skip73
+\treeshifteight=\skip74
+\treeshiftnine=\skip75
+\treeshiftten=\skip76
+\treeshifteleven=\skip77
+\treeshifttwelve=\skip78
+\treeshiftthirteen=\skip79
+\treeshiftfourteen=\skip80
+\treeshiftfifteen=\skip81
+\treeshiftsixteen=\skip82
+\treeshiftseventeen=\skip83
+\treeshifteighteen=\skip84
+\treeshiftnineteen=\skip85
+\treeshifttwenty=\skip86
+\treewidthone=\skip87
+\treewidthtwo=\skip88
+\treewidththree=\skip89
+\treewidthfour=\skip90
+\treewidthfive=\skip91
+\treewidthsix=\skip92
+\treewidthseven=\skip93
+\treewidtheight=\skip94
+\treewidthnine=\skip95
+\treewidthten=\skip96
+\treewidtheleven=\skip97
+\treewidthtwelve=\skip98
+\treewidththirteen=\skip99
+\treewidthfourteen=\skip100
+\treewidthfifteen=\skip101
+\treewidthsixteen=\skip102
+\treewidthseventeen=\skip103
+\treewidtheighteen=\skip104
+\treewidthnineteen=\skip105
+\treewidthtwenty=\skip106
+\daughteroffsetone=\skip107
+\daughteroffsettwo=\skip108
+\daughteroffsetthree=\skip109
+\daughteroffsetfour=\skip110
+\branchwidthone=\skip111
+\branchwidthtwo=\skip112
+\branchwidththree=\skip113
+\branchwidthfour=\skip114
+\parentoffset=\skip115
+\treeoffset=\skip116
+\daughteroffset=\skip117
+\branchwidth=\skip118
+\parentwidth=\skip119
+\treewidth=\skip120
+\qta=\toks19
+\qtb=\toks20
+\nbranches=\count97
+\qroofx=\count98
+\qroofy=\count99
+\@qrscratchbox=\box52
+)
 (/usr/local/texlive/2014/texmf-dist/tex/latex/lineno/lineno.sty
 Package: lineno 2005/11/02 line numbers on paragraphs v4.41
-\linenopenalty=\count95
-\output=\toks18
-\linenoprevgraf=\count96
-\linenumbersep=\dimen109
-\linenumberwidth=\dimen110
-\c@linenumber=\count97
-\c@pagewiselinenumber=\count98
-\c@LN@truepage=\count99
-\c@internallinenumber=\count100
-\c@internallinenumbers=\count101
-\quotelinenumbersep=\dimen111
-\bframerule=\dimen112
-\bframesep=\dimen113
-\bframebox=\box30
+\linenopenalty=\count100
+\output=\toks21
+\linenoprevgraf=\count101
+\linenumbersep=\dimen112
+\linenumberwidth=\dimen113
+\c@linenumber=\count102
+\c@pagewiselinenumber=\count103
+\c@LN@truepage=\count104
+\c@internallinenumber=\count105
+\c@internallinenumbers=\count106
+\quotelinenumbersep=\dimen114
+\bframerule=\dimen115
+\bframesep=\dimen116
+\bframebox=\box53
 LaTeX Info: Redefining \\ on input line 3056.
 )
 (/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/color.sty
@@ -138,24 +263,24 @@ File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 Package color Info: Driver file: pdftex.def on input line 137.
 )
 (/usr/local/texlive/2014/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count102
-\lst@gtempboxa=\box31
-\lst@token=\toks19
-\lst@length=\count103
-\lst@currlwidth=\dimen114
-\lst@column=\count104
-\lst@pos=\count105
-\lst@lostspace=\dimen115
-\lst@width=\dimen116
-\lst@newlines=\count106
-\lst@lineno=\count107
-\lst@maxwidth=\dimen117
+\lst@mode=\count107
+\lst@gtempboxa=\box54
+\lst@token=\toks22
+\lst@length=\count108
+\lst@currlwidth=\dimen117
+\lst@column=\count109
+\lst@pos=\count110
+\lst@lostspace=\dimen118
+\lst@width=\dimen119
+\lst@newlines=\count111
+\lst@lineno=\count112
+\lst@maxwidth=\dimen120
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2014/03/04 1.5c (Carsten Heinz)
-\c@lstnumber=\count108
-\lst@skipnumbers=\count109
-\lst@framebox=\box32
+\c@lstnumber=\count113
+\lst@skipnumbers=\count114
+\lst@framebox=\box55
 )
 (/usr/local/texlive/2014/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2014/03/04 1.5c listings configuration
@@ -165,35 +290,41 @@ Package: listings 2014/03/04 1.5c (Carsten Heinz)
 (/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2014/03/04 1.5c listings language file
 )
+(/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstlang2.sty
+File: lstlang2.sty 2014/03/04 1.5c listings language file
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstlang3.sty
+File: lstlang3.sty 2014/03/04 1.5c listings language file
+)
 (./elsarticle-template-1-num.aux)
 \openout1 = `elsarticle-template-1-num.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 105.
+LaTeX Font Info:    ... okay on input line 105.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 105.
+LaTeX Font Info:    ... okay on input line 105.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 105.
+LaTeX Font Info:    ... okay on input line 105.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 105.
+LaTeX Font Info:    ... okay on input line 105.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 105.
+LaTeX Font Info:    ... okay on input line 105.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 105.
+LaTeX Font Info:    ... okay on input line 105.
 
 (/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count110
-\scratchdimen=\dimen118
-\scratchbox=\box33
-\nofMPsegments=\count111
-\nofMParguments=\count112
-\everyMPshowfont=\toks20
-\MPscratchCnt=\count113
-\MPscratchDim=\dimen119
-\MPnumerator=\count114
-\makeMPintoPDFobject=\count115
-\everyMPtoPDFconversion=\toks21
+\scratchcounter=\count115
+\scratchdimen=\dimen121
+\scratchbox=\box56
+\nofMPsegments=\count116
+\nofMParguments=\count117
+\everyMPshowfont=\toks23
+\MPscratchCnt=\count118
+\MPscratchDim=\dimen122
+\MPnumerator=\count119
+\makeMPintoPDFobject=\count120
+\everyMPtoPDFconversion=\toks24
 ) (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -242,13 +373,13 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\c@lstlisting=\count116
-LaTeX Font Info:    Try loading font information for U+msa on input line 145.
+\c@lstlisting=\count121
+LaTeX Font Info:    Try loading font information for U+msa on input line 148.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 145.
+LaTeX Font Info:    Try loading font information for U+msb on input line 148.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -259,56 +390,73 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 <BAandHits.png, id=14, 1258.7025pt x 681.54625pt>
 File: BAandHits.png Graphic file (type png)
  <use BAandHits.png>
-Package pdftex.def Info: BAandHits.png used on input line 191.
+Package pdftex.def Info: BAandHits.png used on input line 189.
 (pdftex.def)             Requested size: 390.0pt x 211.17316pt.
-
-<Rplot.png, id=16, 1628.0825pt x 912.40875pt>
+ [3 <./BAandHits.png>] <Rplot.png, id=21, 1628.0825pt x 912.40875pt>
 File: Rplot.png Graphic file (type png)
  <use Rplot.png>
-Package pdftex.def Info: Rplot.png used on input line 216.
+Package pdftex.def Info: Rplot.png used on input line 219.
 (pdftex.def)             Requested size: 390.0pt x 218.56491pt.
+
+[4 <./Rplot.png>] [5] <RF.png, id=34, 455.301pt x 263.384pt>
+File: RF.png Graphic file (type png)
+ <use RF.png>
+Package pdftex.def Info: RF.png used on input line 262.
+(pdftex.def)             Requested size: 390.0pt x 225.61763pt.
+
+[6 <./RF.png>] <MachineLearnTree.png, id=40, 1528.71124pt x 779.91376pt>
+File: MachineLearnTree.png Graphic file (type png)
+
+<use MachineLearnTree.png>
+Package pdftex.def Info: MachineLearnTree.png used on input line 281.
+(pdftex.def)             Requested size: 350.99762pt x 179.06697pt.
+ [7 <./MachineLearnTree.png>] [8]
+<pruneCV.png, id=50, 1196.47pt x 679.53876pt>
+File: pruneCV.png Graphic file (type png)
+ <use pruneCV.png>
+Package pdftex.def Info: pruneCV.png used on input line 328.
+(pdftex.def)             Requested size: 350.99762pt x 199.35272pt.
+
+<pruned.png, id=51, 1348.03625pt x 675.52374pt>
+File: pruned.png Graphic file (type png)
+ <use pruned.png>
+Package pdftex.def Info: pruned.png used on input line 334.
+(pdftex.def)             Requested size: 350.99762pt x 175.88972pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[3 <./BAandHits.png>] [4 <./Rplot.png>] [5]
-<RF.png, id=34, 455.301pt x 263.384pt>
-File: RF.png Graphic file (type png)
- <use RF.png>
-Package pdftex.def Info: RF.png used on input line 243.
-(pdftex.def)             Requested size: 390.0pt x 225.61763pt.
- [6 <./RF.png>]
 (./elsarticle-template-1-num.bbl
 
 Package natbib Warning: Empty `thebibliography' environment on input line 6.
 
-) [7] (./elsarticle-template-1-num.aux) ) 
+) [9 <./pruneCV.png>] [10 <./pruned.png>] (./elsarticle-template-1-num.aux) ) 
 Here is how much of TeX's memory you used:
- 3938 strings out of 493117
- 54517 string characters out of 6135433
- 135590 words of memory out of 5000000
- 7335 multiletter control sequences out of 15000+600000
+ 5015 strings out of 493117
+ 67439 string characters out of 6135433
+ 185048 words of memory out of 5000000
+ 8390 multiletter control sequences out of 15000+600000
  11050 words of font info for 41 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,6n,40p,753b,988s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2014/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2014/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2014/texmf-dist/font
-s/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2014/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2014/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2014/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmr8.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmti10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmti12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmtt10.pfb>
-Output written on elsarticle-template-1-num.pdf (7 pages, 299283 bytes).
+ 38i,6n,41p,907b,2155s stack positions out of 5000i,500n,10000p,200000b,80000s
+</
+usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></u
+sr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
+r/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr
+/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/
+local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/lo
+cal/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loca
+l/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/
+texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/te
+xlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texli
+ve/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texliv
+e/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive
+/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/
+2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on elsarticle-template-1-num.pdf (10 pages, 378105 bytes).
 PDF statistics:
- 87 PDF objects out of 1000 (max. 8388607)
- 58 compressed objects within 1 object stream
+ 102 PDF objects out of 1000 (max. 8388607)
+ 64 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 
