@@ -1,11 +1,26 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{3}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \providecommand{\bibinfo}[2]{#2}
 \ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
 %Type = Book
-\bibitem[{Hastie(2014)}]{ISLR}
-\bibinfo{author}{T.~W. Hastie, James}, \bibinfo{title}{An Introduction to
-  Statistical Learning}, \bibinfo{publisher}{Springer}, \bibinfo{edition}{1st}
-  edition, \bibinfo{year}{2014}.
+\bibitem[{Hastie et~al.(2014)Hastie, James, Tibshirani, and Witten}]{ISLR}
+\bibinfo{author}{Hastie}, \bibinfo{author}{James},
+  \bibinfo{author}{Tibshirani}, \bibinfo{author}{Witten}, \bibinfo{title}{An
+  Introduction to Statistical Learning}, \bibinfo{publisher}{Springer},
+  \bibinfo{edition}{1st} edition, \bibinfo{year}{2014}.
+%Type = Book
+\bibitem[{Hastie et~al.(2001)Hastie, Tibshirani, and Friedman}]{ESL}
+\bibinfo{author}{T.~Hastie}, \bibinfo{author}{R.~Tibshirani},
+  \bibinfo{author}{J.~Friedman}, \bibinfo{title}{The Elements of Statistical
+  Learning}, Springer Series in Statistics, \bibinfo{publisher}{Springer New
+  York Inc.}, \bibinfo{address}{New York, NY, USA}, \bibinfo{year}{2001}.
+%Type = Book
+\bibitem[{Breiman et~al.(1984)Breiman, Friedman, Olshen, and
+  Stone}]{Breiman1984}
+\bibinfo{author}{L.~Breiman}, \bibinfo{author}{J.~H. Friedman},
+  \bibinfo{author}{R.~A. Olshen}, \bibinfo{author}{C.~J. Stone},
+  \bibinfo{title}{Classification and Regression Trees},
+  \bibinfo{publisher}{Wadsworth International Group},
+  \bibinfo{address}{Belmont, CA}, \bibinfo{year}{1984}.
 
 \end{thebibliography}

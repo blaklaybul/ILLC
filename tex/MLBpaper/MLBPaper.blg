@@ -3,53 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: MLBPaper.aux
 The style file: model1-num-names.bst
 Database file #1: sample.bib.bib
-Too many commas in name 1 of "Hastie, James, Tibshirani, Witten" for entry ISLR
-while executing---line 1280 of file model1-num-names.bst
-Too many commas in name 1 of "Hastie, James, Tibshirani, Witten" for entry ISLR
-while executing---line 1280 of file model1-num-names.bst
-Too many commas in name 1 of "Hastie, James, Tibshirani, Witten" for entry ISLR
-while executing---line 1351 of file model1-num-names.bst
-Too many commas in name 1 of "Hastie, James, Tibshirani, Witten" for entry ISLR
-while executing---line 1351 of file model1-num-names.bst
-You've used 1 entry,
+You've used 3 entries,
             2616 wiz_defined-function locations,
-            584 strings with 4495 characters,
-and the built_in function-call counts, 419 in all, are:
-= -- 25
-> -- 10
-< -- 1
-+ -- 6
-- -- 3
-* -- 43
-:= -- 71
-add.period$ -- 1
-call.type$ -- 1
-change.case$ -- 6
-chr.to.int$ -- 1
-cite$ -- 1
-duplicate$ -- 29
-empty$ -- 36
-format.name$ -- 4
-if$ -- 73
+            599 strings with 4843 characters,
+and the built_in function-call counts, 1716 in all, are:
+= -- 100
+> -- 97
+< -- 0
++ -- 40
+- -- 33
+* -- 225
+:= -- 268
+add.period$ -- 3
+call.type$ -- 3
+change.case$ -- 24
+chr.to.int$ -- 3
+cite$ -- 3
+duplicate$ -- 109
+empty$ -- 114
+format.name$ -- 42
+if$ -- 298
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 7
-newline$ -- 9
-num.names$ -- 4
-pop$ -- 7
+missing$ -- 29
+newline$ -- 15
+num.names$ -- 12
+pop$ -- 35
 preamble$ -- 1
-purify$ -- 6
+purify$ -- 26
 quote$ -- 0
-skip$ -- 12
+skip$ -- 32
 stack$ -- 0
-substring$ -- 14
-swap$ -- 20
+substring$ -- 40
+swap$ -- 95
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 6
+type$ -- 18
 warning$ -- 0
-while$ -- 3
+while$ -- 9
 width$ -- 0
-write$ -- 17
-(There were 4 error messages)
+write$ -- 40

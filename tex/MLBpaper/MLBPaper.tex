@@ -1,24 +1,3 @@
-%% This is file `elsarticle-template-1-num.tex',
-%%
-%% Copyright 2009 Elsevier Ltd
-%%
-%% This file is part of the 'Elsarticle Bundle'.
-%% ---------------------------------------------
-%%
-%% It may be distributed under the conditions of the LaTeX Project Public
-%% License, either version 1.2 of this license or (at your option) any
-%% later version.  The latest version of this license is in
-%%    http://www.latex-project.org/lppl.txt
-%% and version 1.2 or later is part of all distributions of LaTeX
-%% version 1999/12/01 or later.
-%%
-%% Template article for Elsevier's document class `elsarticle'
-%% with numbered style bibliographic references
-%%
-%% $Id: elsarticle-template-1-num.tex 149 2009-10-08 05:01:15Z rishi $
-%% $URL: http://lenova.river-valley.com/svn/elsbst/trunk/elsarticle-template-1-num.tex $
-%%
-
 %% I need this here to get rid of the stupid "preprint submitted" shit on the front matter.
 \documentclass[preprint,12pt]{elsarticle}
 \makeatletter
@@ -257,7 +236,20 @@ $$G(other class) = 1 - \sum\limits_{i=0}^1 p_{i}^{2} = 1 - ((12/1125)^{2}+(1113/
 \noindent This tells us that knowing that a male was holding a ticket other than first class leads us to a very pure node, that is, one in which we have a substantal amount of information to determine the fate of that passenger. Gini Impurity is related the related notion of entropy and can be seen as measures of how informative the answer to a ``yes/no'' question is at the split in a tree. Entropy can also be used in determining splits, and can calculated using the following equation, where $p_{i}$ is the same quantity as defined above: 
 $$-\sum\limits_{i=0}^m p_{i}log_{2}p_{i}$$
 
-Decision trees, while useful, have their limitations. Firstly, it is possible to grow overly complex trees that overfit the training data \cite{ISLR}. In such cases, a method known as pruning is required to combat this problem. Pruning a decision tree amounts to 
+Decision trees, while useful, have their limitations. Firstly, it is possible to grow overly complex trees that overfit the training data \cite{ISLR}. In such cases, a method known as pruning is required to combat this problem. Cost complexity pruning is a method for considering subtrees of our initial tree modeal that minimize the \textit{cost-complexity criterion}, which is defined as follows\cite{ESL}:
+
+
+Let $T_{0}$ be our unpruned decision tree, and define a subtree $T \subset T_{0}$ to be any tree that can be obtained by collapsing any number of internal nodes. Let $|T|$ denote the number of terminal nodes of our subtree , and let $m$ be an index for them. Define the number of observations at each terminal node as:
+
+$$N_{m} = |\{x_{i} \in R_{m}\}| $$
+
+\noindent And the cost-complexity criterion:
+
+$$C_{\alpha}(T) = \sum\limits_{m=1}^{|T|} N_{m}G_{m}(T) + \alpha|T|$$
+
+For each $\alpha$, there is a unique smallest subtree $T_{\alpha} \subseteq T_{0}$ that minimizes $C_{\alpha}(T)$ An estimation  $\hat{\alpha}$ is done by using tenfold cross-validation, and the final pruned tree is $T_{\hat{\alpha}}$. In tenfold cross validation, the original training set is paritioned into ten equal subsamples, nine of which are used to train are used to train the model, and one used for validation. This process is repeated 10 ten, each time selected a different subsample as the test data. The 10 results from are then averaged to produce a single estimation. More details can be found in \cite{Breiman1984}.
+
+
 
 
 \subsection{Ensemble Methods}
@@ -265,7 +257,7 @@ Ensemble methods use multiple learning algorithms to obtain better predictive pe
 \subsubsection{Tree Bagging}
 Decision trees as discussed in the previous section often suffer from high variance, meaning that if we fit a decision tree to two random samples from a set of training observations, we could end up with vastly different results. Bagging is a method for reducing the variance of any learning method by taking repeated samples from a single training set and taking, in the case of classification, the most commonly occurring class among the boostrapped predictions. 
 
-On average, each of the $B$ bootstrapped samples will take about two-thirds of the training observations.  The remaining observations that were not used in fitting a bagged tree are referred to as the \textit{out-of-bag} (OOB) observations, and we can predict the target varialbe for the \textit{i}th observation using each of the trees in which that observation was OOB. This will yield, on average, $B/3$ predictions from which we can predict the classification for the observation by taking majority vote. Using this method, we can get a single OOB prediction for each of our observations, obtaining an OOB error, which is a valid estimate of the test error for our bagged model.
+On average, each of the $B$ bootstrapped samples will take about two-thirds of the training observations.  The remaining observations that were not used in fitting a bagged tree are referred to as the \textit{out-of-bag} (OOB) observations, and we can predict the target varialbe for the \textit{i}th observation using each of the trees in which that observation was OOB. This will yield, on average, $B/3$ predictions from which we can predict the classification for the observation by taking majority vote.\cite{ISLR} Using this method, we can get a single OOB prediction for each of our observations, obtaining an OOB error, which is a valid estimate of the test error for our bagged model.
 
 Bagging also gives us insight into which of our predictors were the most important in creating our model by looking at the Gini Impurity. To do so, we take the sum of the amount that Gini Impurity has dereased by splitting on a given predictor and take the average over our $B$ trees.
 
@@ -358,20 +350,6 @@ tree.pred   0   1
 \subsection{Random Forest}
 
 \section{Conclusions}
-
-% \begin{table}[h]
-% \centering
-% \begin{tabular}{l l l}
-% \hline
-% \textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2}\\
-% \hline
-% Treatment 1 & 0.0003262 & 0.562 \\
-% Treatment 2 & 0.0015681 & 0.910 \\
-% Treatment 3 & 0.0009271 & 0.296 \\
-% \hline
-% \end{tabular}
-% \caption{Table caption}
-% \end{table}
 
 
 %% References
