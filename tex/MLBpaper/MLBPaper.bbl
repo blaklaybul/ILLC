@@ -1,6 +1,11 @@
-\begin{thebibliography}{0}
+\begin{thebibliography}{1}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \providecommand{\bibinfo}[2]{#2}
 \ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
+%Type = Book
+\bibitem[{Hastie(2014)}]{ISLR}
+\bibinfo{author}{T.~W. Hastie, James}, \bibinfo{title}{An Introduction to
+  Statistical Learning}, \bibinfo{publisher}{Springer}, \bibinfo{edition}{1st}
+  edition, \bibinfo{year}{2014}.
 
 \end{thebibliography}

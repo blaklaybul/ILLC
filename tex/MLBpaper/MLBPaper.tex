@@ -40,6 +40,7 @@
 %% \documentclass[final,5p,times]{elsarticle}
 %% \documentclass[final,5p,times,twocolumn]{elsarticle}
 
+
 %% The graphicx package provides the includegraphics command.
 \usepackage{graphicx}
 %% The amssymb package provides various useful mathematical symbols
@@ -214,19 +215,49 @@ In this section, we will give an account of two learning methods that we will us
 \subsection{Classification Trees}
 Classification trees are a fairly effective predictive tool that are lauded for their high degree of interpretability. When constructing a classification tree, we begin with the full set of observations and begin dividing the predictor space into non-overlapping regions by means of binary splitting. In prediction, we assign each observation in a given region of the predictor space to the most commonly occuring class of the training observations in that region. 
 
+When choosing splits in our tree, we are concerned with the \textit{Gini Impurity} at each split. We want to choose the feature to split on based on which feature split will give us the most pure sucessive node. Gini Impurity is a measure of how often a randomly chosen element from the set would be incorrectly labeled if it were randomly labeled according to the distribution of labels in the subset. Gini Impurity can be computed by summing the probability of each item being chosen times the probability of a mistake in categorizing that item. It reaches its minimum (zero)when all cases in the node fall into a single target category. This defined as:
+
+$$G = \sum\limits_{i=1}^m p_{i}(1-p_{i}) = 1 - \sum\limits_{i=1}^m p_{i}^{2}$$
+
+\noindent where $i$ takes on values in $\{1,2,\ldots,m\}$ and $p_i$ is the fraction of items labled with value $i$ in the node. So $G$ can be seen as a measure of total variance across the $m$ classes. Since this paper will only be discussing trees with binary splits, $m$ will also be taken to be 2. Note that $G = 0$ when all observations in that node fall into one class. In splitting at nodes, we look to minimize this value.
+
+Let us illustrate this with a very simple example of a decision tree created to predict the survivors of a boat disaster. The root node contains all passengers of the ship. We then split the full set of observations according to their sex, followed by a split on what type of ticket they had. 
+
+\bigskip
+
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=1\textwidth]{Rplot}
-	\caption{A very bushy classification tree}
+	\includegraphics[width=1\textwidth]{Sample_Tree}
+	\caption{Decision Tree for Survival of Boat Disaster}
 \end{figure}
 
-When choosing splits in our tree, we are concerned with the \textit{Gini Impurity} at each split, that is, we want to choose the feature to split on based on which feature split will give us the most pure sucessive node. Gini Impurity is a measure of how often a randomly chosen element from the set would be incorrectly labeled if it were randomly labeled according to the distribution of labels in the subset. Gini Impurity can be computed by summing the probability of each item being chosen times the probability of a mistake in categorizing that item. It reaches its minimum (zero)when all cases in the node fall into a single target category. This defined as:
+Now, we can consider the Gini Impurity associated with the node labeled ``male'' in the decision tree. The table below shows the fates of all males based on their ticket type. 
 
-$$G = \sum\limits_{k=1}^K \hat{p}_{mk}(1-\hat{p}_{mk}) = 1 - \sum\limits_{k=1}^K \hat{p}_{mk}^{2}$$
+\begin{table}[h]
+\centering
+\begin{tabular}{l | l l | l}
+\hline
+ & Survived & Died & total\\
+\hline
+First Class & 122 & 19 & 141 \\
+Other Classes & 12 & 1113 & 1125 \\
+\hline
+total & 134 & 1132 & 1286 \\
 
-\noindent where $\hat{p}_{mk}$ denotes the proportion of training observations in the \textit{m}th region that are from the \textit{k}th class. So $G$ can be seen as a measure of total variance across the K classes. $G = 0$ when all observations in that region fall under on category. In splitting at nodes, we look to minimize this value.
+\end{tabular}
+\caption{Aftermath of Boat Disaster}
+\end{table}
 
-Decision trees, while useful, have their limitations. Firstly, it is possible to grow overly complex trees that overfit the training data. In such cases, a method known as pruning (the specifics of which will not be covered in this paper) is required to combat this problem. Also, there are other methods by which binary splits can be determined, another popular one being \textit{information gain}, which is related to entropy. However, we concern ourselves only with \textit{Gini Impurity} since this is the method by which trees a generated using the \textit{trees} package in R.
+\noindent If we split this dataset on ticket type, we can calculate Gini Impurity for each of the two possible responses as follows, with $i=0$ indicating survival and $i=1$ indicating death:
+
+$$G(first class) = 1 - \sum\limits_{i=0}^1 p_{i}^{2} = 1 - ((122/141)^{2}+(19/141)^{2}) \approx 0.233 $$
+
+$$G(other class) = 1 - \sum\limits_{i=0}^1 p_{i}^{2} = 1 - ((12/1125)^{2}+(1113/1125)^{2}) \approx 0.021 $$
+
+\noindent This tells us that knowing that a male was holding a ticket other than first class leads us to a very pure node, that is, one in which we have a substantal amount of information to determine the fate of that passenger. Gini Impurity is related the related notion of entropy and can be seen as measures of how informative the answer to a ``yes/no'' question is at the split in a tree. Entropy can also be used in determining splits, and can calculated using the following equation, where $p_{i}$ is the same quantity as defined above: 
+$$-\sum\limits_{i=0}^m p_{i}log_{2}p_{i}$$
+
+Decision trees, while useful, have their limitations. Firstly, it is possible to grow overly complex trees that overfit the training data \cite{ISLR}. In such cases, a method known as pruning is required to combat this problem. Pruning a decision tree amounts to 
 
 
 \subsection{Ensemble Methods}
@@ -242,19 +273,7 @@ Bagging also gives us insight into which of our predictors were the most importa
 The random forest technique is quite similar to taking bagged  samples of trees, with the main difference being that at each of the splits only a random sample $m$ of the set of all predictors $p$ is considered. Typically, $m \approx \sqrt{p}$ predictors suffice. This technique helps to decorrelate the tree, as there may be one predictor that has a very high influence in classification. In the case of bagging, this predictor will most likely be used as the first split in a majority of the trees, causing most bagged trees to be quite similar and correlated. By forcing each split to consider on a subset of the predictors, on average $(p-m)/p$ of the splits will not consider this strong predictor.
 
 
-% \begin{table}[h]
-% \centering
-% \begin{tabular}{l l l}
-% \hline
-% \textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2}\\
-% \hline
-% Treatment 1 & 0.0003262 & 0.562 \\
-% Treatment 2 & 0.0015681 & 0.910 \\
-% Treatment 3 & 0.0009271 & 0.296 \\
-% \hline
-% \end{tabular}
-% \caption{Table caption}
-% \end{table}
+
 
 
 \begin{figure}[h]
