@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex MLBPaper"] 1422403787 "MLBPaper.aux" "MLBPaper.bbl" "MLBPaper" 1422408000
+["bibtex MLBPaper"] 1422452690 "MLBPaper.aux" "MLBPaper.bbl" "MLBPaper" 1422452693
   "./model1-num-names.bst" 1421851984 25451 3a63f4c903f71e219900325462df0fe1 ""
-  "MLBPaper.aux" 1422403789 2242 cc6161d7e287fa11d8315fdc5692618f ""
+  "MLBPaper.aux" 1422452692 2418 3786832d9afa3fd7d0f16442ca333d5b ""
   "MLBPaper.bcf" 0 -1 0 ""
   "sample.bib" 1422401946 1407 6e56fa5bde48a60fcded7e80720f6f19 ""
   (generated)
   "MLBPaper.bbl"
   "MLBPaper.blg"
-["pdflatex"] 1422403787 "MLBPaper.tex" "MLBPaper.pdf" "MLBPaper" 1422408000
+["pdflatex"] 1422452690 "MLBPaper.tex" "MLBPaper.pdf" "MLBPaper" 1422452693
   "/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/etexcmds.sty" 1335995445 7612 c47308d923ec19888707b0f1792b326a ""
   "/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifluatex.sty" 1303254447 7324 11d14f318d865f420e692d4e6c9c18c3 ""
@@ -52,17 +52,18 @@
   "/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/upzd.fd" 1137110629 148 b2a94082cb802f90d3daf6dd0c7188a0 ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/qtree/qtree.sty" 1232900045 37840 af733ddbac7a85c7a51356efa3682b6c ""
   "BAandHits.png" 1422193144 113181 8cdf082c0738e37c0a6447d6424a645b ""
-  "MLBPaper.aux" 1422403789 2242 cc6161d7e287fa11d8315fdc5692618f ""
-  "MLBPaper.bbl" 1422403787 1313 ca97e6c2f881e972d2edec6f37171cde "bibtex MLBPaper"
-  "MLBPaper.spl" 1422403788 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "MLBPaper.tex" 1422407999 21808 1c4e2514c6e6c4a2bc465591c6c6d2a5 ""
+  "MLBPaper.aux" 1422452692 2418 3786832d9afa3fd7d0f16442ca333d5b ""
+  "MLBPaper.bbl" 1422452690 1313 ca97e6c2f881e972d2edec6f37171cde "bibtex MLBPaper"
+  "MLBPaper.spl" 1422452691 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "MLBPaper.tex" 1422452687 23131 2dc17165983f9d065e2f33861eaedaf7 ""
   "MachineLearnTree.png" 1422199802 52382 6258bf35b35d267717e3566eb10775e2 ""
+  "PrunedBoat.png" 1422450697 86035 37c845dbec801906b23ad7c5b51cb618 ""
   "RF.png" 1422122570 35823 31bf1ac03898f53eabb0e8ed35345c22 ""
-  "Sample_Tree.png" 1422380633 72156 1358479d349c0df9917d206c813d924e ""
+  "TreeExample.png" 1422449751 89852 d6d45a1ef51be26d748290fb8dc89294 ""
   "pruneCV.png" 1422206728 28829 f33e930914c36c061a8f56866d1cd0c1 ""
   "pruned.png" 1422209721 33430 caa84c1091bc2e07958b42a2d4f0e948 ""
   (generated)
-  "MLBPaper.log"
   "MLBPaper.aux"
+  "MLBPaper.log"
   "MLBPaper.spl"
   "MLBPaper.pdf"
