@@ -190,7 +190,11 @@ We can see that more hits and a higher batting average seem to correlate with in
 \section{Tree-Based Methods for Classification}
 
 In this section, we will give an account of two learning methods that we will use for the basis of prediction: classification trees, and an ensemble method, random forests. We will also introduce the concept of bootstrap aggregating (bagging) which is a fundamental ingredient of random forests. The information here is theoretical, and we will encounter applications of these ideas to our HOF data in the next section.
-
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{Sample_Tree}
+	\caption{Decision Tree for Survival of Boat Disaster}
+\end{figure}
 \subsection{Classification Trees}
 Classification trees are a fairly effective predictive tool that are lauded for their high degree of interpretability. When constructing a classification tree, we begin with the full set of observations and begin dividing the predictor space into non-overlapping regions by means of binary splitting. In prediction, we assign each observation in a given region of the predictor space to the most commonly occuring class of the training observations in that region. 
 
@@ -202,19 +206,11 @@ $$G = \sum\limits_{i=1}^m p_{i}(1-p_{i}) = 1 - \sum\limits_{i=1}^m p_{i}^{2}$$
 
 Let us illustrate this with a very simple example of a decision tree created to predict the survivors of a boat disaster. The root node contains all passengers of the ship. We then split the full set of observations according to their sex, followed by a split on what type of ticket they had. 
 
-\bigskip
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1\textwidth]{Sample_Tree}
-	\caption{Decision Tree for Survival of Boat Disaster}
-\end{figure}
-
 Now, we can consider the Gini Impurity associated with the node labeled ``male'' in the decision tree. The table below shows the fates of all males based on their ticket type. 
 
 \begin{table}[h]
 \centering
-\begin{tabular}{l | l l | l}
+\begin{tabular}{|l | l l | l|}
 \hline
  & Survived & Died & total\\
 \hline
@@ -222,9 +218,10 @@ First Class & 122 & 19 & 141 \\
 Other Classes & 12 & 1113 & 1125 \\
 \hline
 total & 134 & 1132 & 1286 \\
+\hline
 
 \end{tabular}
-\caption{Aftermath of Boat Disaster}
+\caption{Aftermath of a Tragic Boat Disaster}
 \end{table}
 
 \noindent If we split this dataset on ticket type, we can calculate Gini Impurity for each of the two possible responses as follows, with $i=0$ indicating survival and $i=1$ indicating death:
@@ -247,13 +244,21 @@ $$N_{m} = |\{x_{i} \in R_{m}\}| $$
 
 $$C_{\alpha}(T) = \sum\limits_{m=1}^{|T|} N_{m}G_{m}(T) + \alpha|T|$$
 
-For each $\alpha$, there is a unique smallest subtree $T_{\alpha} \subseteq T_{0}$ that minimizes $C_{\alpha}(T)$ An estimation  $\hat{\alpha}$ is done by using tenfold cross-validation, and the final pruned tree is $T_{\hat{\alpha}}$. In tenfold cross validation, the original training set is paritioned into ten equal subsamples, nine of which are used to train are used to train the model, and one used for validation. This process is repeated 10 ten, each time selected a different subsample as the test data. The 10 results from are then averaged to produce a single estimation. More details can be found in \cite{Breiman1984}.
+For each $\alpha$, there is a unique smallest subtree $T_{\alpha} \subseteq T_{0}$ that minimizes $C_{\alpha}(T)$ An estimation  $\hat{\alpha}$ is done by using tenfold cross-validation, and the final pruned tree is $T_{\hat{\alpha}}$. In tenfold cross validation, the original training set is paritioned into ten equal subsamples, nine of which are used to train are used to train the model, and one used for validation. This process is repeated 10 ten, each time selecting a different subsample as the test data. The 10 results from are then averaged to produce a single estimation. More details can be found in Breiman et al.\cite{Breiman1984}
 
 
 
 
 \subsection{Ensemble Methods}
 Ensemble methods use multiple learning algorithms to obtain better predictive performance than could be obtained from any of the individual learning algorithms composing the ensemble. Here, we look at two such methods, bagging and random forests.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{RF}
+	\caption{A Random Forest. The prediction for \textbf{y} is made by majority vote.}
+\end{figure}
+
+
 \subsubsection{Tree Bagging}
 Decision trees as discussed in the previous section often suffer from high variance, meaning that if we fit a decision tree to two random samples from a set of training observations, we could end up with vastly different results. Bagging is a method for reducing the variance of any learning method by taking repeated samples from a single training set and taking, in the case of classification, the most commonly occurring class among the boostrapped predictions. 
 
@@ -265,14 +270,6 @@ Bagging also gives us insight into which of our predictors were the most importa
 The random forest technique is quite similar to taking bagged  samples of trees, with the main difference being that at each of the splits only a random sample $m$ of the set of all predictors $p$ is considered. Typically, $m \approx \sqrt{p}$ predictors suffice. This technique helps to decorrelate the tree, as there may be one predictor that has a very high influence in classification. In the case of bagging, this predictor will most likely be used as the first split in a majority of the trees, causing most bagged trees to be quite similar and correlated. By forcing each split to consider on a subset of the predictors, on average $(p-m)/p$ of the splits will not consider this strong predictor.
 
 
-
-
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1\textwidth]{RF}
-	\caption{A Random Forest. The prediction for \textbf{y} is made by majority vote. \textbf{get a new figure}}
-\end{figure}
 
 In this paper, we will be utiliziing the \textit{randomForest} package in R. 
 
@@ -361,7 +358,7 @@ tree.pred   0   1
 %%   \citet{key}         ==>>  Author [#]
 
 %% References with bibTeX database:
-
+\section{References}
 \bibliographystyle{model1-num-names}
 \bibliography{sample.bib}
 
