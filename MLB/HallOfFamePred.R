@@ -84,6 +84,7 @@ text(tree.hof, all = FALSE)
 
 tree.pred=predict(tree.hof,HallOfFame[-train,],type="class")
 with(HallOfFame[-train,],table(tree.pred,inducted))
+tree.pred[1]
 
 #what was predicted correctly
 (203+18)/(203+18+19+11)

@@ -65,36 +65,31 @@ ggplot(candidatesPitch[candidatesPitch$lastSeason < 2010,], aes(x=tW, y=tSO, col
 
 #split our data into a training and a test set.
 set.seed(919)
-bat_train=sample(1:nrow(candidatesBat), 650)
-pitch_train = sample(1:nrow(candidatesPitch), 300)
+train=sample(1:nrow(candidatesBat), 650)
+
 
 #make trees
-bat_tree=rpart(inducted~ tAB +tH+tHR+tR+tSB+tRBI+tBA+mvp+gg, data=candidatesBat, method = "class" ,subset=bat_train)
+bat_tree=rpart(inducted~ tAB +tH+tHR+tR+tSB+tRBI+tBA+mvp, data=candidatesBat, method = "class" ,subset=train)
 draw.tree(bat_tree, cex = 1.2)
 summary(bat_tree)
-printcp(bat_tree)
-plotcp(bat_tree)
+print(bat_tree)
 
-pred <- predict(bat_tree, data = candidatesBat[-train],type = "class")
-with(candidatesBat[-train,],table(pred,inducted))
+bat.pred=predict(bat_tree,candidatesBat[-train,],type="class")
 
-bat_pred <- mutate(candidatesBat, y.hat = predict(bat_tree, type="class"), induct.prob = predict(bat_tree)[,2])
-confusion = tally(y.hat ~ inducted, data=candidatesBat, format="count")
-confusion
+with(candidatesBat[-train,],table(bat.pred,inducted))
+
 
 #tree classifier?
 
-pruned_bat = prune(bat_tree, cp = 0.024194)
+pruned_bat = prune(bat_tree, cp = 0.046)
 draw.tree(bat_tree)
 plotcp(bat_tree)
 printcp(bat_tree)
 draw.tree(pruned_bat)
 
+bat.pred.prune=predict(pruned_bat,candidatesBat[-train,],type="class")
+with(candidatesBat[-train,],table(bat.pred.prune,inducted))
 
-
-prediction_bat <- predict(bat_tr)
-confusion = tally(y.hat ~ inducted, data=candidatesBat[-train,], format="count")
-confusion
 
 summary(bat_tree)
 printcp(bat_tree)
