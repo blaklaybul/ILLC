@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  29 JAN 2015 18:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  29 JAN 2015 18:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -451,61 +451,24 @@ File: BatterUnpruned.png Graphic file (type png)
 Package pdftex.def Info: BatterUnpruned.png used on input line 326.
 (pdftex.def)             Requested size: 390.0pt x 296.53262pt.
  [9 <./BatterUnpruned.png>]
-
-! Package caption Error: \caption outside float.
-
-See the caption package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.343 \caption
-              {Confusion Matrix of test data using pruned tree}
-If you do not understand this error, please take a closer look
-at the documentation of the `caption' package, especially the
-section about errors.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! Package caption Error: \caption outside float.
-
-See the caption package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.356 \caption
-              {Confusion Matrix of Test Data using unpruned tree}
-If you do not understand this error, please take a closer look
-at the documentation of the `caption' package, especially the
-section about errors.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
 <PlotCP.png, id=55, 930.47626pt x 723.70375pt>
 File: PlotCP.png Graphic file (type png)
  <use PlotCP.png>
-Package pdftex.def Info: PlotCP.png used on input line 364.
-(pdftex.def)             Requested size: 390.0pt x 303.32407pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<BattersPruned.png, id=56, 896.34875pt x 681.54625pt>
+Package pdftex.def Info: PlotCP.png used on input line 363.
+(pdftex.def)             Requested size: 350.99762pt x 272.98944pt.
+ [10 <./PlotCP.png>] <BattersPruned.png, id=60, 896.34875pt x 681.54625pt>
 File: BattersPruned.png Graphic file (type png)
- <use BattersPruned.png>
-Package pdftex.def Info: BattersPruned.png used on input line 372.
+
+<use BattersPruned.png>
+Package pdftex.def Info: BattersPruned.png used on input line 375.
 (pdftex.def)             Requested size: 390.0pt x 296.53262pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-(./MLBPaper.bbl) [10] [11 <./PlotCP.png>] [12 <./BattersPruned.png>]
+ (./MLBPaper.bbl [11 <./BattersPruned.png>]) [12]
 (./MLBPaper.aux) ) 
 Here is how much of TeX's memory you used:
- 5407 strings out of 493117
- 79730 string characters out of 6135433
+ 5408 strings out of 493117
+ 79736 string characters out of 6135433
  182531 words of memory out of 5000000
- 8775 multiletter control sequences out of 15000+600000
+ 8776 multiletter control sequences out of 15000+600000
  10582 words of font info for 39 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,8n,41p,876b,359s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -522,7 +485,7 @@ fb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf
 b></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
 </usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><
 /usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on MLBPaper.pdf (12 pages, 626648 bytes).
+Output written on MLBPaper.pdf (12 pages, 627233 bytes).
 PDF statistics:
  110 PDF objects out of 1000 (max. 8388607)
  68 compressed objects within 1 object stream

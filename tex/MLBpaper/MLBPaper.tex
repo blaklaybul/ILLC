@@ -328,49 +328,52 @@ After evaluating our decision trees, we will move onto random forest classificat
        \label{unprunedBat}
  \end{figure}
 
-Using R's rpart package, we can fit a classification tree to our data. To do so, we will split the entire data set into a training and a test set and build our tree using the training data. As our training set, we will take a random sample of about $2/3$ of our data. This amounts to $\approx 650$ batters. The following tree show in \ref{unprunedBat} was obtained by predicting induction based on all of our features mentioned in section \ref{data}. Our model produced a tree with eight splits and 9 terminal nodes and we notice that only 5 variables were used in the creation of the tree: mvp, tAB, tBA, tH, and R. The misclassification error of this tree on the training data was : $62/650 \approx 0.09538$. Let's use this model on our test data to see how it performs.
+Using R's rpart package, we can fit a classification tree to our data. To do so, we will split the entire data set into a training and a test set and build our tree using the training data. As our training set, we will take a random sample of about $2/3$ of our data. This amounts to $\approx 650$ batters. The tree shown in figure \ref{unprunedBat} was obtained by predicting induction based on all of our features mentioned in section \ref{data}. Our model produced a tree with eight splits and 9 terminal nodes and we notice that only 5 variables were used in the creation of the tree: mvp, tAB, tBA, tH, and R. The misclassification error of this tree on the training data was : $62/650 \approx 9.5\%$. Let's use this model on our test data to see how it performs.
 
 
-
+\begin{table}
+\centering
 \begin{tabular}{|l |l l|}
 \hline
- inducted &  actual & \\
+ unpruned &  actual & \\
 \hline
 prediction & 0 & 1 \\
 0 & 356 & 23 \\
 1 & 23 & 27 \\
 \hline
-\caption{Confusion Matrix of test data using pruned tree}
+%\caption{Confusion Matrix of test data using pruned tree}
 \end{tabular}
-
-
-\centering
+\quad
 \begin{tabular}{|l |l l|}
 \hline
- inducted &  actual & \\
+ pruned &  actual & \\
 \hline
 prediction & 0 & 1 \\
 0 & 369 & 35 \\
 1 & 10 & 15 \\
 \hline
-\caption{Confusion Matrix of Test Data using unpruned tree}
+%\caption{Confusion Matrix of Test Data using unpruned tree}
 \end{tabular}
-\end{center}
+\caption{Confusion Matrices for unpruned and pruned decision trees}
+\label{conf}
+\end{table}
 
-Our model predicted the induction of our test players with a misclassification rate of $1 - 383/429 \approx 10.7\%$. We can perform cross validation on the tree to see if there is a more ideal pruned tree size. Having a look at \ref{CPlot}, we notice that the cross validation error is minimized around cost complexity parameter (cp) $0.046$. We can use this value to prune our original tree in hopes of obtaining a more stable model of size 3. Generating a new tree model having only 3 terminal nodes actual performs slightly better than our original tree, with a misclassification rate of $1-384/429 \approx 10.4\%$ on the test data.
-
-\begin{figure}[h!]
+\begin{figure}[h]
        \centering 
-       \includegraphics[width=\linewidth]{PlotCP}
+       \includegraphics[width=0.9\textwidth]{PlotCP}
        \caption{Complexity Parameter of Various Trees}
        \label{CPlot}
  \end{figure}
+
+Our model predicted the induction of our test players with a misclassification rate of $1 - 383/429 \approx 10.7\%$. We can perform cross validation on the tree to see if there is a more ideal pruned tree size. Having a look at figure \ref{CPlot}, we notice that the cross validation error is minimized around cost complexity parameter (cp) $0.046$. We can use this value to prune our original tree in hopes of obtaining a more stable model of size 3. Generating a new tree model having only 3 terminal nodes actual performs slightly better than our original tree, with a misclassification rate of $1-384/429 \approx 10.4\%$ on the test data. This data is summarized in table \ref{conf}.
+
+
 
 
 \begin{figure}[h]
        \centering 
        \includegraphics[width=\linewidth]{BattersPruned}
-       \caption{Complexity Parameter of Various Trees}
+       \caption{Our Pruned Tree}
        \label{pruned}
  \end{figure}
 
