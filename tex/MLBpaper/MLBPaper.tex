@@ -22,6 +22,8 @@
 
 %% The graphicx package provides the includegraphics command.
 \usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
 %% The amssymb package provides various useful mathematical symbols
 \usepackage{amssymb}
 %% The amsthm package provides extended theorem environments
@@ -141,45 +143,31 @@ We will investigate predictions based on both classification trees and random fo
 
 \section{Data}
 \label{data}
-Data was collected from the Lahman Baseball Database, a freely available database that has been contiously updated since 1994 with the help of SABR and many individual researchers. Batting and Pitching statistics were supplied on a by-year basis, so a player's career statistics were computed by aggregating his yearly results. The data was then merged with awards, all star, and hall of fame voting results using the player's ID string. We will only be predicting whether or not players will be inducted by the BBWAA, since this is the current method of voting. All data preparation was done within R, the environment where we also build our learning models. 
+Data was collected from the Lahman Baseball Database, a freely available database that has been contiously updated since 1994 with the help of SABR and many individual researchers. Batting statistics were supplied on a by-year basis, so a player's career statistics were computed by aggregating his yearly results. The data was then merged with awards, all star, and hall of fame voting results using the player's ID string. We will only be predicting whether or not players will be inducted by the BBWAA, since this is the current method of voting. All data preparation was done within R, the environment where we also build our learning models. 
 
-Attention is paid to 9 different statistics over the course of the player's career:
+Attention is paid to 11 different statistics over the course of the player's career:
 
 \begin{table}[h]
-\begin{tabular}{|l l|}
+\centering
+\begin{tabular}{|l | l|}
 \hline
- & Batting \\
+statistic & meaning \\
 \hline
-	S & number of years in MLB \\
-	AB & at-bats \\
-	R & runs \\
-	H & hits \\
-	HR & homeruns \\
-	BA & batting average \\
-	RBI & runs batted in \\
-	SB & stolen bases \\
-	MVP & number of mvp awards \\
-	Inducted & predictor \\
-\hline
-\end{tabular}
-\quad
-\begin{tabular}{|l l|}
-\hline
-Stat & Pitching\\
-\hline
-	S & number of years in MLB \\
-	IP & innings pitched \\
-	W & wins \\
-	SO & strikeouts \\
-	SV & saves \\
-	ERA & earned run average \\
-	WHIP & walks + hits per IP \\
-	MVP & number of mvp award \\
-	CY & number of cy young awards \\
-	Inducted & predictor \\
+	numSeasons & number of years in MLB \\
+	tAB & at-bats \\
+	tR & runs \\
+	tH & hits \\
+	tHR & homeruns \\
+	tBA & batting average \\
+	tRBI & runs batted in \\
+	tSB & stolen bases \\
+	mvp & number of mvp awards \\
+	gg & number of gold glove awards \\
+	Allstar & number of all star games played \\
+	inducted & predictor \\
 \hline
 \end{tabular}
-\caption{Hitting and Pitching Statistics}
+\caption{Hitting Statistics}
 \end{table}
 
 % \begin{enumerate}
@@ -203,17 +191,8 @@ Our software of choice for this paper is R. We will be using several packages fo
 	\caption{Batters with more hits and a higher batting average are inducted}
 \end{figure}
 
-We can see that more hits and a higher batting average seem to correlate with induction. This makes sense, as one often judges the quality of a batter by his batting average, the numbers of hits a player has per at-bat. Keep in mind that a lot of the players with many hits and a high batting average that weren't inducted are those players whos induction we seek to predict. Also, That player with over 4000 hits who is not in the Hall of Fames is Pete Rose, who received a lifetime ban from baseball activity for gambling against his own team.
+We can see that more hits and a higher batting average seem to correlate with induction. This makes sense, as one often judges the quality of a batter by his batting average, the numbers of hits a player has per at-bat. Keep in mind that a lot of the players with many hits and a high batting average that weren't inducted are those players who's induction we seek to predict. Also, That player with over 4000 hits who is not in the Hall of Fames is Pete Rose, who received a lifetime ban from baseball activity for gambling against his own team.
 
-Having a quick looks at pitchers, lets see how a pitcher's number of wins and strikeouts influences their induction.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.9\textwidth]{WandK}
-	\caption{Pitchers with more wins and more strikeouts are inducted}
-\end{figure}
-
-We can see that these two statistics also seem to correlate with HOF induction. The two pitchers with many strikeouts and wins that were not inducted are players who have yet to appear on a ballot, and it will be interesting to predict their induction.
 
 % \begin{figure}[h]
 % 	\centering
@@ -336,72 +315,77 @@ In this paper, we will be utilizing the \textit{randomForest} package in R.
 
 \section{Prediction Models}
 
-In this section, we apply the techniques introduced in the last section to our HOF data. We will start by creating two classification trees (one for batters and one for pitchers) and then predicting the induction classifier of our training data based on our model. We will also look at some metrics that will allow us to test the effectiveness of our classification models in order to see what parameters would be best to use. 
+In this section, we apply the techniques introduced in the last section to our HOF data. We will start by creating a single classification trees and then predicting the induction classifier of our training data based on our model. We will also look at some metrics that will allow us to test the effectiveness of our classification model in order to see what parameters would be best to use. 
 
 After evaluating our decision trees, we will move onto random forest classification, to see how it improves our predictions. 
 
 \subsection{Classification Tree}
-Using R's rpart package, we can fit a classification tree to our data. To do so, we will split the entire data set into a training and a test set and build our tree using the training data. As our training set, we will take a random sample of about $2/3$ of our data. This amounts to $\approx 12000$ batters and $\approx 6000$ pitchers. The following results were obtained by predicting induction based on all of our features mentioned in section \ref{data} . The tree determined that runs, stolen bases, strikeouts, walks, home runs, grounded into double plays, at-bats, and hit by pitches were the most important features. We also see that the tree has a misclassification rate of $3.25\%$ A quick look at the tree indicates that the number of runs a player has scored in his career is the most important predictor, since the first split was made usings runs. This is not surpising, as runs are one of the only statistics that we considered that relate directly to a player's team winning a game. 
-\bigskip
 
-\begin{figure}[h1]
-	\centering
-	\includegraphics[width=0.9\textwidth]{MachineLearnTree}
-	\caption{An unpruned tree}
-\end{figure}
+\begin{figure}[h]
+       \centering 
+       \includegraphics[width=\linewidth]{BatterUnpruned}
+       \caption{Batting}
+       \label{unprunedBat}
+ \end{figure}
 
-\begin{lstlisting}
-Classification tree:
-tree(inducted ~ . - playerID, data = HallOfFame, subset = train)
-Variables actually used in tree construction:
-[1] "R"    "SB"   "SO"   "BB"   "HR"   "GIDP" "AB"   "HBP" 
-Number of terminal nodes:  15 
-Misclassification error rate: 0.0325 = 13 / 400 
-\end{lstlisting}
-
-
-Now, to test the performance of this tree, we must estimate a test error by predicting a player's hall of fame induction on our test data. We will look at how our classification model performed.
-
-\begin{lstlisting}
-tree.pred=predict(tree.hof,HallOfFame[-train,],type="class")
-with(HallOfFame[-train,],table(tree.pred,inducted))
-         inducted
-tree.pred   0   1
-        0 203  11
-        1  19  18
-\end{lstlisting}
-
-This tells us that we have a misclassification rate of $1-(203+18)/(203+18+11+19) \approx 12\%$. We will see if this can be improved by using the tree package's pruning feature. The goal of pruning a decision tree is to reduce the complexity of our model, and to reduce overfitting. A pruned tree is simply a less complex tree chosen from set of all subtrees of our decision tree. The method used by the tree package in R is \textit{cost complexity pruning}, which operates as follows: Rather than considering every subtree of our initial tree, we only consider a sequence of trees that is indexed by a tuning parameter $\alpha$. The goal of pruning is to select a subtree that will lead to the lowest misclassification error rate. Such an $\alpha$ can be chosen by using cross-validation on our initial tree.\textbf{talk about cv and pruning more?}
+Using R's rpart package, we can fit a classification tree to our data. To do so, we will split the entire data set into a training and a test set and build our tree using the training data. As our training set, we will take a random sample of about $2/3$ of our data. This amounts to $\approx 650$ batters. The following tree show in \ref{unprunedBat} was obtained by predicting induction based on all of our features mentioned in section \ref{data}. Our model produced a tree with eight splits and 9 terminal nodes and we notice that only 5 variables were used in the creation of the tree: mvp, tAB, tBA, tH, and R. The misclassification error of this tree on the training data was : $62/650 \approx 0.09538$. Let's use this model on our test data to see how it performs.
 
 
 
-\noindent We can see that the optimal size for a tree is between 4 and 7 terminal nodes. With this imformation, we can prune back our original tree to have a more interpretable and accurate model.
+\begin{tabular}{|l |l l|}
+\hline
+ inducted &  actual & \\
+\hline
+prediction & 0 & 1 \\
+0 & 356 & 23 \\
+1 & 23 & 27 \\
+\hline
+\caption{Confusion Matrix of test data using pruned tree}
+\end{tabular}
 
-\begin{lstlisting}
-Classification tree:
-snip.tree(tree = tree.hof, nodes = c(7L, 2L))
-Variables actually used in tree construction:
-[1] "R"  "AB" "HR" "BB" "G" 
-Number of terminal nodes:  7 
-Misclassification error rate: 0.04 = 16 / 400 
 
-         inducted
-tree.pred   0   1
-        0 207  10
-        1  15  19
-\end{lstlisting}
+\centering
+\begin{tabular}{|l |l l|}
+\hline
+ inducted &  actual & \\
+\hline
+prediction & 0 & 1 \\
+0 & 369 & 35 \\
+1 & 10 & 15 \\
+\hline
+\caption{Confusion Matrix of Test Data using unpruned tree}
+\end{tabular}
+\end{center}
 
-\begin{figure}[h2]
-	\centering
-	\includegraphics[width=0.9\textwidth]{pruneCV}
-	\caption{Tree size against misclassifications}
-\end{figure}
+Our model predicted the induction of our test players with a misclassification rate of $1 - 383/429 \approx 10.7\%$. We can perform cross validation on the tree to see if there is a more ideal pruned tree size. Having a look at \ref{CPlot}, we notice that the cross validation error is minimized around cost complexity parameter (cp) $0.046$. We can use this value to prune our original tree in hopes of obtaining a more stable model of size 3. Generating a new tree model having only 3 terminal nodes actual performs slightly better than our original tree, with a misclassification rate of $1-384/429 \approx 10.4\%$ on the test data.
 
-\begin{figure}[h3]
-	\centering
-	\includegraphics[width=0.9\textwidth]{pruned}
-	\caption{Our pruned tree with 7 terminal nodes}
-\end{figure}
+\begin{figure}[h!]
+       \centering 
+       \includegraphics[width=\linewidth]{PlotCP}
+       \caption{Complexity Parameter of Various Trees}
+       \label{CPlot}
+ \end{figure}
+
+
+\begin{figure}[h]
+       \centering 
+       \includegraphics[width=\linewidth]{BattersPruned}
+       \caption{Complexity Parameter of Various Trees}
+       \label{pruned}
+ \end{figure}
+
+% Now, to test the performance of this tree, we must estimate a test error by predicting a player's hall of fame induction on our test data. We will look at how our classification model performed.
+
+% \begin{lstlisting}
+% tree.pred=predict(tree.hof,HallOfFame[-train,],type="class")
+% with(HallOfFame[-train,],table(tree.pred,inducted))
+%          inducted
+% tree.pred   0   1
+%         0 203  11
+%         1  19  18
+% \end{lstlisting}
+
+% This tells us that we have a misclassification rate of $1-(203+18)/(203+18+11+19) \approx 12\%$. We will see if this can be improved by using the tree package's pruning feature. The goal of pruning a decision tree is to reduce the complexity of our model, and to reduce overfitting. A pruned tree is simply a less complex tree chosen from set of all subtrees of our decision tree. The method used by the tree package in R is \textit{cost complexity pruning}, which operates as follows: Rather than considering every subtree of our initial tree, we only consider a sequence of trees that is indexed by a tuning parameter $\alpha$. The goal of pruning is to select a subtree that will lead to the lowest misclassification error rate. Such an $\alpha$ can be chosen by using cross-validation on our initial tree.\textbf{talk about cv and pruning more?}
 
 
 \subsection{Random Forest}

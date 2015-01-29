@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  29 JAN 2015 13:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  29 JAN 2015 18:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -99,6 +99,27 @@ LaTeX Info: Redefining \cite on input line 694.
 \openout3 = `MLBPaper.spl'.
 
 )
+(/usr/local/texlive/2014/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 57.
+\captionmargin=\dimen109
+\captionmargin@=\dimen110
+\captionwidth=\dimen111
+\caption@tempdima=\dimen112
+\caption@indent=\dimen113
+\caption@parindent=\dimen114
+\caption@hangindent=\dimen115
+)
+\c@ContinuedFloat=\count95
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
+\c@subfigure=\count96
+\c@subtable=\count97
+)
 (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
@@ -126,12 +147,12 @@ Package pict2e Info: Driver file for pict2e: p2e-pdftex.def on input line 121.
 File: p2e-pdftex.def 2011/04/05 v0.1t Driver-dependant file (RN,HjG,JT)
 )
 \pIIe@GRAPH=\toks18
-\@arclen=\dimen109
-\@arcrad=\dimen110
-\@tempdimd=\dimen111
+\@arclen=\dimen116
+\@arcrad=\dimen117
+\@tempdimd=\dimen118
 )
-\c@treecount=\count95
-\c@branchcount=\count96
+\c@treecount=\count98
+\c@branchcount=\count99
 \parentbox=\box30
 \treebox=\box31
 \treeboxone=\box32
@@ -230,26 +251,26 @@ File: p2e-pdftex.def 2011/04/05 v0.1t Driver-dependant file (RN,HjG,JT)
 \treewidth=\skip120
 \qta=\toks19
 \qtb=\toks20
-\nbranches=\count97
-\qroofx=\count98
-\qroofy=\count99
+\nbranches=\count100
+\qroofx=\count101
+\qroofy=\count102
 \@qrscratchbox=\box52
 )
 (/usr/local/texlive/2014/texmf-dist/tex/latex/lineno/lineno.sty
 Package: lineno 2005/11/02 line numbers on paragraphs v4.41
-\linenopenalty=\count100
+\linenopenalty=\count103
 \output=\toks21
-\linenoprevgraf=\count101
-\linenumbersep=\dimen112
-\linenumberwidth=\dimen113
-\c@linenumber=\count102
-\c@pagewiselinenumber=\count103
-\c@LN@truepage=\count104
-\c@internallinenumber=\count105
-\c@internallinenumbers=\count106
-\quotelinenumbersep=\dimen114
-\bframerule=\dimen115
-\bframesep=\dimen116
+\linenoprevgraf=\count104
+\linenumbersep=\dimen119
+\linenumberwidth=\dimen120
+\c@linenumber=\count105
+\c@pagewiselinenumber=\count106
+\c@LN@truepage=\count107
+\c@internallinenumber=\count108
+\c@internallinenumbers=\count109
+\quotelinenumbersep=\dimen121
+\bframerule=\dimen122
+\bframesep=\dimen123
 \bframebox=\box53
 LaTeX Info: Redefining \\ on input line 3056.
 )
@@ -262,23 +283,23 @@ File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 Package color Info: Driver file: pdftex.def on input line 137.
 )
 (/usr/local/texlive/2014/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count107
+\lst@mode=\count110
 \lst@gtempboxa=\box54
 \lst@token=\toks22
-\lst@length=\count108
-\lst@currlwidth=\dimen117
-\lst@column=\count109
-\lst@pos=\count110
-\lst@lostspace=\dimen118
-\lst@width=\dimen119
-\lst@newlines=\count111
-\lst@lineno=\count112
-\lst@maxwidth=\dimen120
+\lst@length=\count111
+\lst@currlwidth=\dimen124
+\lst@column=\count112
+\lst@pos=\count113
+\lst@lostspace=\dimen125
+\lst@width=\dimen126
+\lst@newlines=\count114
+\lst@lineno=\count115
+\lst@maxwidth=\dimen127
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2014/03/04 1.5c (Carsten Heinz)
-\c@lstnumber=\count113
-\lst@skipnumbers=\count114
+\c@lstnumber=\count116
+\lst@skipnumbers=\count117
 \lst@framebox=\box55
 )
 (/usr/local/texlive/2014/texmf-dist/tex/latex/listings/listings.cfg
@@ -298,31 +319,31 @@ File: lstlang3.sty 2014/03/04 1.5c listings language file
 (./MLBPaper.aux)
 \openout1 = `MLBPaper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
 
 (/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count115
-\scratchdimen=\dimen121
+\scratchcounter=\count118
+\scratchdimen=\dimen128
 \scratchbox=\box56
-\nofMPsegments=\count116
-\nofMParguments=\count117
+\nofMPsegments=\count119
+\nofMParguments=\count120
 \everyMPshowfont=\toks23
-\MPscratchCnt=\count118
-\MPscratchDim=\dimen122
-\MPnumerator=\count119
-\makeMPintoPDFobject=\count120
+\MPscratchCnt=\count121
+\MPscratchDim=\dimen129
+\MPnumerator=\count122
+\makeMPintoPDFobject=\count123
 \everyMPtoPDFconversion=\toks24
 ) (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
@@ -372,13 +393,16 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\c@lstlisting=\count121
-LaTeX Font Info:    Try loading font information for U+msa on input line 128.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: listings package is loaded.
+Package caption Info: End \AtBeginDocument code.
+\c@lstlisting=\count124
+LaTeX Font Info:    Try loading font information for U+msa on input line 130.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 128.
+LaTeX Font Info:    Try loading font information for U+msb on input line 130.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -386,104 +410,122 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 
 {/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (30.8462pt too wide) in paragraph at lines 149--182
-[][]  [] 
- []
-
 <BAandHits.png, id=10, 1913.1475pt x 892.33376pt>
 File: BAandHits.png Graphic file (type png)
  <use BAandHits.png>
-Package pdftex.def Info: BAandHits.png used on input line 202.
+Package pdftex.def Info: BAandHits.png used on input line 190.
 (pdftex.def)             Requested size: 350.99762pt x 163.70395pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[2] <WandK.png, id=16, 1913.1475pt x 902.37125pt>
-File: WandK.png Graphic file (type png)
- <use WandK.png>
-Package pdftex.def Info: WandK.png used on input line 212.
-(pdftex.def)             Requested size: 350.99762pt x 165.5454pt.
- [3 <./BAandHits.png> <./WandK.png>] <TreeExample.png, id=22, 2010.51125pt x 10
-27.84pt>
+[2] <TreeExample.png, id=16, 2010.51125pt x 1027.84pt>
 File: TreeExample.png Graphic file (type png)
-
-<use TreeExample.png>
-Package pdftex.def Info: TreeExample.png used on input line 235.
+ <use TreeExample.png>
+Package pdftex.def Info: TreeExample.png used on input line 214.
 (pdftex.def)             Requested size: 390.0pt x 199.36935pt.
- [4 <./TreeExample.png>] [5] [6]
-<PrunedBoat.png, id=39, 2010.51125pt x 1027.84pt>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[3 <./BAandHits.png>] [4 <./TreeExample.png>] [5]
+<PrunedBoat.png, id=34, 2010.51125pt x 1027.84pt>
 File: PrunedBoat.png Graphic file (type png)
  <use PrunedBoat.png>
-Package pdftex.def Info: PrunedBoat.png used on input line 305.
+Package pdftex.def Info: PrunedBoat.png used on input line 284.
 (pdftex.def)             Requested size: 390.0pt x 199.36935pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[7] <RF.png, id=45, 455.301pt x 263.384pt>
+[6] [7 <./PrunedBoat.png>] <RF.png, id=44, 455.301pt x 263.384pt>
 File: RF.png Graphic file (type png)
  <use RF.png>
-Package pdftex.def Info: RF.png used on input line 328.
+Package pdftex.def Info: RF.png used on input line 307.
 (pdftex.def)             Requested size: 234.00238pt x 135.36494pt.
 
+[8 <./RF.png>] <BatterUnpruned.png, id=50, 896.34875pt x 681.54625pt>
+File: BatterUnpruned.png Graphic file (type png)
+
+<use BatterUnpruned.png>
+Package pdftex.def Info: BatterUnpruned.png used on input line 326.
+(pdftex.def)             Requested size: 390.0pt x 296.53262pt.
+ [9 <./BatterUnpruned.png>]
+
+! Package caption Error: \caption outside float.
+
+See the caption package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.343 \caption
+              {Confusion Matrix of test data using pruned tree}
+If you do not understand this error, please take a closer look
+at the documentation of the `caption' package, especially the
+section about errors.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! Package caption Error: \caption outside float.
+
+See the caption package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.356 \caption
+              {Confusion Matrix of Test Data using unpruned tree}
+If you do not understand this error, please take a closer look
+at the documentation of the `caption' package, especially the
+section about errors.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+<PlotCP.png, id=55, 930.47626pt x 723.70375pt>
+File: PlotCP.png Graphic file (type png)
+ <use PlotCP.png>
+Package pdftex.def Info: PlotCP.png used on input line 364.
+(pdftex.def)             Requested size: 390.0pt x 303.32407pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<BattersPruned.png, id=56, 896.34875pt x 681.54625pt>
+File: BattersPruned.png Graphic file (type png)
+ <use BattersPruned.png>
+Package pdftex.def Info: BattersPruned.png used on input line 372.
+(pdftex.def)             Requested size: 390.0pt x 296.53262pt.
+
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[8 <./PrunedBoat.png>] [9 <./RF.png>]
-<MachineLearnTree.png, id=55, 1528.71124pt x 779.91376pt>
-File: MachineLearnTree.png Graphic file (type png)
-
-<use MachineLearnTree.png>
-Package pdftex.def Info: MachineLearnTree.png used on input line 349.
-(pdftex.def)             Requested size: 350.99762pt x 179.06697pt.
- [10 <./MachineLearnTree.png>]
-<pruneCV.png, id=61, 1196.47pt x 679.53876pt>
-File: pruneCV.png Graphic file (type png)
- <use pruneCV.png>
-Package pdftex.def Info: pruneCV.png used on input line 396.
-(pdftex.def)             Requested size: 350.99762pt x 199.35272pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<pruned.png, id=62, 1348.03625pt x 675.52374pt>
-File: pruned.png Graphic file (type png)
- <use pruned.png>
-Package pdftex.def Info: pruned.png used on input line 402.
-(pdftex.def)             Requested size: 350.99762pt x 175.88972pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-(./MLBPaper.bbl [11]) [12 <./pruneCV.png>] [13 <./pruned.png>] (./MLBPaper.aux)
- ) 
+(./MLBPaper.bbl) [10] [11 <./PlotCP.png>] [12 <./BattersPruned.png>]
+(./MLBPaper.aux) ) 
 Here is how much of TeX's memory you used:
- 5048 strings out of 493117
- 67750 string characters out of 6135433
- 175031 words of memory out of 5000000
- 8421 multiletter control sequences out of 15000+600000
- 11050 words of font info for 41 fonts, out of 8000000 for 9000
+ 5407 strings out of 493117
+ 79730 string characters out of 6135433
+ 182531 words of memory out of 5000000
+ 8775 multiletter control sequences out of 15000+600000
+ 10582 words of font info for 39 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,8n,41p,1030b,1644s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
-></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
-/usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></
-usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></us
-r/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
-local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/lo
-cal/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/loca
-l/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/t
-exlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/te
-xlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texl
-ive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texli
-ve/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texliv
-e/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on MLBPaper.pdf (13 pages, 764011 bytes).
+ 38i,8n,41p,876b,359s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmbx10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmbx12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmex10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmmi12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmmi8.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
+7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.p
+fb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf
+b></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><
+/usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on MLBPaper.pdf (12 pages, 626648 bytes).
 PDF statistics:
- 120 PDF objects out of 1000 (max. 8388607)
- 74 compressed objects within 1 object stream
+ 110 PDF objects out of 1000 (max. 8388607)
+ 68 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -41,13 +41,13 @@ allstar <-
   #batting
 candidatesBat <- merge(batting, awards, by="playerID", all.x=T)
 candidatesBat <- merge(candidatesBat, allstar, by="playerID", all.x=T)
-candidatesBat <- merge(candidatesBat, inductees, by="playerID", all.x=T)
+candidatesBat <- merge(candidatesBat, inductees, by="playerID")
 candidatesBat$inducted <- as.factor(candidatesBat$inducted)
   
   #pitching
 candidatesPitch <- merge(pitching, awards, by="playerID", all.x=T)
 candidatesPitch <- merge(candidatesPitch, allstar, by="playerID", all.x=T)
-candidatesPitch <- merge(candidatesPitch, inductees, by="playerID", all.x=T)
+candidatesPitch <- merge(candidatesPitch, inductees, by="playerID")
 candidatesPitch$inducted <- as.factor(candidatesPitch$inducted)
 
 #replace n/a's
@@ -58,22 +58,42 @@ candidatesPitch[is.na(candidatesPitch)] <- 0
 Pnames <- Master[,c("playerID", "nameLast", "nameFirst")]
 candidatesBat <- merge(candidatesBat, Pnames, by="playerID", all.x=T)
 candidatesPitch <- merge(candidatesPitch, Pnames, by="playerID", all.x=T)
-candidatesBat <- merge(candidatesBat, Pnames, by="playerID", all.x=T)
-candidatesPitch <- merge(candidatesPitch, Pnames, by="playerID", all.x=T)
 
-ggplot(candidatesBat[candidatesBat$tBA<0.45 & candidatesBat$tH >400 & candidatesBat$lastSeason < 2009 ,], aes(x=tBA, y=tH, col = inducted)) +geom_point(size = 4, alpha = 0.9) + scale_x_continuous(name = "Batting Average")+ scale_y_continuous(name="Hits") + theme(text = element_text(size=35))
+ggplot(candidatesBat[candidatesBat$tBA<0.45 & candidatesBat$tH >400 & candidatesBat$lastSeason < 2010 ,], aes(x=tBA, y=tH, col = inducted)) +geom_point(size = 4, alpha = 0.9) + scale_x_continuous(name = "Batting Average")+ scale_y_continuous(name="Hits") + theme(text = element_text(size=35))
 
 ggplot(candidatesPitch[candidatesPitch$lastSeason < 2010,], aes(x=tW, y=tSO, col = inducted)) +geom_point(size = 4, alpha = 0.9) + scale_x_continuous(name = "Wins")+ scale_y_continuous(name="Strikeouts") + theme(text = element_text(size=35))
 
+#split our data into a training and a test set.
+set.seed(919)
+bat_train=sample(1:nrow(candidatesBat), 650)
+pitch_train = sample(1:nrow(candidatesPitch), 300)
+
+#make trees
+bat_tree=rpart(inducted~ tAB +tH+tHR+tR+tSB+tRBI+tBA+mvp+gg, data=candidatesBat, method = "class" ,subset=bat_train)
+draw.tree(bat_tree, cex = 1.2)
+summary(bat_tree)
+printcp(bat_tree)
+plotcp(bat_tree)
+
+pred <- predict(bat_tree, data = candidatesBat[-train],type = "class")
+with(candidatesBat[-train,],table(pred,inducted))
+
+bat_pred <- mutate(candidatesBat, y.hat = predict(bat_tree, type="class"), induct.prob = predict(bat_tree)[,2])
+confusion = tally(y.hat ~ inducted, data=candidatesBat, format="count")
+confusion
 
 #tree classifier?
-bat_tree = rpart(as.factor(inducted) ~ numSeasons+tAB +tH+tHR+tR+tSB+tRBI+tBA+mvp+gg+ASgame, data=candidatesBat, method = "class")
+
+pruned_bat = prune(bat_tree, cp = 0.024194)
 draw.tree(bat_tree)
-bttree = tree(inducted ~ numSeasons+tAB +tH+tHR+tR+tSB+tRBI+tBA+mvp+gg+ASgame, data=candidatesBat, method = "class")
+plotcp(bat_tree)
+printcp(bat_tree)
+draw.tree(pruned_bat)
 
 
-battingcan <- mutate(candidatesBat, y.hat = predict(bat_tree, type="class"), induct.prob = predict(bat_tree)[,2])
-confusion = tally(y.hat ~ inducted, data=battingcan, format="count")
+
+prediction_bat <- predict(bat_tr)
+confusion = tally(y.hat ~ inducted, data=candidatesBat[-train,], format="count")
 confusion
 
 summary(bat_tree)
