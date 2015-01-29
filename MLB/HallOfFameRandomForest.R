@@ -101,8 +101,30 @@ rf.candidatesBat[is.na(rf.candidatesBat)] <- 0
 rf.bat.train= subset(rf.candidatesBat, rf.candidatesBat$numSeasons >= 10 & rf.candidatesBat$lastSeason < 2009 & rf.candidatesBat$lastSeason > 1949 & rf.candidatesBat$tAB > 2500)
 rf.bat.test= subset(rf.candidatesBat, rf.candidatesBat$lastSeason >= 2009 & rf.candidatesBat$tAB > 500)
 
-set.seed(12345)
-par(mfrow=c(2,2))
-mtryBat <- tuneRF(rf.bat.train[,c("tH", "tHR", "tR", "tSB", "tRBI", "tBA", "mvp", "gg", "ASgame")], factor(rf.bat.train[,c("inducted")]), ntreeTry=2000, data=rf.bat.train, plot=T)
+set.seed(919)
+par(mfrow=c(1,1))
+mtry.bat <- tuneRF(rf.bat.train[,c("tH", "tHR", "tR", "tSB", "tRBI", "tBA", "mvp", "gg", "ASgame")], factor(rf.bat.train[,c("inducted")]), ntreeTry=1000, data=rf.bat.train, plot=T)
+mtry.bat
 
-mtryBat
+rf.bat <- randomForest(factor(inducted) ~ tH + tHR + tR + tSB + tRBI + tBA + mvp + gg + ASgame, data=rf.bat.train, ntree=1000, replace=TRUE, strata=factor(rf.bat.train$inducted), keep.forest=TRUE, importance=TRUE, localImp=TRUE, proximity=TRUE, mtry=3)
+print(rf.bat)
+head(rf.bat,10)
+
+##getpredictions
+rf.bat.train$predict <- rf.bat$predicted
+
+par(mfrow=c(1,1))
+varImpPlot(rf.bat, type=2, pch=20, main = "Variable Importance")
+summary(rf.bat)
+ggplot(importance(rf.bat)[,4])
+
+#predict on test set
+future.bat <- predict(rf.bat, rf.bat.test, type="response")
+future.bat.vote <- predict(rf.bat, rf.bat.test, type="vote", norm.votes=TRUE)
+
+rf.bat.test$HOF <- as.numeric(future.bat) - 1
+rf.bat.test$votes <- future.bat.vote[,2]
+
+batterHOF <- subset(rf.bat.test[,c(1,18,19,20,21)], rf.bat.test$votes > 0.1)
+
+batterHOF[order(-batterHOF$votes),]
