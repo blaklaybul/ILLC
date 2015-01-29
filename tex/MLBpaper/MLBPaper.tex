@@ -286,7 +286,7 @@ Bagging also gives us insight into which of our predictors were the most importa
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.6\textwidth]{RF}
-	\caption{A Random Forest. The prediction for \textbf{y} is made by majority vote.}
+	\caption{Random Forest. For classification, a prediction for \textbf{y} is made by majority vote.}
 \end{figure}
 
 The random forest technique is quite similar to taking bagged  samples of trees, with the main difference being that at each of the splits only a random sample $m$ of the set of all predictors $p$ is considered. Typically, $m \approx \sqrt{p}$ predictors suffice. This technique helps to decorrelate the tree, as there may be one predictor that has a very high influence in classification. In the case of bagging, this predictor will most likely be used as the first split in a majority of the trees, causing most bagged trees to be quite similar and correlated. By forcing each split to consider on a subset of the predictors, on average $(p-m)/p$ of the splits will not consider this strong predictor\cite{Breiman2001}.
