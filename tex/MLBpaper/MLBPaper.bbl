@@ -1,4 +1,4 @@
-\begin{thebibliography}{3}
+\begin{thebibliography}{4}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \providecommand{\bibinfo}[2]{#2}
 \ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
@@ -22,5 +22,11 @@
   \bibinfo{title}{Classification and Regression Trees},
   \bibinfo{publisher}{Wadsworth International Group},
   \bibinfo{address}{Belmont, CA}, \bibinfo{year}{1984}.
+%Type = Article
+\bibitem[{Breiman(2001)}]{Breiman2001}
+\bibinfo{author}{L.~Breiman},
+\newblock \bibinfo{title}{Random forests},
+\newblock \bibinfo{journal}{Mach. Learn.} \bibinfo{volume}{45}
+  (\bibinfo{year}{2001}) \bibinfo{pages}{5--32}.
 
 \end{thebibliography}

@@ -244,7 +244,7 @@ $$G(\textrm{male, other}) = 1 - \sum\limits_{i=0}^1 p_{i}^{2} = 1 - ((12/1125)^{
 \noindent This tells us that knowing that a male was holding a ticket other than first class leads us to a very pure node, that is, one in which we have a substantial amount of information to determine the fate of that passenger. Gini Impurity is related the related notion of entropy and can be seen as measures of how informative the answer to a ``yes/no'' question is at the split in a tree. Entropy can also be used in determining splits, and can calculated using the following equation, where $p_{i}$ is the same quantity as defined above: 
 $$-\sum\limits_{i=0}^m p_{i}log_{2}p_{i}$$
 
-Decision trees, while useful, have their limitations. Firstly, it is possible to grow overly complex trees that overfit the training data \cite{ISLR}. In such cases, a method known as pruning is required to combat this problem. Cost complexity pruning is a method for considering subtrees of our initial tree model that minimize the \textit{cost-complexity criterion}, which is defined as follows\cite{ESL}:
+Decision trees, while useful, have their limitations. Firstly, it is possible to grow overly complex trees that overfit the training data \cite{ISLR}. This can happen if we grow our tree in such a way to have only a single observation at each terminal node. The error rate in our training sample would be $0$, but we would be very likely to encounter an error in our training set. In such cases, a method known as pruning is required to combat this problem. Cost complexity pruning is a method for considering subtrees of our initial tree model that minimize the \textit{cost-complexity criterion}, which is defined as follows\cite{ESL}:
 
 
 Let $T_{0}$ be our unpruned decision tree, and define a subtree $T \subset T_{0}$ to be any tree that can be obtained by collapsing any number of internal nodes. Let $|T|$ denote the number of terminal nodes of our subtree , and let $m$ be an index for them. Define the number of observations at each terminal node as:
@@ -258,6 +258,7 @@ $$C_{\alpha}(T) = \sum\limits_{m=1}^{|T|} N_{m}G_{m}(T) + \alpha|T|$$
 For each $\alpha$, there is a unique smallest subtree $T_{\alpha} \subseteq T_{0}$ that minimizes $C_{\alpha}(T)$ An estimation  $\hat{\alpha}$ is done by using tenfold cross-validation, and the final pruned tree is $T_{\hat{\alpha}}$. In tenfold cross validation, the original training set is paritioned into ten equal subsamples, nine of which are used to train are used to train the model, and one used for validation. This process is repeated 10 ten, each time selecting a different subsample as the test data. The 10 results from are then averaged to produce a single estimation. More details can be found in Breiman et al.\cite{Breiman1984}
 
 Using our Boat example, we note that that our tree has 8 terminal nodes. If we take a look at the distributions below the nodes, we note that the split on food option is not that meaningful in the case of non-first class males and first class females. So let us consider the subtree $T$ show in Figure \ref{fig:Pruned} formed by removing these splits. We note that the Gini Coefficients of the nodes that precede the removed nodes are already equal to $1$, indicating that we already have perfect information about the survival of these passengers. Splitting these nodes further by food option bring us no new information and are therefore useless in classification.
+Note that $C_{\alpha}(T) \leq C_{\alpha}(T_{0})$.
 
 \begin{figure}[h]
 	\centering
@@ -269,23 +270,26 @@ Using our Boat example, we note that that our tree has 8 terminal nodes. If we t
 \subsection{Ensemble Methods}
 Ensemble methods use multiple learning algorithms to obtain better predictive performance than could be obtained from any of the individual learning algorithms composing the ensemble. Here, we look at two such methods, bagging and random forests.
 
+
+\subsubsection{Tree Bagging}
+Decision trees as discussed in the previous section often suffer from high variance in the case of complex trees, meaning that if we fit a decision tree to two random samples from a set of training observations, we could end up with vastly different results. Bagging is a method for reducing the variance of any learning method by taking repeated samples from a single training set and taking, in the case of classification, the most commonly occurring class among the boostrapped predictions. 
+
+Given a set of $n$ 
+
+On average, each of the $B$ bootstrapped samples will take about two-thirds of the training observations.  The remaining observations that were not used in fitting a bagged tree are referred to as the \textit{out-of-bag} (OOB) observations, and we can predict the target variable for the \textit{i}th observation using each of the trees in which that observation was OOB. This will yield, on average, $B/3$ predictions from which we can predict the classification for the observation by taking majority vote.\cite{ISLR} Using this method, we can get a single OOB prediction for each of our observations, obtaining an OOB error, which is a valid estimate of the test error for our bagged model.
+
+Bagging also gives us insight into which of our predictors were the most important in creating our model by looking at the Gini Coefficient. To do so, we take the sum of the amount that the Gini Coefficient has decreased by splitting on a given predictor and take the average over our $B$ trees.
+
+\subsubsection{Random Forest}
+
+
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=1\textwidth]{RF}
+	\includegraphics[width=0.6\textwidth]{RF}
 	\caption{A Random Forest. The prediction for \textbf{y} is made by majority vote.}
 \end{figure}
 
-
-\subsubsection{Tree Bagging}
-Decision trees as discussed in the previous section often suffer from high variance, meaning that if we fit a decision tree to two random samples from a set of training observations, we could end up with vastly different results. Bagging is a method for reducing the variance of any learning method by taking repeated samples from a single training set and taking, in the case of classification, the most commonly occurring class among the boostrapped predictions. 
-
-On average, each of the $B$ bootstrapped samples will take about two-thirds of the training observations.  The remaining observations that were not used in fitting a bagged tree are referred to as the \textit{out-of-bag} (OOB) observations, and we can predict the target varialbe for the \textit{i}th observation using each of the trees in which that observation was OOB. This will yield, on average, $B/3$ predictions from which we can predict the classification for the observation by taking majority vote.\cite{ISLR} Using this method, we can get a single OOB prediction for each of our observations, obtaining an OOB error, which is a valid estimate of the test error for our bagged model.
-
-Bagging also gives us insight into which of our predictors were the most important in creating our model by looking at the Gini Impurity. To do so, we take the sum of the amount that Gini Impurity has dereased by splitting on a given predictor and take the average over our $B$ trees.
-
-\subsubsection{Random Forest}
-The random forest technique is quite similar to taking bagged  samples of trees, with the main difference being that at each of the splits only a random sample $m$ of the set of all predictors $p$ is considered. Typically, $m \approx \sqrt{p}$ predictors suffice. This technique helps to decorrelate the tree, as there may be one predictor that has a very high influence in classification. In the case of bagging, this predictor will most likely be used as the first split in a majority of the trees, causing most bagged trees to be quite similar and correlated. By forcing each split to consider on a subset of the predictors, on average $(p-m)/p$ of the splits will not consider this strong predictor.
-
+The random forest technique is quite similar to taking bagged  samples of trees, with the main difference being that at each of the splits only a random sample $m$ of the set of all predictors $p$ is considered. Typically, $m \approx \sqrt{p}$ predictors suffice. This technique helps to decorrelate the tree, as there may be one predictor that has a very high influence in classification. In the case of bagging, this predictor will most likely be used as the first split in a majority of the trees, causing most bagged trees to be quite similar and correlated. By forcing each split to consider on a subset of the predictors, on average $(p-m)/p$ of the splits will not consider this strong predictor\cite{Breiman2001}.
 
 
 In this paper, we will be utiliziing the \textit{randomForest} package in R. 
