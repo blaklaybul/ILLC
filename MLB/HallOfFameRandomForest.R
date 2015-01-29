@@ -85,20 +85,24 @@ pruned_bat = prune(bat_tree, cp = 0.046)
 draw.tree(bat_tree)
 plotcp(bat_tree)
 printcp(bat_tree)
-draw.tree(pruned_bat)
+draw.tree(pruned_bat, cex=1.2)
 
 bat.pred.prune=predict(pruned_bat,candidatesBat[-train,],type="class")
 with(candidatesBat[-train,],table(bat.pred.prune,inducted))
 
+##random forest time
+rf.candidatesBat <- merge(batting, awards, by="playerID", all.x=T)
+rf.candidatesBat <- merge(rf.candidatesBat, allstar, by="playerID", all.x=T)
+rf.candidatesBat <- merge(rf.candidatesBat, inductees, by="playerID", all.x=T)
+rf.candidatesBat <- merge(rf.candidatesBat, Pnames, by="playerID", all.x=T)
 
-summary(bat_tree)
-printcp(bat_tree)
-draw.tree(bttree)
+rf.candidatesBat[is.na(rf.candidatesBat)] <- 0
 
-names(Pitching)
+rf.bat.train= subset(rf.candidatesBat, rf.candidatesBat$numSeasons >= 10 & rf.candidatesBat$lastSeason < 2009 & rf.candidatesBat$lastSeason > 1949 & rf.candidatesBat$tAB > 2500)
+rf.bat.test= subset(rf.candidatesBat, rf.candidatesBat$lastSeason >= 2009 & rf.candidatesBat$tAB > 500)
 
-pitch_tree = rpart(as.factor(inducted) ~ numSeasons+ tIP+tW+tSO+tSV+tERA+tWHIP+mvp+cy, data=candidatesPitch)
-draw.tree(pitch_tree)
+set.seed(12345)
+par(mfrow=c(2,2))
+mtryBat <- tuneRF(rf.bat.train[,c("tH", "tHR", "tR", "tSB", "tRBI", "tBA", "mvp", "gg", "ASgame")], factor(rf.bat.train[,c("inducted")]), ntreeTry=2000, data=rf.bat.train, plot=T)
 
-
-names(candidatesBat)
+mtryBat

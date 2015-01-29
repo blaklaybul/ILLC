@@ -207,6 +207,7 @@ We can see that more hits and a higher batting average seem to correlate with in
 
 
 \section{Tree-Based Methods for Classification}
+\label{method}
 
 In this section, we will give an account of two learning methods that we will use for the basis of prediction: classification trees, and an ensemble method, random forests. We will also introduce the concept of bootstrap aggregating (bagging) which is a fundamental ingredient of random forests. The information here is theoretical, and we will encounter applications of these ideas to our HOF data in the next section.
 \begin{figure}[h]
@@ -392,10 +393,16 @@ Our model predicted the induction of our test players with a misclassification r
 
 
 \subsection{Random Forest}
+In this section, we will build a model for predicting hall of fame induction using an ensemble of decision trees. The method is similar to the one followed above, except in this case we will use bagging to ensure that we do not overfit the training data. Instead of building just a single tree in which all variables are considered at each binary split, we will build numerous decision trees in which a randomly selected variable is chosen at each split. As before, each tree is trained using a training set, and the trees are built so that each terminal node is \textit{pure} in the sense that all of the observations in the node fall into the same class.
+
+The test data will be referred to as \textit{out-of-bag} sample, since it is not included in bagging method used for training. The prediction for the out-of-bag sampels will be the majority vote of the predictions from the individual trees. To change things up, in this section we will be considering the full set of batters rather than simply those that have appeared on at least one ballot. This will be useful in predicting induction for players that have not yet retired, or have retired in the last 5 years.
+
+To do this, we will make our training set all players that have retired before 2009 and our test set all players who are still currently active, or have retired after 2009. 
+
 
 \section{Conclusions}
 
-
+As mentioned in section \ref{method} we will need to choose the number of variables that will be considered at each binary split. 
 %% References
 %%
 %% Following citation commands can be used in the body text:
