@@ -132,7 +132,7 @@ Every year, the Baseball Writers Association of America votes on a new Hall of F
 %%
 %% main text
 \section{Introduction}
-\label{S:1}
+\label{intro}
 Major League Baseball (MLB) has been keeping thorough records of batting, picthing, and fielding statistics since its innagural season in 1869. Recently, with the advent of sabermetrics by the Society for American Baseball Research (SABR), many  new metrics building on traditional statistics were created. Such metrics caught the eye of stasticians, as these new metrics allowed for the creation of even more powerful predictive models. 
 
 In this paper, we are investigating what makes a Hall Of Fame (HOF) batter. There have been over 20,000 Major League baseball players in the history of the organization, and only 211 of them have been inducted into the HOF. There are several ways in which a player can be inducted, and we only concern ourselves with players inducted from Baseball Writers Association of America (BBWAA) ballots, as this process is regulated. Often, fans and players feel that a worthy candidate is unfairly denied entry into the HOF because of voter bias, stacked ballots, or negative associations with performance enhancing drugs. The model proposed in this paper should be able account for these cases.
@@ -140,40 +140,80 @@ In this paper, we are investigating what makes a Hall Of Fame (HOF) batter. Ther
 We will investigate predictions based on both classification trees and random forests. Random forests, introduced by Leo Breiman of UC Berkeley in 2001, is an ensemble learning technique that can be used for both classification and regression and improves on decision trees by correcting for overfitting. A random forest for classification consists of a collection of decision trees and outputs a prediction representing the most commonly occuring prediction of the decision trees.
 
 \section{Data}
-\label{S:2}
-Data was collected from the Lahman Baseball Database, a freely available database that has been contiously updated since 1994 with the help of SABR and many individual researchers. There are many data tables available for download, but the ones that we are focusing on are \textit{Batting.dat} and \textit{HallOfFame.dat}. Batting statistics were supplied on a by-year basis, so a player's career statistics were computed by aggregating his yearly results. The batters' data was then merged with hall of fame voting results using the player's ID string. We will only be considering players who have appeared on at least one ballot, since failing to do so would indicate that that player is not hall worthy. All data preparation was done within R, the environment where we also build our learning models. 
+\label{data}
+Data was collected from the Lahman Baseball Database, a freely available database that has been contiously updated since 1994 with the help of SABR and many individual researchers. Batting and Pitching statistics were supplied on a by-year basis, so a player's career statistics were computed by aggregating his yearly results. The data was then merged with awards, all star, and hall of fame voting results using the player's ID string. We will only be predicting whether or not players will be inducted by the BBWAA, since this is the current method of voting. All data preparation was done within R, the environment where we also build our learning models. 
 
-Attention is paid to 12 different batting statistics over the course of the player's career:
+Attention is paid to 9 different statistics over the course of the player's career:
 
-\begin{enumerate}
-	\item G: games played
-	\item AB: at-bats
-	\item R: runs
-	\item H: hits
-	\item X2B: doubles
-	\item X3B: triples
-	\item HR: homeruns
-	\item RBI: runs batted in
-	\item SB: stolen bases
-	\item BB: walks
-	\item SO: strike outs
-	\item Inducted: classifier for HOF induction
-\end{enumerate}
+\begin{table}[h]
+\begin{tabular}{|l l|}
+\hline
+ & Batting \\
+\hline
+	S & number of years in MLB \\
+	AB & at-bats \\
+	R & runs \\
+	H & hits \\
+	HR & homeruns \\
+	BA & batting average \\
+	RBI & runs batted in \\
+	SB & stolen bases \\
+	MVP & number of mvp awards \\
+	Inducted & predictor \\
+\hline
+\end{tabular}
+\quad
+\begin{tabular}{|l l|}
+\hline
+Stat & Pitching\\
+\hline
+	S & number of years in MLB \\
+	IP & innings pitched \\
+	W & wins \\
+	SO & strikeouts \\
+	SV & saves \\
+	ERA & earned run average \\
+	WHIP & walks + hits per IP \\
+	MVP & number of mvp award \\
+	CY & number of cy young awards \\
+	Inducted & predictor \\
+\hline
+\end{tabular}
+\caption{Hitting and Pitching Statistics}
+\end{table}
 
-We needed to further filter our data by not including pitchers in our set of observations. This was done by removing those observations that indicated that the player recorded less than 300 RBI in his career. This number was not arbitrary, but rather chosen by cross referencing my data with HOF data from Baseball-Reference.
+% \begin{enumerate}
+% 	\item Seasons: number of years in MLB
+% 	\item AB: at-bats
+% 	\item R: runs
+% 	\item H: hits
+% 	\item HR: homeruns
+% 	\item BA: batting average
+% 	\item RBI: runs batted in
+% 	\item SB: stolen bases
+% 	\item MVP: number of mvp awards won
+% 	\item Inducted: classifier for HOF induction, which we will be predicting
+% \end{enumerate}
 
 Our software of choice for this paper is R. We will be using several packages for our learning techniques, indicated in the sections below. Before training our model, it is important to have a quick look at our data.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=1\textwidth]{BAandHits}
+	\includegraphics[width=0.9\textwidth]{BAandHits}
 	\caption{Batters with more hits and a higher batting average are inducted}
 \end{figure}
 
-We can see that more hits and a higher batting average seem to correlate with induction. This makes sense, as one often judges the quality of a batter by his batting average, the numbers of hits a player has per at-bat.
+We can see that more hits and a higher batting average seem to correlate with induction. This makes sense, as one often judges the quality of a batter by his batting average, the numbers of hits a player has per at-bat. Keep in mind that a lot of the players with many hits and a high batting average that weren't inducted are those players whos induction we seek to predict. Also, That player with over 4000 hits who is not in the Hall of Fames is Pete Rose, who received a lifetime ban from baseball activity for gambling against his own team.
 
-\bigskip
-\textbf{insert some more figures here}
+Having a quick looks at pitchers, lets see how a pitcher's number of wins and strikeouts influences their induction.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{WandK}
+	\caption{Pitchers with more wins and more strikeouts are inducted}
+\end{figure}
+
+We can see that these two statistics also seem to correlate with HOF induction. The two pitchers with many strikeouts and wins that were not inducted are players who have yet to appear on a ballot, and it will be interesting to predict their induction.
 
 % \begin{figure}[h]
 % 	\centering
@@ -292,17 +332,16 @@ Bagging also gives us insight into which of our predictors were the most importa
 The random forest technique is quite similar to taking bagged  samples of trees, with the main difference being that at each of the splits only a random sample $m$ of the set of all predictors $p$ is considered. Typically, $m \approx \sqrt{p}$ predictors suffice. This technique helps to decorrelate the tree, as there may be one predictor that has a very high influence in classification. In the case of bagging, this predictor will most likely be used as the first split in a majority of the trees, causing most bagged trees to be quite similar and correlated. By forcing each split to consider on a subset of the predictors, on average $(p-m)/p$ of the splits will not consider this strong predictor\cite{Breiman2001}.
 
 
-In this paper, we will be utiliziing the \textit{randomForest} package in R. 
+In this paper, we will be utilizing the \textit{randomForest} package in R. 
 
 \section{Prediction Models}
 
-In this section, we apply the techniques introduced in the last section to our HOF data. We will start by creating a single decision tree based on some training data, and then predicting the induction classifier of our training data based on our model. We will also look at some metrics that will allow us to test the effectiveness of our classification models in order to see what parameters would be best to use. 
+In this section, we apply the techniques introduced in the last section to our HOF data. We will start by creating two classification trees (one for batters and one for pitchers) and then predicting the induction classifier of our training data based on our model. We will also look at some metrics that will allow us to test the effectiveness of our classification models in order to see what parameters would be best to use. 
 
-After evaluating our single decision tree, we will move onto random forest classification, to see how it improves our predictions. 
+After evaluating our decision trees, we will move onto random forest classification, to see how it improves our predictions. 
 
 \subsection{Classification Tree}
-Using R's tree package, we can fit a classification tree to our data. To do so, we will split the entire data set into a training and a test set and build our tree using the training data. As our training set, we will take a random sample of about $2/3$ of our data. This amounts to $\approx 400$ observations.
-The following results were obtained by predicting induction based on all of our features except for playerID. The tree determined that runs, stolen bases, strikeouts, walks, home runs, grounded into double plays, at-bats, and hit by pitches were the most important features. We also see that the tree has a misclassification rate of $3.25\%$ A quick look at the tree indicates that the number of runs a player has scored in his career is the most important predictor, since the first split was made usings runs. This is not surpising, as runs are one of the only statistics that we considered that relate directly to a player's team winning a game. 
+Using R's rpart package, we can fit a classification tree to our data. To do so, we will split the entire data set into a training and a test set and build our tree using the training data. As our training set, we will take a random sample of about $2/3$ of our data. This amounts to $\approx 12000$ batters and $\approx 6000$ pitchers. The following results were obtained by predicting induction based on all of our features mentioned in section \ref{data} . The tree determined that runs, stolen bases, strikeouts, walks, home runs, grounded into double plays, at-bats, and hit by pitches were the most important features. We also see that the tree has a misclassification rate of $3.25\%$ A quick look at the tree indicates that the number of runs a player has scored in his career is the most important predictor, since the first split was made usings runs. This is not surpising, as runs are one of the only statistics that we considered that relate directly to a player's team winning a game. 
 \bigskip
 
 \begin{figure}[h1]
