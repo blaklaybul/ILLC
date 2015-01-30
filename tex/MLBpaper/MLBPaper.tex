@@ -90,7 +90,7 @@
 
 %% Title, authors and addresses
 
-\title{Predicting Baseball Hall Of Fame Inductions}
+\title{Predicting Baseball Hall Of Fame Induction}
 
 %% use the tnoteref command within \title for footnotes;
 %% use the tnotetext command for the associated footnote;
@@ -139,7 +139,7 @@ Major League Baseball (MLB) has been keeping thorough records of batting, pitchi
 
 In this paper, we are investigating what makes a Hall Of Fame (HOF) batter. There have been over 20,000 Major League baseball players in the history of the organization, and only 211 of them have been inducted into the HOF. There are several ways in which a player can be inducted, and we only concern ourselves with players inducted from Baseball Writers Association of America (BBWAA) ballots, as this process is regulated and receives the most publicity. Often, fans and players feel that a worthy candidate is unfairly denied entry into the HOF because of voter bias, stacked ballots, or negative associations with performance enhancing drugs. The models proposed in this paper should be able account for these cases.
 
-We will investigate predictions based on both classification trees (aka decision trees) and random forests. Classification trees classify observation by means of successive binary splitting on feature variables. Random forests, introduced by Leo Breiman of UC Berkeley in 2001, is an ensemble learning technique that can be used for both classification and regression and improves on decision trees by correcting for overfitting. A random forest for classification consists of a collection of decision trees and outputs a prediction representing the most commonly occurring prediction of the decision trees.
+We will investigate predictions based on both classification trees (aka decision trees) and random forests. Classification trees classify observations by means of successive binary splitting on feature variables. Random forests, introduced by Leo Breiman of UC Berkeley in 2001, is an ensemble learning technique that can be used for both classification and regression and improves on decision trees by correcting for overfitting. A random forest for classification consists of a collection of decision trees and outputs a prediction representing the most commonly occurring prediction of the decision trees.
 
 \section{Data}
 \label{data}
@@ -183,15 +183,15 @@ statistic & meaning \\
 % 	\item Inducted: classifier for HOF induction, which we will be predicting
 % \end{enumerate}
 
-Our software of choice for this paper is R. We will be using several packages for our learning techniques, indicated in the sections below. Before training our model, it is important to have a quick look at our data.
+We will be using several packages for our learning techniques, indicated in the sections below. Before training our model, it is important to have a quick look at our data.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.9\textwidth]{BAandHits}
+	\includegraphics[width=\textwidth]{BAandHits}
 	\caption{Batters with more hits and a higher batting average are inducted}
 \end{figure}
 
-We can see that more hits and a higher batting average seem to correlate with induction. This makes sense, as one often judges the quality of a batter by his batting average, the numbers of hits a player has per at-bat. The interplay between all of these statistics will be elucidated in more details in the sections to follow. Keep in mind that a lot of the players with many hits and a high batting average that weren't inducted are those players who's induction we seek to predict. Also, That player with over 4000 hits who is not in the Hall of Fames is Pete Rose, who received a lifetime ban from baseball activity for gambling against his own team.
+We can see that more hits and a higher batting average seem to correlate with induction. This makes sense, as one often judges the quality of a batter by his batting average, the numbers of hits a player has per at-bat. The interplay between all of these statistics will be elucidated in more details in the sections to follow. Keep in mind that a lot of the players with many hits and a high batting average that weren't inducted are those players whose induction we seek to predict. Also, the player with over 4000 hits who is not in the Hall of Fame is Pete Rose, who received a lifetime ban from baseball activity for gambling against his own team.
 
 
 % \begin{figure}[h]
@@ -217,18 +217,17 @@ In this section, we will give an account of two learning methods that we will us
 	\label{fig:SampleTree}
 \end{figure}
 \subsection{Classification Trees}
-Classification trees are a fairly effective predictive tool that are lauded for their high degree of interpretability. When constructing a classification tree, we begin with the full set of observations and begin dividing the predictor space into non-overlapping regions by means of binary splitting. In prediction, we assign each observation in a given region of the predictor space to the most commonly occurring class of the training observations in that region. 
+Classification trees are a fairly effective predictive tool that are lauded for their high degree of interpretability. When constructing a classification tree, we begin with the full set of observations and begin dividing the feature space into non-overlapping regions by means of binary splitting. In prediction, we assign each observation in a given region of the feature space to the most commonly occurring class of the training observations in that region. 
 
-When choosing splits in our tree, we are concerned with the \textit{Gini Coefficient} at each split. We want to choose the feature to split on based on which feature split will give us the greatest decrease in this value. The Gini Coefficient is a measure of how often a randomly chosen element from the set would be incorrectly labeled if it were randomly labeled according to the distribution of labels in the subset. The Gini Coefficient can be computed by summing the probability of each item being chosen times the probability of a mistake in categorizing that item. It reaches its minimum, $0$, when all cases in the node fall into a single target category. This defined as:
+When choosing splits in our tree, we are concerned with the \textit{Gini Coefficient} of the nodes resulting from each split. We want to choose the feature to split on based on which split will give us the greatest decrease in this value. The Gini Coefficient is a measure of how often a randomly chosen element from the set would be incorrectly labeled if it were randomly labeled according to the distribution of labels in the subset. The Gini Coefficient can be computed by summing the probability of each item being chosen times the probability of a mistake in categorizing that item. It reaches its minimum, $0$, when all cases in the node fall into a single target category. This defined as:
 
 $$G = \sum\limits_{i=1}^m p_{i}(1-p_{i}) = 1 - \sum\limits_{i=1}^m p_{i}^{2}$$
 
-\noindent where $i$ takes on values in $\{1,2,\ldots,m\}$, the number of different categorical labels, and $p_i$ is the fraction of items labeled with value $i$ in the node. So $G$ can be seen as a measure of total variance across the $m$ classes. Since this paper will only be discussing a classification variable that takes on 2 values, inducted or not-inducted, in our case $m=2$. Note that $G = 0$ when all observations in that node fall into one class. In splitting at nodes, we look to minimize this value.
+\noindent where $i$ takes on values in $\{1,2,\ldots,m\}$, the number of different categorical labels, and $p_i$ is the fraction of items labeled with value $i$ in the node. So $G$ can be seen as a measure of total variance across the $m$ classes. Since this paper will only be discussing a classification variable that takes on two values, inducted or not-inducted, in our case $m=2$. Note that $G = 0$ when all observations in that node fall into one class. In splitting at nodes, we look to minimize this value.
 
 Let us illustrate this with a very simple example of a decision tree created to predict the survivors of a boat disaster, show in Figure \ref{fig:SampleTree}. The root node contains all passengers of the ship. We then split the full set of observations according to their sex, followed by a split on what type of ticket they had, followed lastly by a split on whether or not they chose to order a meal with their ticket. Below each terminal node is a distribution of those passengers who survived and those who didn't. 
 
-The tables below show the fates of all passengers based on their ticket type. Now, we can consider the Gini Coefficient associated with the nodes occurring after the split on ticket type from the node labeled ``male'' in the decision tree.
-
+Table \ref{hello} shows the fates of all male passengers based on their ticket type as well as their food option. Now, we can consider the Gini Coefficient associated with splitting on ticket class or on food option.
 \begin{table}[h]
 \begin{tabular}{|l | l l | l|}
 \hline
@@ -237,31 +236,35 @@ The tables below show the fates of all passengers based on their ticket type. No
 First & 122 & 19 & 141 \\
 Other & 12 & 1113 & 1125 \\
 \hline
-total & 134 & 1132 & 1286 \\
+total & 134 & 1132 & 1266 \\
 \hline
 \end{tabular}
 \quad
 \begin{tabular}{|l | l l | l|}
 \hline
-Female & Survived & Died & total\\
+Male & Survived & Died & total\\
 \hline
-First & 101 & 2 & 103 \\
-Other & 69 & 809 & 878 \\
+Food & 60 & 500  & 560 \\
+No Food & 74 & 632 & 706 \\
 \hline
-total & 170 & 811 & 981 \\
+total & 134 & 1132 & 1266 \\
 \hline
 \end{tabular}
-
 \caption{Aftermath of a Tragic Boat Disaster}
+\label{hello}
 \end{table}
 
-\noindent If we split this subest of the observations on ticket type, we can calculate Gini Coefficient for each of the two successive nodes as follows, with $i=0$ indicating survival and $i=1$ indicating death:
+\noindent If we split this subset of the observations on ticket type, we can calculate Gini Coefficient for each of the two successive nodes as follows, with $i=0$ indicating survival and $i=1$ indicating death:
 
 $$G(\textrm{male, first}) = 1 - \sum\limits_{i=0}^1 p_{i}^{2} = 1 - ((122/141)^{2}+(19/141)^{2}) \approx 0.233 $$
 
 $$G(\textrm{male, other}) = 1 - \sum\limits_{i=0}^1 p_{i}^{2} = 1 - ((12/1125)^{2}+(1113/1125)^{2}) \approx 0.021 $$
 
-\noindent This tells us that knowing that a male was holding a ticket other than first class leads us to a very pure node, that is, one in which we have a substantial amount of information to determine the fate of that passenger. The Gini Coefficient is related the related notion of entropy and can be seen as measures of how informative the answer to a ``yes/no'' question is at the split in a tree. Entropy can also be used in determining splits, and can calculated using the following equation, where $p_{i}$ is the same quantity as defined above: 
+$$G(\textrm{male, food}) = 1 - \sum\limits_{i=0}^1 p_{i}^{2} = 1 - ((60/560)^{2}+(500/560)^{2}) \approx 0.191 $$
+
+$$G(\textrm{male, no food}) = 1 - \sum\limits_{i=0}^1 p_{i}^{2} = 1 - ((74/706)^{2}+(632/706)^{2}) \approx 0.188 $$
+
+\noindent Averaging the decrease in the Gini Coefficient based on splitting on ticket class gives us a decrease of $G(male) - (0.233+0.021)/2 \approx G(male) - 0.127$ while splitting on food option gives us a decrease of  $G(male) - (0.191+0.188)/2 \approx G(male) - 0.190$, meaning that it is better to split by ticket type, as this leads us to purer nodes. The Gini Coefficient is related to the notion of entropy and can be seen as a measure of how informative the answer to a ``yes/no'' question is at the split in a tree. Entropy can also be used in determining splits, and can calculated using the following equation, where $p_{i}$ is the same quantity as defined above: 
 $$-\sum\limits_{i=0}^m p_{i}log_{2}p_{i}$$
 
 Decision trees, while useful, have their limitations. Firstly, it is possible to grow overly complex trees that overfit the training data \cite{ISLR}. This can happen if we grow our tree in such a way to have only a single observation at each terminal node. The misclassification rate in our training sample would be $0$, but we would be very likely to encounter an error in our training set. In such cases, a method known as pruning is required to combat this problem. \textit{Cost complexity pruning} is a method for considering subtrees of our initial tree model that minimize the cost-complexity criterion, which is defined as follows\cite{ESL}:
@@ -275,7 +278,7 @@ $$N_{m} = |\{x_{i} \in R_{m}\}| $$
 
 $$C_{\alpha}(T) = \sum\limits_{m=1}^{|T|} N_{m}G_{m}(T) + \alpha|T|$$
 
-For each $\alpha$, there is a unique smallest subtree $T_{\alpha} \subseteq T_{0}$ that minimizes $C_{\alpha}(T)$ An estimation  $\hat{\alpha}$ is done by using tenfold cross-validation, and the final pruned tree is $T_{\hat{\alpha}}$. In tenfold cross validation, the original training set is partitioned into ten equal subsamples, nine of which are used to train are used to train the model, and one used for validation. This process is repeated 10 times, each time selecting a different subsample as the test data. The 10 results from are then averaged to produce a single estimation. More details can be found in Breiman et al.\cite{Breiman1984}
+For each $\alpha$, there is a unique smallest subtree $T_{\alpha} \subseteq T_{0}$ that minimizes $C_{\alpha}(T)$ An estimation  $\hat{\alpha}$ is done by using tenfold cross-validation, and the final pruned tree is $T_{\hat{\alpha}}$. In tenfold cross validation, the original training set is partitioned into ten equal subsamples, nine of which are used to train the model, and one used for validation. This process is repeated 10 times, each time selecting a different subsample as the test data. The 10 results are then averaged to produce a single estimation. More details can be found in Breiman et al.\cite{Breiman1984}
 
 Using our Boat example, we note that that our tree has 8 terminal nodes. If we take a look at the distributions below the nodes, we note that the split on food option is not that meaningful in the case of non-first class males and first class females. So let us consider the subtree $T$ show in Figure \ref{fig:Pruned} formed by removing these splits. We note that the Gini Coefficients of the nodes that precede the removed nodes are already equal to $1$, indicating that we already have perfect information about the survival of these passengers. Splitting these nodes further by food option does not decrease the Gini Coefficient and therefore brings us no new information and can be pruned from our tree. Note that $C_{\alpha}(T) \leq C_{\alpha}(T_{0})$.
 
@@ -300,31 +303,28 @@ Bagging also gives us insight into which of our predictors were the most importa
 \subsubsection{Random Forest}
 
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.6\textwidth]{RF}
-	\caption{Random Forest. For classification, a prediction for \textbf{y} is made by majority vote.}
-\end{figure}
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[width=0.6\textwidth]{RF}
+% 	\caption{Random Forest. For classification, a prediction for \textbf{y} is made by majority vote.}
+% \end{figure}
 
-The random forest technique is quite similar to taking bagged  samples of trees, with the main difference being that at each of the splits only a random sample of size $m < p$ of the set of all predictors $p$ is considered. Typically, $m \approx \sqrt{p}$ predictors suffice\cite{Breiman2001}. This technique helps to decorrelate the tree, as there may be one predictor that has a very high influence in classification. In the case of bagging, this predictor will most likely be used as the first split in a majority of the trees, causing most bagged trees to be quite similar and correlated. By forcing each split to consider on a subset of the predictors, on average $(p-m)/p$ of the splits will not consider this strong predictor\cite{Breiman2001}.
-
-
-In this paper, we will be utilizing the \textit{randomForest} package in R. 
+The random forest technique is quite similar to taking bagged  samples of trees, with the main difference being that at each of the splits only a random sample of size $m < p$ of the set of all features $p$ is considered. Typically, $m \approx \sqrt{p}$ predictors suffice\cite{Breiman2001}. This technique helps to decorrelate the tree, as there may be one predictor that has a very high influence in classification. In the case of bagging, this predictor will most likely be used as the first split in a majority of the trees, causing most bagged trees to be quite similar and correlated. By forcing each split to consider only a subset of the features, on average $(p-m)/p$ of the splits will not consider this strong predictor\cite{Breiman2001}.In this paper, we will be utilizing the \textit{randomForest} package in R. 
 
 \section{Prediction Models}
 
 In this section, we apply the techniques introduced in the last section to our HOF data. We will start by creating a single classification trees and then predicting the induction classifier of our training data based on our model. We will also look at some metrics that will allow us to test the effectiveness of our classification model in order to see what parameters would be best to use. 
 
 \subsection{Classification Tree}
-
 \begin{figure}[h]
        \centering 
-       \includegraphics[width=\linewidth]{BatterUnpruned}
+       \includegraphics[width=0.8\linewidth]{BatterUnpruned}
        \caption{Batting}
        \label{unprunedBat}
  \end{figure}
+Using R's rpart package, we can fit a classification tree to our data. To do so, we will split the entire data set into a training and a test set and build our tree using the training data. As our training set, we will take a random sample of about $2/3$ of our data. This amounts to $\approx 650$ batters. The tree shown in figure \ref{unprunedBat} was obtained by predicting induction based on all of our features mentioned in section \ref{data}. Our model produced a tree with eight splits and 9 terminal nodes and we notice that only 5 variables were used in the creation of the tree: tH, numSeasons, tR, mvp, tHR. The misclassification error of this tree on the training data was : $62/650 \approx 9.5\%$. Let's use this model on our test data to see how it performs, shown on the left in table \ref{conf}.
 
- \begin{table}[h]
+\begin{table}[h]
 \centering
 \begin{tabular}{|l |l l|}
 \hline
@@ -351,10 +351,6 @@ prediction & 0 & 1 \\
 \label{conf}
 \end{table}
 
-Using R's rpart package, we can fit a classification tree to our data. To do so, we will split the entire data set into a training and a test set and build our tree using the training data. As our training set, we will take a random sample of about $2/3$ of our data. This amounts to $\approx 650$ batters. The tree shown in figure \ref{unprunedBat} was obtained by predicting induction based on all of our features mentioned in section \ref{data}. Our model produced a tree with eight splits and 9 terminal nodes and we notice that only 5 variables were used in the creation of the tree: tH, numSeasons, tR, mvp, tHR. The misclassification error of this tree on the training data was : $62/650 \approx 9.5\%$. Let's use this model on our test data to see how it performs.
-
-
-
 
 \begin{figure}[h]
        \centering 
@@ -363,6 +359,7 @@ Using R's rpart package, we can fit a classification tree to our data. To do so,
        \label{CPlot}
  \end{figure}
 
+Our model predicted the induction of our test players with a misclassification rate of $1 - 383/429 \approx 10.7\%$. We can perform cross validation on the tree to see if there is a more ideal pruned tree size. Having a look at figure \ref{CPlot}, we notice that the cross validation error is minimized around cost complexity parameter (cp) $0.046$. We can use this value to prune our original tree in hopes of obtaining a more stable model of size 3. Generating a new tree model having only 3 terminal nodes actual performs slightly better than our original tree, with a misclassification rate of $1-384/429 \approx 10.4\%$ on the test data. This data is also summarized in table \ref{conf}.
 
 \begin{figure}[h]
        \centering 
@@ -370,10 +367,6 @@ Using R's rpart package, we can fit a classification tree to our data. To do so,
        \caption{Our Pruned Tree}
        \label{pruned}
  \end{figure}
-
-Our model predicted the induction of our test players with a misclassification rate of $1 - 383/429 \approx 10.7\%$. We can perform cross validation on the tree to see if there is a more ideal pruned tree size. Having a look at figure \ref{CPlot}, we notice that the cross validation error is minimized around cost complexity parameter (cp) $0.046$. We can use this value to prune our original tree in hopes of obtaining a more stable model of size 3. Generating a new tree model having only 3 terminal nodes actual performs slightly better than our original tree, with a misclassification rate of $1-384/429 \approx 10.4\%$ on the test data. This data is summarized in table \ref{conf}.
-
-
 
 
 
@@ -484,7 +477,7 @@ Decision trees and random forests are just 2 learning methods that can be used f
 
 As we have seen, decision trees can suffer from overfitting the training data, and appear to perform worse in comparison to random forests. Decision trees are advantageous since they appear to mimic the human decision making process for classifying observations as seen with our description of the Gini Coefficient. They can also be neatly depicted in a graph, aiding in presentation. Also, as we have seen, the downsides of decision tree learning can be remedied by aggregating them in a random forest.
 
-With regards to the Hall of Fame Data, we have shown that our decision tree model was able to predict induction with about 90\% accuracy. The difference between an urpuned and a pruned model was quite minimal with respect to accuracy, but quite substantial for interpretability. We can think of the outcome of the unpruned tree in the following way:
+With regards to the Hall of Fame Data, we have shown that our decision tree model was able to predict induction with about 90\% accuracy. The difference between an urpuned and a pruned model was quite minimal with respect to accuracy, but quite substantial for interpretability. We can think of the outcome of the pruned tree in the following way:
 
 
 \begin{enumerate}

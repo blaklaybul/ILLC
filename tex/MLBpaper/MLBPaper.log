@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  30 JAN 2015 14:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  30 JAN 2015 20:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -414,7 +414,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: BAandHits.png Graphic file (type png)
  <use BAandHits.png>
 Package pdftex.def Info: BAandHits.png used on input line 190.
-(pdftex.def)             Requested size: 350.99762pt x 163.70395pt.
+(pdftex.def)             Requested size: 390.0pt x 181.89479pt.
 
 <TreeExample.png, id=16, 2010.51125pt x 1027.84pt>
 File: TreeExample.png Graphic file (type png)
@@ -429,73 +429,60 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <PrunedBoat.png, id=38, 2010.51125pt x 1027.84pt>
 File: PrunedBoat.png Graphic file (type png)
  <use PrunedBoat.png>
-Package pdftex.def Info: PrunedBoat.png used on input line 284.
+Package pdftex.def Info: PrunedBoat.png used on input line 287.
 (pdftex.def)             Requested size: 390.0pt x 199.36935pt.
- [7 <./PrunedBoat.png>] <RF.png, id=44, 455.301pt x 263.384pt>
-File: RF.png Graphic file (type png)
- <use RF.png>
-Package pdftex.def Info: RF.png used on input line 305.
-(pdftex.def)             Requested size: 234.00238pt x 135.36494pt.
- [8 <./RF.png>] <BatterUnpruned.png, id=50, 896.34875pt x 681.54625pt>
+ [7 <./PrunedBoat.png>] [8] <BatterUnpruned.png, id=47, 896.34875pt x 681.54625
+pt>
 File: BatterUnpruned.png Graphic file (type png)
 
 <use BatterUnpruned.png>
-Package pdftex.def Info: BatterUnpruned.png used on input line 322.
-(pdftex.def)             Requested size: 390.0pt x 296.53262pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[9 <./BatterUnpruned.png>] <PlotCP.png, id=55, 930.47626pt x 723.70375pt>
+Package pdftex.def Info: BatterUnpruned.png used on input line 321.
+(pdftex.def)             Requested size: 312.00119pt x 237.22401pt.
+ [9 <./BatterUnpruned.png>]
+<PlotCP.png, id=52, 930.47626pt x 723.70375pt>
 File: PlotCP.png Graphic file (type png)
-
-<use PlotCP.png>
-Package pdftex.def Info: PlotCP.png used on input line 361.
+ <use PlotCP.png>
+Package pdftex.def Info: PlotCP.png used on input line 357.
 (pdftex.def)             Requested size: 331.50238pt x 257.82765pt.
- <BattersPruned.png, id=56, 896.34875pt x 699.61375pt>
+ [10 <./PlotCP.png>] <BattersPruned.png, id=57, 896.34875pt x 699.61375pt>
 File: BattersPruned.png Graphic file (type png)
 
 <use BattersPruned.png>
-Package pdftex.def Info: BattersPruned.png used on input line 369.
+Package pdftex.def Info: BattersPruned.png used on input line 366.
 (pdftex.def)             Requested size: 292.5pt x 228.30052pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[10 <./PlotCP.png>] [11 <./BattersPruned.png>]
-<mtry.png, id=65, 759.83875pt x 604.2575pt>
+ [11 <./BattersPruned.png>]
+<mtry.png, id=62, 759.83875pt x 604.2575pt>
 File: mtry.png Graphic file (type png)
  <use mtry.png>
-Package pdftex.def Info: mtry.png used on input line 403.
+Package pdftex.def Info: mtry.png used on input line 396.
 (pdftex.def)             Requested size: 331.50238pt x 263.6336pt.
  [12 <./mtry.png>]
-[13] [14] (./MLBPaper.bbl [15]) [16] (./MLBPaper.aux) ) 
+[13] [14] (./MLBPaper.bbl) [15] (./MLBPaper.aux) ) 
 Here is how much of TeX's memory you used:
- 5418 strings out of 493117
- 79836 string characters out of 6135433
- 182531 words of memory out of 5000000
- 8785 multiletter control sequences out of 15000+600000
- 10582 words of font info for 39 fonts, out of 8000000 for 9000
+ 5412 strings out of 493117
+ 79773 string characters out of 6135433
+ 185531 words of memory out of 5000000
+ 8781 multiletter control sequences out of 15000+600000
+ 10274 words of font info for 38 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,8n,41p,931b,359s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2014
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2014/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2014/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2014/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2014/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2014/texmf
--dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2014/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2014/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2014/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/font
-s/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2014/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2014/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmti12.pfb>
-Output written on MLBPaper.pdf (16 pages, 656206 bytes).
+ 38i,9n,41p,931b,312s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2014/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2014/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2014/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2014/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2014/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2014/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2014/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2014/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2014/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmti12.pfb>
+Output written on MLBPaper.pdf (15 pages, 619712 bytes).
 PDF statistics:
- 125 PDF objects out of 1000 (max. 8388607)
- 77 compressed objects within 1 object stream
+ 116 PDF objects out of 1000 (max. 8388607)
+ 72 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 

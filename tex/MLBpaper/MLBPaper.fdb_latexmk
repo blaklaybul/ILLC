@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex MLBPaper"] 1422622925 "MLBPaper.aux" "MLBPaper.bbl" "MLBPaper" 1422623111
+["bibtex MLBPaper"] 1422646229 "MLBPaper.aux" "MLBPaper.bbl" "MLBPaper" 1422646386
   "./model1-num-names.bst" 1421851984 25451 3a63f4c903f71e219900325462df0fe1 ""
-  "MLBPaper.aux" 1422623111 3607 530df488ab9dc0beb83d981652367052 ""
+  "MLBPaper.aux" 1422646385 3458 c9bd369e5a69cd12eb50c1fa94b8f01b ""
   "MLBPaper.bcf" 0 -1 0 ""
   "sample.bib" 1422466514 1895 570b45593550153625342fe03d37ca55 ""
   (generated)
   "MLBPaper.bbl"
   "MLBPaper.blg"
-["pdflatex"] 1422623109 "MLBPaper.tex" "MLBPaper.pdf" "MLBPaper" 1422623111
+["pdflatex"] 1422646383 "MLBPaper.tex" "MLBPaper.pdf" "MLBPaper" 1422646386
   "/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/etexcmds.sty" 1335995445 7612 c47308d923ec19888707b0f1792b326a ""
   "/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifluatex.sty" 1303254447 7324 11d14f318d865f420e692d4e6c9c18c3 ""
@@ -57,17 +57,16 @@
   "BAandHits.png" 1422532919 310456 9e09f426ab85844c5a3a62a109f46ee8 ""
   "BatterUnpruned.png" 1422541700 53732 905a2d39cb06333dea3daa1dec14e34d ""
   "BattersPruned.png" 1422558721 27328 501275cea90872b606c3848a34da2ffd ""
-  "MLBPaper.aux" 1422623111 3607 530df488ab9dc0beb83d981652367052 ""
-  "MLBPaper.bbl" 1422622925 1553 feba83082072383caa5785d02c31fe73 "bibtex MLBPaper"
-  "MLBPaper.spl" 1422623109 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "MLBPaper.tex" 1422623108 32395 6a49b46a013fa3916af10a664704b01d ""
+  "MLBPaper.aux" 1422646385 3458 c9bd369e5a69cd12eb50c1fa94b8f01b ""
+  "MLBPaper.bbl" 1422646229 1553 feba83082072383caa5785d02c31fe73 "bibtex MLBPaper"
+  "MLBPaper.spl" 1422646384 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "MLBPaper.tex" 1422646383 32728 a492ef4830539e1a980ad2cc1a364b48 ""
   "PlotCP.png" 1422550404 38090 5763e3a35bbc84de35968232d2c24512 ""
   "PrunedBoat.png" 1422450697 86035 37c845dbec801906b23ad7c5b51cb618 ""
-  "RF.png" 1422122570 35823 31bf1ac03898f53eabb0e8ed35345c22 ""
   "TreeExample.png" 1422449751 89852 d6d45a1ef51be26d748290fb8dc89294 ""
   "mtry.png" 1422567590 31690 32c6a14c23ce02040784e18e7d6e49ec ""
   (generated)
-  "MLBPaper.aux"
-  "MLBPaper.spl"
-  "MLBPaper.pdf"
   "MLBPaper.log"
+  "MLBPaper.pdf"
+  "MLBPaper.spl"
+  "MLBPaper.aux"
