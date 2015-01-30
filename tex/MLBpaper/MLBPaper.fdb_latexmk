@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex MLBPaper"] 1422575094 "MLBPaper.aux" "MLBPaper.bbl" "MLBPaper" 1422575302
+["bibtex MLBPaper"] 1422617838 "MLBPaper.aux" "MLBPaper.bbl" "MLBPaper" 1422617842
   "./model1-num-names.bst" 1421851984 25451 3a63f4c903f71e219900325462df0fe1 ""
-  "MLBPaper.aux" 1422575301 3569 b6746b89331903ffbf5825a11ccc69bd ""
+  "MLBPaper.aux" 1422617841 3607 b503620d59d81a6f2e328071c6b53631 ""
   "MLBPaper.bcf" 0 -1 0 ""
   "sample.bib" 1422466514 1895 570b45593550153625342fe03d37ca55 ""
   (generated)
   "MLBPaper.blg"
   "MLBPaper.bbl"
-["pdflatex"] 1422575299 "MLBPaper.tex" "MLBPaper.pdf" "MLBPaper" 1422575302
+["pdflatex"] 1422617839 "MLBPaper.tex" "MLBPaper.pdf" "MLBPaper" 1422617842
   "/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/etexcmds.sty" 1335995445 7612 c47308d923ec19888707b0f1792b326a ""
   "/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifluatex.sty" 1303254447 7324 11d14f318d865f420e692d4e6c9c18c3 ""
@@ -57,10 +57,10 @@
   "BAandHits.png" 1422532919 310456 9e09f426ab85844c5a3a62a109f46ee8 ""
   "BatterUnpruned.png" 1422541700 53732 905a2d39cb06333dea3daa1dec14e34d ""
   "BattersPruned.png" 1422558721 27328 501275cea90872b606c3848a34da2ffd ""
-  "MLBPaper.aux" 1422575301 3569 b6746b89331903ffbf5825a11ccc69bd ""
-  "MLBPaper.bbl" 1422575094 1553 feba83082072383caa5785d02c31fe73 "bibtex MLBPaper"
-  "MLBPaper.spl" 1422575299 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "MLBPaper.tex" 1422575298 29097 b69b9b7e8c13c7f04fad269a4210736e ""
+  "MLBPaper.aux" 1422617841 3607 b503620d59d81a6f2e328071c6b53631 ""
+  "MLBPaper.bbl" 1422617839 1553 feba83082072383caa5785d02c31fe73 "bibtex MLBPaper"
+  "MLBPaper.spl" 1422617839 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "MLBPaper.tex" 1422617835 30455 2542844e8f9c1dbd1792d349ab30feec ""
   "PlotCP.png" 1422550404 38090 5763e3a35bbc84de35968232d2c24512 ""
   "PrunedBoat.png" 1422450697 86035 37c845dbec801906b23ad7c5b51cb618 ""
   "RF.png" 1422122570 35823 31bf1ac03898f53eabb0e8ed35345c22 ""

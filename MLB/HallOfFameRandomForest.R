@@ -61,6 +61,9 @@ candidatesPitch <- merge(candidatesPitch, Pnames, by="playerID", all.x=T)
 
 ggplot(candidatesBat[candidatesBat$tBA<0.45 & candidatesBat$tH >400 & candidatesBat$lastSeason < 2010 ,], aes(x=tBA, y=tH, col = inducted)) +geom_point(size = 4, alpha = 0.9) + scale_x_continuous(name = "Batting Average")+ scale_y_continuous(name="Hits") + theme(text = element_text(size=35))
 
+ggplot(candidatesBat[candidatesBat$tBA<0.45 & candidatesBat$tH >400 & candidatesBat$lastSeason < 2010 ,], aes(x=tR, y=tRBI, col = inducted)) +geom_point(size = 4, alpha = 0.9) + scale_x_continuous(name = "Batting Average")+ scale_y_continuous(name="Hits") + theme(text = element_text(size=35))
+
+
 ggplot(candidatesPitch[candidatesPitch$lastSeason < 2010,], aes(x=tW, y=tSO, col = inducted)) +geom_point(size = 4, alpha = 0.9) + scale_x_continuous(name = "Wins")+ scale_y_continuous(name="Strikeouts") + theme(text = element_text(size=35))
 
 #split our data into a training and a test set.
