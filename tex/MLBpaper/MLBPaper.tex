@@ -480,9 +480,22 @@ Ortiz, David & 0 & 0.336 \\
 
 
 \section{Conclusion}
-Decision tree and random forests are just 2 learning methods that can be used for classification or regression. There are numerous other models including linear regression, support vector machines, nearest neighbors, neural networks, and logistic regression, just to name a few. The methods chosen here were done so to illustrate their effectiveness and interpretability.
+Decision trees and random forests are just 2 learning methods that can be used for classification or regression. There are numerous other models including linear regression, support vector machines, nearest neighbors, neural networks, and logistic regression, just to name a few. The methods chosen here were done so to illustrate their effectiveness and interpretability.
 
-As we have seen, decision trees can suffer from overfitting the training data, and appear to perform worse in comparison to random forests. However, decision trees are advantageous since they appear to mimic the human decision making process for classifying observations and also can be neatly depicted in a graph. However, the downsides of decision tree learning can be remedied by aggregating them in a random forest.
+As we have seen, decision trees can suffer from overfitting the training data, and appear to perform worse in comparison to random forests. Decision trees are advantageous since they appear to mimic the human decision making process for classifying observations as seen with our description of the Gini Coefficient. They can also be neatly depicted in a graph, aiding in presentation. Also, as we have seen, the downsides of decision tree learning can be remedied by aggregating them in a random forest.
+
+With regards to the Hall of Fame Data, we have shown that our decision tree model was able to predict induction with about 90\% accuracy. The difference between an urpuned and a pruned model was quite minimal with respect to accuracy, but quite substantial for interpretability. We can think of the outcome of the unpruned tree in the following way:
+
+
+\begin{enumerate}
+	\item Did the player have at least 2327 hits in his career?
+	\item If yes, did the player score more than 1346 runs?
+	\item If yes, this player will be inducted with 90\% certainty. 
+\end{enumerate}
+
+Random forests performed much better in prediction, with a misclassification error rate near 3\%. The model we created with the random forest technique was also more informative, as we took advantage of the power of the method and used the full set of batters. We were also able to view the important of each variable in deciding whether or not a player would be inducted. This can prove to be useful evaluating the patterns of voters and indicating periods of time where they too heavily favor one statistic. For example, all star game selection is done by the general public, and players from higher market teams often make the all star team not because of their talent, but because of the higher population of voters in their region.
+
+Going along with this, some interesting extensions of this model could be formed by doing time series analysis on voting patterns. This could indicate certain eras in which BBWAA voters were more interested in one statistic over another, and classifying the types of batters most lauded during that era. For example, in the early 2000s during the height of steroid use power hitters were held in higher regard than ``scrappy'' players, while now we are in an offensive lull, where high contact batters are more vital to a teams' winning a game.
 
 %% References
 %%
