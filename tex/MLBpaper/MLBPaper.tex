@@ -90,7 +90,7 @@
 
 %% Title, authors and addresses
 
-\title{Predicting Baseball Hall Of Fame Induction}
+\title{Predicting Baseball Hall of Fame Induction}
 
 %% use the tnoteref command within \title for footnotes;
 %% use the tnotetext command for the associated footnote;
@@ -123,7 +123,7 @@
 
 \begin{abstract}
 %% Text of abstract
-Every year, the Baseball Writers Association of America votes on a new Hall of Fame class. Each ballot consists of 10 votes, and players need to appear on 75\% of ballots in order to be inducted into the hall. Players have 15 years to get inducted, and are no longer eligible if that time period has passed. Here we attempt to classify hall of fame batters based on their career statistics using decision trees and an ensemble method, random forests.
+Every year, the Baseball Writers Association of America votes on a new Hall of Fame class. Each ballot consists of 10 votes, and players need to appear on 75\% of ballots in order to be inducted into the hall. Players have 15 years to get inducted, and are no longer eligible if that time period has passed. Here we attempt to classify Hall of Fame batters based on their career statistics using decision trees and an ensemble method, random forests.
 \end{abstract}
 
 
@@ -135,17 +135,17 @@ Every year, the Baseball Writers Association of America votes on a new Hall of F
 %% main text
 \section{Introduction}
 \label{intro}
-Major League Baseball (MLB) has been keeping thorough records of batting, pitching, and fielding statistics since its inaugural season in 1869. Recently, with the advent of sabrmetrics by the Society for American Baseball Research (SABR), many  new metrics building on traditional statistics have been created. Such metrics caught the eye of statisticians, as these new metrics allowed for the creation of even more powerful predictive models for nearly every aspect of the games. 
+Major League Baseball (MLB) has been keeping thorough records of batting, pitching, and fielding statistics since its inaugural season in 1869. Recently, with the advent of sabrmetrics by the Society for American Baseball Research (SABR), many  new metrics building on traditional statistics have been created. Such metrics caught the eye of statisticians, as these new metrics allowed for the creation of even more powerful predictive models for nearly every aspect of the game. 
 
-In this paper, we are investigating what makes a Hall Of Fame (HOF) batter. There have been over 20,000 Major League baseball players in the history of the organization, and only 211 of them have been inducted into the HOF. There are several ways in which a player can be inducted, and we only concern ourselves with players inducted from Baseball Writers Association of America (BBWAA) ballots, as this process is regulated and receives the most publicity. Often, fans and players feel that a worthy candidate is unfairly denied entry into the HOF because of voter bias, stacked ballots, or negative associations with performance enhancing drugs. The models proposed in this paper should be able account for these cases.
+In this paper, we are investigating what makes a Hall of Fame (HOF) batter. There have been over 20,000 Major League baseball batters in the history of the organization, and only 211 of them have been inducted into the HOF. There are several ways in which a player can be inducted, and we only concern ourselves with players inducted from Baseball Writers Association of America (BBWAA) ballots, as this process is regulated and receives the most publicity. Often, fans and players feel that a worthy candidate is unfairly denied entry into the HOF because of voter bias, stacked ballots, or negative associations with performance enhancing drugs. The models proposed in this paper should be to able account for these cases.
 
 We will investigate predictions based on both classification trees (aka decision trees) and random forests. Classification trees classify observations by means of successive binary splitting on feature variables. Random forests, introduced by Leo Breiman of UC Berkeley in 2001, is an ensemble learning technique that can be used for both classification and regression and improves on decision trees by correcting for overfitting. A random forest for classification consists of a collection of decision trees and outputs a prediction representing the most commonly occurring prediction of the decision trees.
 
 \section{Data}
 \label{data}
-Data was collected from the Lahman Baseball Database, a freely available database that has been continuously updated since 1994 with the help of SABR and many individual researchers. Batting statistics were supplied on a by-year basis, so a player's career statistics were computed by aggregating his yearly results. The data was then merged with awards, all star appearances, and hall of fame voting results using the player's ID string. We will only be predicting whether or not players will be inducted by the BBWAA, since this is the current method of voting. All data preparation was done within R, the environment where we also build our learning models. 
+Data was collected from the Lahman Baseball Database, a freely available database that has been continuously updated since 1994 with the help of SABR and many individual researchers. Batting statistics were supplied on a by-year basis, so a player's career statistics were computed by aggregating his yearly results. The data was then merged with awards, all star appearances, and Hall of Fame voting results using the player's ID string. We will only be predicting whether or not players will be inducted by the BBWAA, since this is the current method of voting. All data preparation was done within R, the environment where we also build our learning models. 
 
-Attention is paid to 11 different statistics and prediction classifier over the course of the player's career:
+Attention is paid to 11 different statistics and a prediction classifier over the course of the player's career:
 
 \begin{table}[h]
 \centering
@@ -191,7 +191,7 @@ We will be using several packages for our learning techniques, indicated in the 
 	\caption{Batters with more hits and a higher batting average are inducted}
 \end{figure}
 
-We can see that more hits and a higher batting average seem to correlate with induction. This makes sense, as one often judges the quality of a batter by his batting average, the numbers of hits a player has per at-bat. The interplay between all of these statistics will be elucidated in more details in the sections to follow. Keep in mind that a lot of the players with many hits and a high batting average that weren't inducted are those players whose induction we seek to predict. Also, the player with over 4000 hits who is not in the Hall of Fame is Pete Rose, who received a lifetime ban from baseball activity for gambling against his own team.
+We can see that more hits and a higher batting average seem to correlate with induction. This makes sense, as one often judges the quality of a batter by his batting average, the number of hits a player has per at-bat. The interplay between all of these statistics will be elucidated in more detail in the sections to follow. Keep in mind that a lot of the players with many hits and a high batting average that weren't inducted are those players whose induction we seek to predict. Also, the player with over 4000 hits who is not in the Hall of Fame is Pete Rose, who received a lifetime ban from baseball activity for gambling against his own team.
 
 
 % \begin{figure}[h]
@@ -219,7 +219,7 @@ In this section, we will give an account of two learning methods that we will us
 \subsection{Classification Trees}
 Classification trees are a fairly effective predictive tool that are lauded for their high degree of interpretability. When constructing a classification tree, we begin with the full set of observations and begin dividing the feature space into non-overlapping regions by means of binary splitting. In prediction, we assign each observation in a given region of the feature space to the most commonly occurring class of the training observations in that region. 
 
-When choosing splits in our tree, we are concerned with the \textit{Gini Coefficient} of the nodes resulting from each split. We want to choose the feature to split on based on which split will give us the greatest decrease in this value. The Gini Coefficient is a measure of how often a randomly chosen element from the set would be incorrectly labeled if it were randomly labeled according to the distribution of labels in the subset. The Gini Coefficient can be computed by summing the probability of each item being chosen times the probability of a mistake in categorizing that item. It reaches its minimum, $0$, when all cases in the node fall into a single target category. This defined as:
+When choosing splits in our tree, we are concerned with the \textit{Gini Coefficient} of the nodes resulting from each split. We want to choose the feature to split on based on which split will give us the greatest decrease in this value. The Gini Coefficient is a measure of how often a randomly chosen element from the set would be incorrectly labeled if it were randomly labeled according to the distribution of labels in the subset. The Gini Coefficient can be computed by summing the probability of each item being chosen times the probability of a mistake in categorizing that item. It reaches its minimum, $0$, when all cases in the node fall into a single target category. This is defined as:
 
 $$G = \sum\limits_{i=1}^m p_{i}(1-p_{i}) = 1 - \sum\limits_{i=1}^m p_{i}^{2}$$
 
@@ -254,7 +254,7 @@ total & 134 & 1132 & 1266 \\
 \label{hello}
 \end{table}
 
-\noindent If we split this subset of the observations on ticket type, we can calculate Gini Coefficient for each of the two successive nodes as follows, with $i=0$ indicating survival and $i=1$ indicating death:
+\noindent If we split this subset of the observations on ticket type, we can calculate the Gini Coefficients for each of the two successive nodes as follows, with $i=0$ indicating survival and $i=1$ indicating death:
 
 $$G(\textrm{male, first}) = 1 - \sum\limits_{i=0}^1 p_{i}^{2} = 1 - ((122/141)^{2}+(19/141)^{2}) \approx 0.233 $$
 
@@ -264,7 +264,7 @@ $$G(\textrm{male, food}) = 1 - \sum\limits_{i=0}^1 p_{i}^{2} = 1 - ((60/560)^{2}
 
 $$G(\textrm{male, no food}) = 1 - \sum\limits_{i=0}^1 p_{i}^{2} = 1 - ((74/706)^{2}+(632/706)^{2}) \approx 0.188 $$
 
-\noindent Averaging the decrease in the Gini Coefficient based on splitting on ticket class gives us a decrease of $G(male) - (0.233+0.021)/2 \approx G(male) - 0.127$ while splitting on food option gives us a decrease of  $G(male) - (0.191+0.188)/2 \approx G(male) - 0.190$, meaning that it is better to split by ticket type, as this leads us to purer nodes. The Gini Coefficient is related to the notion of entropy and can be seen as a measure of how informative the answer to a ``yes/no'' question is at the split in a tree. Entropy can also be used in determining splits, and can calculated using the following equation, where $p_{i}$ is the same quantity as defined above: 
+\noindent Averaging the decrease in the Gini Coefficients based on splitting on ticket class gives us a decrease of $G(male) - (0.233+0.021)/2 \approx G(male) - 0.127$ while splitting on food option gives us a decrease of  $G(male) - (0.191+0.188)/2 \approx G(male) - 0.190$, meaning that it is better to split by ticket type, as this leads us to purer nodes. The Gini Coefficient is related to the notion of entropy and can be seen as a measure of how informative the answer to a ``yes/no'' question is at the split in a tree. Entropy can also be used in determining splits, and can be calculated using the following equation, where $p_{i}$ is the same quantity as defined above: 
 $$-\sum\limits_{i=0}^m p_{i}log_{2}p_{i}$$
 
 Decision trees, while useful, have their limitations. Firstly, it is possible to grow overly complex trees that overfit the training data \cite{ISLR}. This can happen if we grow our tree in such a way to have only a single observation at each terminal node. The misclassification rate in our training sample would be $0$, but we would be very likely to encounter an error in our training set. In such cases, a method known as pruning is required to combat this problem. \textit{Cost complexity pruning} is a method for considering subtrees of our initial tree model that minimize the cost-complexity criterion, which is defined as follows\cite{ESL}:
@@ -278,9 +278,9 @@ $$N_{m} = |\{x_{i} \in R_{m}\}| $$
 
 $$C_{\alpha}(T) = \sum\limits_{m=1}^{|T|} N_{m}G_{m}(T) + \alpha|T|$$
 
-For each $\alpha$, there is a unique smallest subtree $T_{\alpha} \subseteq T_{0}$ that minimizes $C_{\alpha}(T)$ An estimation  $\hat{\alpha}$ is done by using tenfold cross-validation, and the final pruned tree is $T_{\hat{\alpha}}$. In tenfold cross validation, the original training set is partitioned into ten equal subsamples, nine of which are used to train the model, and one used for validation. This process is repeated 10 times, each time selecting a different subsample as the test data. The 10 results are then averaged to produce a single estimation. More details can be found in Breiman et al.\cite{Breiman1984}
+For each $\alpha$, there is a unique smallest subtree $T_{\alpha} \subseteq T_{0}$ that minimizes $C_{\alpha}(T)$. An estimation  $\hat{\alpha}$ is done by using tenfold cross-validation, and the final pruned tree is $T_{\hat{\alpha}}$. In tenfold cross validation, the original training set is partitioned into ten equal subsamples, nine of which are used to train the model, and one used for validation. This process is repeated 10 times, each time selecting a different subsample as the test data. The 10 results are then averaged to produce a single estimation. More details can be found in Breiman et al.\cite{Breiman1984}
 
-Using our Boat example, we note that that our tree has 8 terminal nodes. If we take a look at the distributions below the nodes, we note that the split on food option is not that meaningful in the case of non-first class males and first class females. So let us consider the subtree $T$ show in Figure \ref{fig:Pruned} formed by removing these splits. We note that the Gini Coefficients of the nodes that precede the removed nodes are already equal to $1$, indicating that we already have perfect information about the survival of these passengers. Splitting these nodes further by food option does not decrease the Gini Coefficient and therefore brings us no new information and can be pruned from our tree. Note that $C_{\alpha}(T) \leq C_{\alpha}(T_{0})$.
+Using our Boat example, we note that that our tree has 8 terminal nodes. If we take a look at the distributions below the nodes, we note that the split on food option is not that meaningful in both the case of non-first class males and first class females. So let us consider the subtree $T$ show in Figure \ref{fig:Pruned} formed by removing these splits. We note that the Gini Coefficients of the nodes that precede the removed nodes are already equal to $1$, indicating that we already have perfect information about the survival of these passengers. Splitting these nodes further by food option does not decrease the Gini Coefficient and therefore brings us no new information and can be pruned from our tree. Note that $C_{\alpha}(T) \leq C_{\alpha}(T_{0})$.
 
 \begin{figure}[h]
 	\centering
@@ -309,11 +309,11 @@ Bagging also gives us insight into which of our predictors were the most importa
 % 	\caption{Random Forest. For classification, a prediction for \textbf{y} is made by majority vote.}
 % \end{figure}
 
-The random forest technique is quite similar to taking bagged  samples of trees, with the main difference being that at each of the splits only a random sample of size $m < p$ of the set of all features $p$ is considered. Typically, $m \approx \sqrt{p}$ predictors suffice\cite{Breiman2001}. This technique helps to decorrelate the tree, as there may be one predictor that has a very high influence in classification. In the case of bagging, this predictor will most likely be used as the first split in a majority of the trees, causing most bagged trees to be quite similar and correlated. By forcing each split to consider only a subset of the features, on average $(p-m)/p$ of the splits will not consider this strong predictor\cite{Breiman2001}.In this paper, we will be utilizing the \textit{randomForest} package in R. 
+The random forest technique is quite similar to taking bagged  samples of trees, with the main difference being that at each of the splits only a random sample of size $m < p$ of the set of all features $p$ is considered. Typically, $m \approx \sqrt{p}$ predictors suffice\cite{Breiman2001}. This technique helps to decorrelate the tree, as there may be one predictor that has a very high influence in classification. In the case of bagging, this predictor will most likely be used as the first split in a majority of the trees, causing most bagged trees to be quite similar and correlated. By forcing each split to consider only a subset of the features, on average $(p-m)/p$ of the splits will not consider this a strong predictor\cite{Breiman2001}.In this paper, we will be utilizing the \textit{randomForest} package in R. 
 
 \section{Prediction Models}
 
-In this section, we apply the techniques introduced in the last section to our HOF data. We will start by creating a single classification trees and then predicting the induction classifier of our training data based on our model. We will also look at some metrics that will allow us to test the effectiveness of our classification model in order to see what parameters would be best to use. 
+In this section, we apply the techniques introduced in the last section to our HOF data. We will start by creating a single classification tree and then predict the induction classifier of our training data based on our model. We will also look at some metrics that will allow us to test the effectiveness of our classification model in order to see what parameters would be best to use. 
 
 \subsection{Classification Tree}
 \begin{figure}[h]
@@ -322,7 +322,7 @@ In this section, we apply the techniques introduced in the last section to our H
        \caption{Batting}
        \label{unprunedBat}
  \end{figure}
-Using R's rpart package, we can fit a classification tree to our data. To do so, we will split the entire data set into a training and a test set and build our tree using the training data. As our training set, we will take a random sample of about $2/3$ of our data. This amounts to $\approx 650$ batters. The tree shown in figure \ref{unprunedBat} was obtained by predicting induction based on all of our features mentioned in section \ref{data}. Our model produced a tree with eight splits and 9 terminal nodes and we notice that only 5 variables were used in the creation of the tree: tH, numSeasons, tR, mvp, tHR. The misclassification error of this tree on the training data was : $62/650 \approx 9.5\%$. Let's use this model on our test data to see how it performs, shown on the left in table \ref{conf}.
+Using R's rpart package, we can fit a classification tree to our data. To do so, we will split the entire data set into a training and a test set and build our tree using the training data. As our training set, we will take a random sample of about $2/3$ of our data. This amounts to $\approx 650$ batters. The tree shown in figure \ref{unprunedBat} was obtained by predicting induction based on all of our features mentioned in section \ref{data}. Our model produced a tree with 8 splits and 9 terminal nodes and we notice that only 5 variables were used in the creation of the tree: tH, numSeasons, tR, mvp, tHR. The misclassification error of this tree on the training data was : $62/650 \approx 9.5\%$. Let's use this model on our test data to see how it performs, shown on the left in table \ref{conf}.
 
 \begin{table}[h]
 \centering
@@ -359,7 +359,7 @@ prediction & 0 & 1 \\
        \label{CPlot}
  \end{figure}
 
-Our model predicted the induction of our test players with a misclassification rate of $1 - 383/429 \approx 10.7\%$. We can perform cross validation on the tree to see if there is a more ideal pruned tree size. Having a look at figure \ref{CPlot}, we notice that the cross validation error is minimized around cost complexity parameter (cp) $0.046$. We can use this value to prune our original tree in hopes of obtaining a more stable model of size 3. Generating a new tree model having only 3 terminal nodes actual performs slightly better than our original tree, with a misclassification rate of $1-384/429 \approx 10.4\%$ on the test data. This data is also summarized in table \ref{conf}.
+Our model predicted the induction of our test players with a misclassification rate of $1 - 383/429 \approx 10.7\%$. We can perform cross validation on the tree to see if there is a more ideal pruned tree size. Having a look at figure \ref{CPlot}, we notice that the cross validation error is minimized around cost complexity parameter (cp) $0.046$. We can use this value to prune our original tree in hopes of obtaining a more stable model with only 3 terminal nodes. Generating a new tree model having only 3 terminal nodes actual performs slightly better than our original tree, with a misclassification rate of $1-384/429 \approx 10.4\%$ on the test data. This data is also summarized in table \ref{conf}.
 
 \begin{figure}[h]
        \centering 
@@ -370,7 +370,7 @@ Our model predicted the induction of our test players with a misclassification r
 
 
 
-% Now, to test the performance of this tree, we must estimate a test error by predicting a player's hall of fame induction on our test data. We will look at how our classification model performed.
+% Now, to test the performance of this tree, we must estimate a test error by predicting a player's Hall of Fame induction on our test data. We will look at how our classification model performed.
 
 % \begin{lstlisting}
 % tree.pred=predict(tree.hof,HallOfFame[-train,],type="class")
@@ -385,11 +385,11 @@ Our model predicted the induction of our test players with a misclassification r
 
 
 \subsection{Random Forest}
-In this section, we will build a model for predicting hall of fame induction using an ensemble of decision trees. The method is similar to the one followed above, except in this case we will use bagging to ensure that we do not overfit the training data. Instead of building just a single tree in which all variables are considered at each binary split, we will build numerous decision trees in which a randomly selected variable is chosen at each split. As before, each tree is trained using a training set, and the trees are built so that each terminal node is \textit{pure} in the sense that all of the observations in the node fall into the same class.
+In this section, we will build a model for predicting Hall of Fame induction using an ensemble of decision trees. The method is similar to the one followed above, except in this case we will use bagging to ensure that we do not overfit the training data. Instead of building just a single tree in which all variables are considered at each binary split, we will build numerous decision trees in which a randomly selected variable is chosen at each split. As before, each tree is trained using a training set, and the trees are built so that each terminal node is \textit{pure} in the sense that all of the observations in the node fall into the same class.
 
-The test data will be referred to as \textit{out-of-bag} sample, since it is not included in bagging method used for training. The prediction for the out-of-bag samples will be the majority vote of the predictions from the individual trees. To change things up, in this section we will be considering the full set of batters rather than simply those that have appeared on at least one ballot. This will be useful in predicting induction for players that have not yet retired, or have retired in the last 5 years.
+The test data will be referred to as \textit{out-of-bag} sample, since it is not included in the bagging method used for training. The prediction for the out-of-bag samples will be the majority vote of the predictions from the individual trees. To change things up, in this section we will be considering the full set of batters rather than simply those that have appeared on at least one ballot. This will be useful in predicting induction for players that have not yet retired, or have retired in the last 5 years.
 
-To do this, we will make our training set all players that have retired before 2009 and our test set all players who are still currently active, or have retired after 2009. We will arbitrarily choose to grow a forest of 1000 trees, and use a tuning function to determine how small of a subset of our variables should be chose from at each split. Figure \ref{mtry} indicates that 3 variables will suffice and result in the lowest OOB-error for 1000 trees. This low OOB-error for choosing 3 variables at each split indicates that OOB observations were misclassified most infrequently in such a scenario.
+To do this, we will make our training set all players that have retired before 2009 and our test set all players who are still currently active, or have retired after 2009. We will arbitrarily choose to grow a forest of 1000 trees, and use a tuning function to determine how small of a subset of our variables should be chosen from at each split. Figure \ref{mtry} indicates that 3 variables will suffice and result in the lowest OOB-error for 1000 trees. This low OOB-error for choosing 3 variables at each split indicates that OOB observations were misclassified most infrequently in such a scenario.
 
 \begin{figure}[h]
        \centering 
@@ -400,7 +400,7 @@ To do this, we will make our training set all players that have retired before 2
 
 After training our forest, the results in table \ref{rfconf} were obtained, indicating an OOB-error rate of $\approx 2.96\%$ We see that the misclassification rate for non HOF players is much lower than that of players who were inducted. This is due to the fact that there is a much larger population of non HOF players, making them easier to classify by the model. 
 
-A benefit of random forests is that they can indicate which variables were most important in prediction. This is a measure of the total amount that the Gini Coefficient is decreased by splits over a given variable and then averaged over all the trees in the forest. In our case, the results in table \ref{varImp} show that All Star Game appearances followed by the total number of runs, rbis, and hits are the factors that best classify a HOF batter.
+A benefit of random forests is that they can indicate which variables were most important in prediction. This is a measure of the total amount that the Gini Coefficient has decreased by splitting over a given variable and then averaged over all the trees in the forest. In our case, the results in table \ref{varImp} show that All Star Game appearances followed by the total number of runs, RBIs, and hits are the factors that best classify a HOF batter.
 
 \begin{table}[h]
 \centering
@@ -438,7 +438,7 @@ gg     &  2.661624 \\
 \label{varImp}
 \end{table}
 
-Now we are in a position to use our random forest model to predict hall of fame induction on the test set, shown in table \ref{rfplayers}. Since our test set contained player not yet eligible for induction, these prediction can best tested against actual data once these players appear on ballots. It should be noted that these predictions were made as if all of the players in our test set had retired \textit{today}. Since nothing in our model projects players' performance in the future, there are definitely some players that are worthy, but just haven't had enough playing time to accumulate the required statistics. For example, in table \ref{rfplayers}, we see that Miguel Cabrera is not HOF worthy. However it is incredibly impressive that he still has around 10 years left in him and he is already fairly close to being at a point where his career statistics get him into the hall.
+Now we are in a position to use our random forest model to predict Hall of Fame induction on the test set, shown in table \ref{rfplayers}. Since our test set contained players not yet eligible for induction, these predictions can best be tested against actual data once these players appear on ballots. It should be noted that these predictions were made as if all of the players in our test set had retired \textit{today}. Since nothing in our model projects players' performance in the future, there are definitely some players that are worthy, but just haven't had enough playing time to accumulate the required statistics. For example, in table \ref{rfplayers}, we see that Miguel Cabrera is not HOF worthy. However it is incredibly impressive that he still has around 10 years left in him and he is already fairly close to being at a point where his career statistics get him into the hall.
 
 
 \begin{table}[h]
@@ -486,9 +486,9 @@ With regards to the Hall of Fame Data, we have shown that our decision tree mode
 	\item If yes, this player will be inducted with 90\% certainty. 
 \end{enumerate}
 
-Random forests performed much better in prediction, with a misclassification error rate near 3\%. The model we created with the random forest technique was also more informative, as we took advantage of the power of the method and used the full set of batters. We were also able to view the important of each variable in deciding whether or not a player would be inducted. This can prove to be useful evaluating the patterns of voters and indicating periods of time where they too heavily favor one statistic. For example, all star game selection is done by the general public, and players from higher market teams often make the all star team not because of their talent, but because of the higher population of voters in their region.
+Random forests performed much better in prediction, with a misclassification error rate near 3\%. The model we created with the random forest technique was also more informative, as we took advantage of the power of the method and used the full set of batters. We were also able to view the importance of each variable in deciding whether or not a player would be inducted. This can prove to be useful in evaluating the patterns of voters and indicating periods of time where they too heavily favor one statistic. For example, all star game selection is done by the general public, and players from higher market teams often make the all star team not because of their talent, but because of the higher population of voters in their region.
 
-Going along with this, some interesting extensions of this model could be formed by doing time series analysis on voting patterns. This could indicate certain eras in which BBWAA voters were more interested in one statistic over another, and classifying the types of batters most lauded during that era. For example, in the early 2000s during the height of steroid use power hitters were held in higher regard than ``scrappy'' players, while now we are in an offensive lull, where high contact batters are more vital to a teams' winning a game.
+Going along with this, some interesting extensions of this model could be formed by doing time series analysis on voting patterns. This could indicate certain eras in which BBWAA voters were more interested in one statistic over another, and in classifying the types of batters that were most lauded during that era. For example, in the early 2000s during the height of steroid use, power hitters were held in higher regard than ``scrappy'' players, while now we are in an offensive lull, where high contact batters are more vital to a teams' success.
 
 %% References
 %%
