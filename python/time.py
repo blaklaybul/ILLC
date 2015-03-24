@@ -26,7 +26,7 @@ def process_pref(line,hist, num =2):
 
 	for idx, word in enumerate(line.split()):
 		if idx < len(line.split())-(num-1):
-			pair = word.strip(string.whitespace) + " " + line.split()[idx+1].strip(string.whitespace)
+			pair = (word.strip(string.whitespace), line.split()[idx+1].strip(string.whitespace))
 			hist[pair] = hist.get(pair,0) + 1
 
 
@@ -75,12 +75,15 @@ def weighted_choice(hist):
 			return k
 	return k
 
-def random_text(hist, num = 20):
+def random_text(hist, num = 5):
 	
 	t=[]
-
-	for i in range(num):
-		t.append(weighted_choice(hist))
+	t.append(' '.join(weighted_choice(hist)) + " ")
+	new_hist = hist
+	for i in range(num-1):
+		next = t[-1].split()[-1]
+		print next
+		t.append(' '.join(weighted_choice(new_hist)) + " ")
 
 		#t.append(hist.items()[random.randint(0,len(hist)-1)][0] + " ")
 
@@ -104,5 +107,4 @@ if __name__ == '__main__':
 	for freq, word in p[0:20]:
 		print word, "\t", freq
 
-	print random_text(hist[1])
 	print ''.join(random_text(hist[1]))
