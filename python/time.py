@@ -52,6 +52,7 @@ def most_common(hist):
 	t.sort()
 	t.reverse()
 	return t
+	
 
 def print_common(hist, num = 10):
 	t = most_common(hist)
@@ -76,7 +77,9 @@ def weighted_choice(hist):
 	return k
 
 def random_text(hist, num = 5):
-	
+''' i need to figure out how to get all pairs that begin with end word
+of previous pair
+'''
 	t=[]
 	t.append(' '.join(weighted_choice(hist)) + " ")
 	new_hist = hist
@@ -92,6 +95,7 @@ def random_text(hist, num = 5):
 if __name__ == '__main__':
 	print("working with time machine")
 	hist = process_book("timemachine.txt", skip_head =True)
+	
 	print "Total words: ", total_words(hist[0])
 	print "diff words: ", different_words(hist[0])
 	print "diff pairs ", different_words(hist[1])
