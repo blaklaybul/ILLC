@@ -77,15 +77,16 @@ def weighted_choice(hist):
 	return k
 
 def random_text(hist, num = 5):
-''' i need to figure out how to get all pairs that begin with end word
-of previous pair
-'''
+	''' i need to figure out how to get all pairs that begin with end word
+	of previous pair
+	'''
 	t=[]
 	t.append(' '.join(weighted_choice(hist)) + " ")
 	new_hist = hist
 	for i in range(num-1):
 		next = t[-1].split()[-1]
-		print next
+		#print next
+		#new_hist = {(k:v) for k,v in hist.iteritems() if k[-1] == next}
 		t.append(' '.join(weighted_choice(new_hist)) + " ")
 
 		#t.append(hist.items()[random.randint(0,len(hist)-1)][0] + " ")
@@ -94,21 +95,23 @@ of previous pair
 
 if __name__ == '__main__':
 	print("working with time machine")
-	hist = process_book("timemachine.txt", skip_head =True)
+	hist = process_book("alice.txt", skip_head =True)
 	
-	print "Total words: ", total_words(hist[0])
-	print "diff words: ", different_words(hist[0])
-	print "diff pairs ", different_words(hist[1])
+	# print "Total words: ", total_words(hist[0])
+	# print "diff words: ", different_words(hist[0])
+	# print "diff pairs ", different_words(hist[1])
 
-	w = most_common(hist[0])
-	p = most_common(hist[1])
+	# w = most_common(hist[0])
+	# p = most_common(hist[1])
 
-	print "the most common words are: "
-	for freq, word in w[0:20]:
-		print word, "\t", freq
+	# print "the most common words are: "
+	# for freq, word in w[0:20]:
+	# 	print word, "\t", freq
 
-	print "the most common pairs are: "
-	for freq, word in p[0:20]:
-		print word, "\t", freq
+	# print "the most common pairs are: "
+	# for freq, word in p[0:20]:
+	# 	print word, "\t", freq
 
-	print ''.join(random_text(hist[1]))
+	print ''.join(random_text(hist[1],4))
+	print ''.join(random_text(hist[1],4))
+	print ''.join(random_text(hist[1],4))
