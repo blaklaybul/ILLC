@@ -1,10 +1,9 @@
 import string
-import random
 import pandas as pd
 
 def process_book(book,skip_head):
-	hist_of_words = {}
-	hist_of_pairs = {}
+	hist_of_words = pd.DataFrame()
+	hist_of_pairs = pd.DataFrame()
 	
 	fp = file(book)
 
@@ -12,10 +11,17 @@ def process_book(book,skip_head):
 		skip_gut_head(fp)
 
 	for line in fp:
+		print line
 		if line.startswith("End of Project Gutenberg"):
 			break
 		process_line(line,hist_of_words)
 		process_pref(line, hist_of_pairs)
+	
+	hist_of_words['count'] = 1
+	hist_of_words = hist_of_words.groupby(list(hist_of_words.columns[0]), as_index = False).sum()
+
+	hist_of_pairs['count'] = 1
+	hist_of_pairs = hist_of_pairs.groupby(list(hist_of_pairs.columns[0:-1]), as_index=False).sum()
 	return (hist_of_words, hist_of_pairs)
 
 
@@ -27,8 +33,8 @@ def process_pref(line,hist, num =2):
 
 	for idx, word in enumerate(line.split()):
 		if idx < len(line.split())-(num-1):
-			pair = (word.strip(string.whitespace), line.split()[idx+1].strip(string.whitespace))
-			hist[pair] = hist.get(pair,0) + 1
+			pair = pd.Series([word.strip(string.whitespace), line.split()[idx+1].strip(string.whitespace)])
+			hist = hist.append(pair, ignore_index=True)
 
 
 def skip_gut_head(book):
@@ -41,9 +47,8 @@ def process_line(line, hist):
 
 	for word in line.split():
 		word = word.strip(string.punctuation + string.whitespace)
-		word = word.lower()
-
-		hist[word] = hist.get(word,0) + 1
+		word = pd.Series([word.lower()])
+		hist = hist.append(word, ignore_index=True)
 
 def most_common(hist):
 	t = []
@@ -96,7 +101,7 @@ def random_text(hist, num = 5):
 
 if __name__ == '__main__':
 	print("working with time machine")
-	hist = process_book("steve.txt", skip_head =True)
+	hist = process_book("timemachine.txt", skip_head =True)
 	
 	# print "Total words: ", total_words(hist[0])
 	# print "diff words: ", different_words(hist[0])
@@ -113,6 +118,6 @@ if __name__ == '__main__':
 	# for freq, word in p[0:20]:
 	# 	print word, "\t", freq
 
-	print ''.join(random_text(hist[1],4))
-	print ''.join(random_text(hist[1],4))
-	print ''.join(random_text(hist[1],4))
+	# print ''.join(random_text(hist[1],4))
+	# print ''.join(random_text(hist[1],4))
+	# print ''.join(random_text(hist[1],4))

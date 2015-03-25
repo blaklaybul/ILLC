@@ -1,6 +1,5 @@
 import string
 import random
-import pandas as pd
 
 def process_book(book,skip_head):
 	hist_of_words = {}
