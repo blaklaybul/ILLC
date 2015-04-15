@@ -2,8 +2,8 @@ import string
 import pandas as pd
 
 def process_book(book,skip_head):
-	hist_of_words = pd.DataFrame()
-	hist_of_pairs = pd.DataFrame()
+	hist_of_words = pd.DataFrame(columns = ['word'])
+	hist_of_pairs = pd.DataFrame(columns = ["word1", "word2"])
 	
 	fp = file(book)
 
@@ -11,7 +11,6 @@ def process_book(book,skip_head):
 		skip_gut_head(fp)
 
 	for line in fp:
-		print line
 		if line.startswith("End of Project Gutenberg"):
 			break
 		process_line(line,hist_of_words)
@@ -30,11 +29,10 @@ consider pairs for prefixes and suffixes'''
 
 def process_pref(line,hist, num =2):
 	line = line.replace("-"," ")
-
 	for idx, word in enumerate(line.split()):
 		if idx < len(line.split())-(num-1):
 			pair = pd.Series([word.strip(string.whitespace), line.split()[idx+1].strip(string.whitespace)])
-			hist = hist.append(pair, ignore_index=True)
+			hist.loc[len(hist)] = [pair[0], pair[1]]
 
 
 def skip_gut_head(book):
@@ -43,12 +41,12 @@ def skip_gut_head(book):
 			break
 
 def process_line(line, hist):
+	print len(hist)
 	line = line.replace("-", " ")
-
 	for word in line.split():
 		word = word.strip(string.punctuation + string.whitespace)
 		word = pd.Series([word.lower()])
-		hist = hist.append(word, ignore_index=True)
+		hist.loc[len(hist)] = word[0]
 
 def most_common(hist):
 	t = []
